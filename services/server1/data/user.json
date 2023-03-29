@@ -1,0 +1,44 @@
+[
+    {
+        "username": "Pet Vet",
+        "fullname": "admin",
+        "email": "admin@mail.com",
+        "password": "123456",
+        "imgUrl": "https://elements-cover-images-0.imgix.net/0e947e72-2e49-4c64-80f4-29babf42f4a3?auto=compress%2Cformat&fit=max&w=900&s=f232fc05256760da5f7c26588f5a3561",
+        "role": "owner",
+        "phoneNumber": "081245698745",
+        "address": "Jl. Cideng Timur No.11 H, RT.5/RW.4",
+        "kecamatan": "Gambir",
+        "kelurahan": "Petojo Utara",
+        "city": "DKI Jakarta",
+        "zipcode": "10130"
+    },
+    {
+        "username": "BobbyFischer",
+        "fullname": "Bobby Fischer",
+        "email": "bobby@mail.com",
+        "password": "123456",
+        "imgUrl": "https://mediaproxy.salon.com/width/1200/https://media.salon.com/2004/07/bobby_fischers_strangest_endgame.jpg",
+        "role": "client",
+        "phoneNumber": "081212345678",
+        "address": "Jl. Taman Pd. Indah No.9, RT.9/RW.12",
+        "kecamatan": "Pesanggrahan",
+        "kelurahan": "Bintaro",
+        "city": "DKI Jakarta",
+        "zipcode": "12230"
+    },
+    {
+        "username": "ArtourIvanov",
+        "fullname": "Artour Ivanov",
+        "email": "artour@mail.com",
+        "password": "123456",
+        "imgUrl": "https://external-preview.redd.it/49y0mQKUiRR5KcvaebsE0ET_uHX4MJAcaW2MPw2jIMw.jpg?auto=webp&s=8ccacae63e761dbe9c55855fe110e40f7351bf9d",
+        "role": "client",
+        "phoneNumber": "081355986254",
+        "address": "Pantai Indah Kapuk St Boulevard",
+        "kecamatan": "Kamal Muara",
+        "kelurahan": "Penjaringan",
+        "city": "DKI Jakarta",
+        "zipcode": "14470"
+    }
+]
