@@ -7,13 +7,15 @@ class Controller {
     }
 
     static async login(req, res, next) {
-
+        
     }
+
 
     static async putUser(req, res, next) {
         
     }
 
+    // pet controller (devira)
     static async addPet(req, res, next) {
         
     }
@@ -36,7 +38,6 @@ class Controller {
 
 
 
-    // pet controller (devira)
 }
 
 module.exports = Controller
