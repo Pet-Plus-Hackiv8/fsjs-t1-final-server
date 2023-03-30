@@ -6,9 +6,9 @@ npx sequelize-cli db:migrate --name Pet --attributes name:string,imgUrl:string,g
 
 npx sequelize-cli db:migrate --name PetSchedule --attributes complete:string,details:string,PetId:integer,PetshopId:integer,DoctorScheduleId::integer
 
-npx sequelize-cli db:migrate --name MedicalRecord --attributes ActionId:integer,PetId:integer,DoctorId:integer,PetScheduleId:integer,PetshopId:integer
+npx sequelize-cli db:migrate --name MedicalRecord --attributes PetId:integer,DoctorId:integer,PetScheduleId:integer,PetshopId:integer
 
-npx sequelize-cli db:migrate --name Action --attributes name:string,document:string,totalPrice:integer
+npx sequelize-cli db:migrate --name Action --attributes document:string,MedicalRecordId:integer,ServiceId:integer
 
 npx sequelize-cli db:migrate Service --attributes name:string,serviceLogo:string,minPrice:integer,maxPrice:integer,PetshopId:integer
 
