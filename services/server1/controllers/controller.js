@@ -14,6 +14,26 @@ class Controller {
         
     }
 
+    static async addPet(req, res, next) {
+        
+    }
+
+    static async fetchAllPet(req, res, next) {
+        
+    }
+
+    static async fetchPet(req, res, next) {
+        
+    }
+
+    static async putPet(req, res, next) {
+        
+    }
+
+    static async deletePet(req, res, next) {
+        
+    }
+
 
 
     // pet controller (devira)
