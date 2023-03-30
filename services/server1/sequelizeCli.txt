@@ -1,0 +1,21 @@
+npx sequelize-cli db:create
+
+npx sequelize-cli db:migrate --name User --attributes username:string,fullname:string,email:string,password:string,imgUrl:string,role:string,phoneNumber:string,address:string
+
+npx sequelize-cli db:migrate --name Pet --attributes name:string,imgUrl:string,gender:string,species:string,breed:string,description:string,weight:string,UserId:integer
+
+npx sequelize-cli db:migrate --name PetSchedule --attributes complete:string,details:string,PetId:integer,PetshopId:integer,DoctorScheduleId::integer
+
+npx sequelize-cli db:migrate --name MedicalRecord --attributes ActionId:integer,PetId:integer,DoctorId:integer,PetScheduleId:integer,PetshopId:integer
+
+npx sequelize-cli db:migrate --name Action --attributes name:string,document:string,totalPrice:integer
+
+npx sequelize-cli db:migrate Service --attributes name:string,serviceLogo:string,minPrice:integer,maxPrice:integer,PetshopId:integer
+
+npx sequelize-cli db:migrate --name Doctor --attributes name:string,imgUrl:string,gender:string,education:string,PetshopId:integer
+
+npx sequelize-cli db:migrate --name Petshop --attributes name:string,logo:string,address:string,location:geometry,phoneNumber:string,UserId:integer
+
+npx sequelize-cli db:migrate --name DoctorSchedule --attributes day:string,time:string,status:string,PetshopId:integer,DoctorId:integer
+
+npx sequelize-cli db:migrate --name Post --attributes title:string,postDate:string,news:text,status:string,imageUrl:string,PetshopId:integer
