@@ -138,5 +138,27 @@
         "minPrice": 100000,
         "maxPrice" : 500000,
         "PetShopId" : 3
+    },
+    {
+        "name": "veterinary examination",
+        "serviceLogo" : "https://cdn.discordapp.com/attachments/1054692655327613008/1091241297353904189/2934605.png",
+        "minPrice": 50000,
+        "maxPrice" : 500000,
+        "PetShopId" : 1
+    },
+    {
+        "name": "veterinary examination",
+        "serviceLogo" : "https://cdn.discordapp.com/attachments/1054692655327613008/1091241297353904189/2934605.png",
+        "minPrice": 100000,
+        "maxPrice" : 500000,
+        "PetShopId" : 2
+    },
+    {
+        "name": "veterinary examination",
+        "serviceLogo" : "https://cdn.discordapp.com/attachments/1054692655327613008/1091241297353904189/2934605.png",
+        "minPrice": 100000,
+        "maxPrice" : 500000,
+        "PetShopId" : 3
     }
+    
 ]

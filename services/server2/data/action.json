@@ -1,0 +1,17 @@
+[
+    {
+        "documents": "https://tinyurl.com/3bp7pbfe",
+        "totalPrice" : 200000,
+        "MedicalRecordId": 1,
+        "ServiceId" : 1,
+        "PetShopId" : 1
+    }, 
+    {
+        "documents": "-",
+        "totalPrice" : 100000,
+        "MedicalRecordId": 1,
+        "ServiceId" : 21,
+        "PetShopId" : 1
+    }  
+   
+]
