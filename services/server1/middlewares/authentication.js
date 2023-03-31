@@ -10,21 +10,22 @@ async function authentication(req, res, next) {
     try {
         let access_token = req.headers.access_token
         if (!access_token) {
-          throw { name: "invalidToken" }
+          throw { name: "InvalidToken" }
         }
 
         let decoded = decodeToken(access_token)
         // console.log(decoded, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
-        const user = await User.findByPk(decoded.userId)
+        const user = await User.findByPk(decoded.UserId)
         if (!user) {
-          throw { name: "InvalidCredential" }
+          throw { name: "InvalidToken" }
         }
         req.user = {
-          id: user.id,
+          UserId: user.id,
           email: user.email,
           role: user.role
         }
+        console.log("LOLOS AUTHEN")
         next()
       } catch (err) {
         console.log(err)
