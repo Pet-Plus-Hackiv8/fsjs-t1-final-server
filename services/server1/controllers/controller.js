@@ -9,7 +9,7 @@ class Controller {
   // users controller (zio)
   static async register(req, res, next) {
     try {
-        console.log(req.body, "<><><><><>")
+      // console.log(req.body, "<><><><><>")
       let {
         username,
         fullName,
@@ -19,8 +19,8 @@ class Controller {
         phoneNumber,
         address,
       } = req.body;
-      let role = "client"
-      password = bcrypt.hashSync(password, 10)
+      let role = "client";
+      password = bcrypt.hashSync(password, 10);
 
       let newUser = await User.create({
         username,
@@ -59,11 +59,11 @@ class Controller {
       }
 
       if (await bcrypt.compare(password, user.password)) {
-        const access_token = createToken({ userId: user.id, email: email });
+        const access_token = createToken({ UserId: user.id, email: email });
         // console.log('masuk', '<<<<<<<<<<<<')
         res.status(200).json({
           access_token: access_token,
-          userId: user.id,
+          UserId: user.id,
           role: user.role,
           username: user.username,
         });
@@ -76,7 +76,43 @@ class Controller {
     }
   }
 
-  static async putUser(req, res, next) {}
+  static async putUser(req, res, next) {
+    try {
+        console.log("MASUK PUT")
+      let UserId = req.user.UserId;
+      let {
+        username,
+        fullName,
+        email,
+        password,
+        imgUrl,
+        phoneNumber,
+        address,
+      } = req.body;
+      let role = "client";
+      password = bcrypt.hashSync(password, 10)
+
+      let newUser = await User.update(
+        {
+          username,
+          fullName,
+          email,
+          password,
+          imgUrl,
+          role,
+          phoneNumber,
+          address,
+        },
+        {
+          where: {id: UserId}
+        }
+      )
+      res.status(201).json({message: "Your account has been updated"})
+    } catch (err) {
+        console.log(err)
+        next(err)
+    }
+  }
 
   // pet controller (devira)
   static async addPet(req, res, next) {}

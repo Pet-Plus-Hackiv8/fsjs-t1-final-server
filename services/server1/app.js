@@ -8,6 +8,7 @@ const cors = require("cors");
 const port = process.env.PORT || 4001
 const Controller = require('./controllers/controller');
 const errorHandler = require("./middlewares/errorHandler");
+const authentication = require('./middlewares/authentication');
 
 
 
@@ -22,7 +23,10 @@ app.get('/', (req, res) => {
 
 app.post("/register", Controller.register)
 app.post("/login", Controller.login)
-app.put("/user/:id", Controller.putUser)
+
+app.use(authentication)
+
+app.put("/user", Controller.putUser)
 // app.get("/user/:id", Controller.fetchOnlineUser)
 app.post("/pet", Controller.addPet)
 app.get("/pets", Controller.fetchAllPet)

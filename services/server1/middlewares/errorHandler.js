@@ -18,6 +18,8 @@ async function errorHandler(err, req, res, next) {
     res.status(401).json({ message: "Please fill email" });
   } else if (err.name === "passwordRequired") {
     res.status(401).json({ message: "Please fill password" });
+  } else if (err.name === "InvalidToken") {
+    res.status(401).json({ message: "Invalid token" });
   } else {
     res.status(500).json({ message: "Internal server error" });
   }
