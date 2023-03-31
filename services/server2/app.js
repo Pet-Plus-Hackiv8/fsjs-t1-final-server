@@ -12,11 +12,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const { sequelize, Sequelize } = require("./models");
-const { Petshop } = require("./models");
-const multer = require("multer");
-var path = require("path");
-var FormData = require("form-data");
-const axios = require("axios")
+const { Petshop } = require("./models")
+const ImageCloud = require("./helpers/imageKit");
+const upload = require('./helpers/multer');
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -61,48 +60,31 @@ app.get("/location", async (req, res) => {
   }
 });
 
-app.use("/assets", express.static("assets"));
-
-const storage = multer.memoryStorage();
-const upload = multer({
-    storage: storage
-});
 
 app.post("/petshop/register", upload.single("logo"), async (req, res, next) => {
   try {
-      
-      let { name, address, latitude, longitude, phoneNumber, UserId } = req.body;
-      
-      const form = new FormData();
-      form.append("file", req.file.buffer, {filename: req.file.originalname});
-      form.append("fileName", req.file.originalname);
-    //   console.log(req.file, "MASUKKK")
-
-    const PK = "cHJpdmF0ZV9xcFZrUjkwWmhvcythYU9tdE51L3NzQkN5ek09Og==";
-
-    const {data} = await axios({
-      method: "POST",
-      url: "https://upload.imagekit.io/api/v1/files/upload",
-      data: form,
-      headers: {
-        Authorization: "Basic " + PK
+    let { name, address, latitude, longitude, phoneNumber, UserId } = req.body;
+    if (!req.file) {
+        console.log("No file received or invalid file type");
+        console.log("NO FILE")
       }
+
+    let link = await ImageCloud(req.file)
+
+    console.log(link, "<><>");
+    let logo = link.url
+    let newShop = await Petshop.create({
+      name,
+      logo,
+      address,
+      phoneNumber,
+      UserId,
+      location: Sequelize.fn(
+        "ST_GeomFromText",
+        `POINT(${latitude} ${longitude})`
+      ),
     });
-
-    console.log(data, "<><>")
-
-    // let newShop = await Petshop.create({
-    //   name,
-    //   logo,
-    //   address,
-    //   phoneNumber,
-    //   UserId,
-    //   location: Sequelize.fn(
-    //     "ST_GeomFromText",
-    //     `POINT(${latitude} ${longitude})`
-    //   ),
-    // });
-    // res.status(201).json(newShop);
+    res.status(201).json(newShop);
   } catch (err) {
     console.log(err);
   }
