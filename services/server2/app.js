@@ -6,9 +6,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 4002;
-//   const Controller = require('./controllers/controller');
-//   const errorHandler = require("./middlewares/errorHandler");
-//   const authentication = require("./middlewares/authentication")
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 
 const { sequelize, Sequelize } = require("./models");
 const { Petshop } = require("./models");
-
+const multer = require("multer");
+var path = require("path");
+var FormData = require("form-data");
+const axios = require("axios")
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
@@ -61,27 +61,54 @@ app.get("/location", async (req, res) => {
   }
 });
 
-app.post("/petshop/register", async (req, res, next) => {
+app.use("/assets", express.static("assets"));
+
+const storage = multer.memoryStorage();
+const upload = multer({
+    storage: storage
+});
+
+app.post("/petshop/register", upload.single("logo"), async (req, res, next) => {
   try {
-    let { name, logo, address, latitude, longitude, phoneNumber, UserId } =
-      req.body;
-    console.log("MASUKKKK")
-    let newShop = await Petshop.create({
-      name,
-      logo,
-      address,
-      phoneNumber,
-      UserId,
-      location: Sequelize.fn(
-        "ST_GeomFromText",
-        `POINT(${latitude} ${longitude})`
-      ),
+      
+      let { name, address, latitude, longitude, phoneNumber, UserId } = req.body;
+      
+      const form = new FormData();
+      form.append("file", req.file.buffer, {filename: req.file.originalname});
+      form.append("fileName", req.file.originalname);
+    //   console.log(req.file, "MASUKKK")
+
+    const PK = "cHJpdmF0ZV9xcFZrUjkwWmhvcythYU9tdE51L3NzQkN5ek09Og==";
+
+    const {data} = await axios({
+      method: "POST",
+      url: "https://upload.imagekit.io/api/v1/files/upload",
+      data: form,
+      headers: {
+        Authorization: "Basic " + PK
+      }
     });
-    res.status(201).json(newShop)
+
+    console.log(data, "<><>")
+
+    // let newShop = await Petshop.create({
+    //   name,
+    //   logo,
+    //   address,
+    //   phoneNumber,
+    //   UserId,
+    //   location: Sequelize.fn(
+    //     "ST_GeomFromText",
+    //     `POINT(${latitude} ${longitude})`
+    //   ),
+    // });
+    // res.status(201).json(newShop);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 });
+
+// app.post("/petshop/register", upload.single("imgUrl"), async );
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
