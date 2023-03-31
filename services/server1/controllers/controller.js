@@ -4,23 +4,30 @@ const { createToken } = require("../middlewares/jwt");
 const { Op } = require("sequelize");
 const timeSetter = require("../helpers/timeConvert");
 const dotSeparator = require("../helpers/dotSeparator");
+const ImageCloud = require("../helpers/imageKit");
 
 class Controller {
   // users controller (zio)
   static async register(req, res, next) {
     try {
-      console.log(req.body, "<><><><><>");
+      // console.log(req.body, "<><><><><>");
+      if (!req.file) {
+        console.log("Please insert profile picture");
+      }
+
       let {
         username,
         fullName,
         email,
         password,
-        imgUrl,
         phoneNumber,
         address,
       } = req.body;
+
       let role = "client";
       password = bcrypt.hashSync(password, 10);
+      let link = await ImageCloud(req.file);
+      let imgUrl = link.url
 
       let newUser = await User.create({
         username,
@@ -78,19 +85,23 @@ class Controller {
 
   static async putUser(req, res, next) {
     try {
-        console.log("MASUK PUT")
+      if (!req.file) {
+        console.log("Please insert profile picture");
+      }
+      // console.log("MASUK PUT");
       let UserId = req.user.UserId;
       let {
         username,
         fullName,
         email,
         password,
-        imgUrl,
         phoneNumber,
         address,
       } = req.body;
       let role = "client";
-      password = bcrypt.hashSync(password, 10)
+      password = bcrypt.hashSync(password, 10);
+      let link = await ImageCloud(req.file);
+      let imgUrl = link.url
 
       let newUser = await User.update(
         {
@@ -104,27 +115,27 @@ class Controller {
           address,
         },
         {
-          where: {id: UserId}
+          where: { id: UserId },
         }
-      )
-      res.status(201).json({message: "Your account has been updated"})
+      );
+      res.status(201).json({ message: "Your account has been updated" });
     } catch (err) {
-        console.log(err)
-        next(err)
+      console.log(err);
+      next(err);
     }
   }
 
   static async getUserById(req, res, next) {
     try {
-        let UserId = req.user.UserId
-        let user = await User.findByPk(UserId)
-        if(!user) {
-            throw {name: "notFound"}
-        }
-        res.status(200).json(user)
+      let UserId = req.user.UserId;
+      let user = await User.findByPk(UserId);
+      if (!user) {
+        throw { name: "notFound" };
+      }
+      res.status(200).json(user);
     } catch (err) {
-        console.log(err)
-        next(err)
+      console.log(err);
+      next(err);
     }
   }
 
@@ -218,7 +229,7 @@ class Controller {
         },
       });
 
-      res.status(200).json({message: `success to delete`});
+      res.status(200).json({ message: `success to delete` });
     } catch (err) {
       console.log(err);
       next(err);

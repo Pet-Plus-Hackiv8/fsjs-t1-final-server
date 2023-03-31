@@ -9,6 +9,7 @@ const port = process.env.PORT || 4001
 const Controller = require('./controllers/controller');
 const errorHandler = require("./middlewares/errorHandler");
 const authentication = require("./middlewares/authentication")
+const upload = require("./helpers/multer");
 
 
 
@@ -21,13 +22,13 @@ app.get('/', (req, res) => {
 })
 
 
-app.post("/register", Controller.register)
+app.post("/register", upload.single("imgUrl"), Controller.register)
 app.post("/login", Controller.login)
 
 app.use(authentication)
 
 app.get("/user", Controller.getUserById)
-app.put("/user", Controller.putUser)
+app.put("/user", upload.single("imgUrl"), Controller.putUser)
 // app.get("/user/:id", Controller.fetchOnlineUser)
 app.post("/pets", Controller.addPet)
 app.get("/pets", Controller.fetchAllPet)

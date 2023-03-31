@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const { sequelize, Sequelize } = require("./models");
-const { Petshop } = require("./models")
+const { Petshop } = require("./models");
 const ImageCloud = require("./helpers/imageKit");
-const upload = require('./helpers/multer');
+const upload = require("./helpers/multer");
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -60,19 +60,18 @@ app.get("/location", async (req, res) => {
   }
 });
 
-
 app.post("/petshop/register", upload.single("logo"), async (req, res, next) => {
   try {
     let { name, address, latitude, longitude, phoneNumber, UserId } = req.body;
     if (!req.file) {
-        console.log("No file received or invalid file type");
-        console.log("NO FILE")
-      }
+      console.log("No file received or invalid file type");
+      // console.log("NO FILE");
+    }
 
-    let link = await ImageCloud(req.file)
+    let link = await ImageCloud(req.file);
 
     console.log(link, "<><>");
-    let logo = link.url
+    let logo = link.url;
     let newShop = await Petshop.create({
       name,
       logo,
