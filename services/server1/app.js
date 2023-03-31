@@ -26,6 +26,7 @@ app.post("/login", Controller.login)
 
 app.use(authentication)
 
+app.get("/user", Controller.getUserById)
 app.put("/user", Controller.putUser)
 // app.get("/user/:id", Controller.fetchOnlineUser)
 app.post("/pet", Controller.addPet)

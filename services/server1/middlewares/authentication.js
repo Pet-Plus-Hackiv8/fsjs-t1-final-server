@@ -25,7 +25,7 @@ async function authentication(req, res, next) {
           email: user.email,
           role: user.role
         }
-        console.log("LOLOS AUTHEN")
+        // console.log("LOLOS AUTHEN")
         next()
       } catch (err) {
         console.log(err)

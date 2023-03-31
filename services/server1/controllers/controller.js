@@ -114,6 +114,20 @@ class Controller {
     }
   }
 
+  static async getUserById(req, res, next) {
+    try {
+        let UserId = req.user.UserId
+        let user = await User.findByPk(UserId)
+        if(!user) {
+            throw {name: "notFound"}
+        }
+        res.status(200).json(user)
+    } catch (err) {
+        console.log(err)
+        next(err)
+    }
+  }
+
   // pet controller (devira)
   static async addPet(req, res, next) {}
 
