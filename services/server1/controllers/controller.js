@@ -3,13 +3,45 @@ const bcrypt = require("bcrypt");
 const { createToken } = require("../middlewares/jwt");
 const { Op } = require("sequelize");
 const timeSetter = require("../helpers/timeConvert");
-const dotSeparator = require('../helpers/dotSeparator');
+const dotSeparator = require("../helpers/dotSeparator");
 
 class Controller {
   // users controller (zio)
-  static async register(req, res, next) {}
+  static async register(req, res, next) {
+    try {
+        console.log(req.body, "<><><><><>")
+      let {
+        username,
+        fullName,
+        email,
+        password,
+        imgUrl,
+        phoneNumber,
+        address,
+      } = req.body;
+      let role = "client"
+      password = bcrypt.hashSync(password, 10)
+
+      let newUser = await User.create({
+        username,
+        fullName,
+        email,
+        password,
+        imgUrl,
+        role,
+        phoneNumber,
+        address,
+      });
+
+      res.status(201).json({ message: "Account created" });
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 
   static async login(req, res, next) {
+    // console.log("MASUK")
     try {
       // console.log(req.body, "OKOKOK");
       let { email, password } = req.body;
