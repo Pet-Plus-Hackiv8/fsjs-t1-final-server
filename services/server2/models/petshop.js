@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Petshop.hasMany(models.Doctor)
       Petshop.hasMany(models.DoctorSchedule)
       Petshop.hasMany(models.Post)
-      Petshop.hasMany(models.Service)
+      Petshop.hasMany(models.Service, {foreignKey: "PetshopId"})
       Petshop.hasMany(models.PetSchedule)
       Petshop.hasMany(models.MedicalRecord)
 

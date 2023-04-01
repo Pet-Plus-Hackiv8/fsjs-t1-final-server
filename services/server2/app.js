@@ -16,50 +16,13 @@ const { Petshop } = require("./models");
 const ImageCloud = require("./helpers/imageKit");
 const upload = require("./helpers/multer");
 const Controller = require("./controllers/controller");
+const authentication = require("./middlewares/authentication");
+const errorHandler = require("./middlewares/errorHandler");
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/location", async (req, res) => {
-  try {
-    // distance on meter unit
-    const distance = req.query.distance;
-    const long = req.query.long;
-    const lat = req.query.lat;
-
-    const result = await sequelize.query(
-      `select
-        id,
-        name,
-        location
-      from
-        "Petshops"
-      where
-        ST_DWithin(location,
-        ST_MakePoint(${lat},
-        ${long}),
-        ${distance},
-      true) = true;`,
-      {
-        replacements: {
-          distance: +distance,
-          long: parseFloat(long),
-          lat: parseFloat(lat),
-        },
-        logging: console.log,
-        plain: false,
-        raw: false,
-        type: sequelize.QueryTypes.SELECT,
-      }
-    );
-    // console.log(distance, lat, long)
-    res.status(200).json(result);
-  } catch (error) {
-    console.log(error, "INI ERROR");
-    res.status(500).json(error);
-  }
-});
 
 // app.post("/petshop/register", upload.single("logo"), async (req, res, next) => {
 //   try {
@@ -68,7 +31,7 @@ app.get("/location", async (req, res) => {
 //       console.log("No file received or invalid file type");
 //       // console.log("NO FILE");
 //     }
-
+//     console.log(req.file, "+__+_+__+_+_+_");
 //     let link = await ImageCloud(req.file);
 
 //     console.log(link, "<><>");
@@ -92,12 +55,28 @@ app.get("/location", async (req, res) => {
 
 // app.post("/petshop/register", upload.single("imgUrl"), async );
 
-app.post("/petshop/register", upload.single("logo"), Controller.petshopRegister)
+// pet shops
+
+
+app.post("/petShop/register", upload.single("logo"), Controller.petshopRegister)
+app.get("/petShops", Controller.getAllPetShops)
+app.get("/petShops/:PetshopId", Controller.getPetShopById)
+app.put("/petShops/:PetshopId", upload.single("logo"), Controller.petShopEdit)
+app.get("/petShops/around", Controller.shopAroundMe);
+
+
+
+// app.use(authentication)
+
+//doctors
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
 app.get("/doctors/:PetshopId",  Controller.fetchAllDoctor)
 app.get("/doctors/:PetshopId/:DoctorId",  Controller.fetchDoctor)
 app.put("/doctors/:PetshopId/:DoctorId", upload.single("imgUrl"), Controller.putDoctor)
 app.delete("/doctors/:PetshopId/:DoctorId",  Controller.deleteDoctor)
+
+
+app.use(errorHandler)
 
 
 
