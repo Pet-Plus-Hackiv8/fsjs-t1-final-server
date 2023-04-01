@@ -142,16 +142,23 @@ class Controller {
   // pet controller (devira)
   static async addPet(req, res, next) {
     try {
-      // console.log(req.body);
+      if (!req.file) {
+        console.log("Please insert your Pet Picture");
+      }
+      // console.log(req.user.use);
+      let { UserId } = req.user
+      let link = await ImageCloud(req.file);
+      let imgUrl = link.url
+
       const pet = await Pet.create({
         name: req.body.name,
-        imgUrl: req.body.imgUrl,
+        imgUrl,
         gender: req.body.gender,
         description: req.body.description,
         species: req.body.species,
         breed: req.body.breed,
         weight: req.body.weight,
-        UserId: req.user.id,
+        UserId,
       });
       res.status(201).json(pet);
     } catch (err) {
@@ -189,10 +196,17 @@ class Controller {
 
   static async putPet(req, res, next) {
     try {
+      if (!req.file) {
+        console.log("Please insert your Pet Picture");
+      }
+
+      let link = await ImageCloud(req.file);
+      let imgUrl = link.url
+
       const updatedPet = await Pet.update(
         {
           name: req.body.name,
-          imgUrl: req.body.imgUrl,
+          imgUrl,
           gender: req.body.gender,
           description: req.body.description,
           species: req.body.species,
@@ -205,9 +219,9 @@ class Controller {
           },
         }
       );
-      if (!updatedPet) {
-        throw { name: "notFound" };
-      }
+   
+
+    
 
       res.status(200).json({ message: "Succesfully Edit Profil for Your Pet" });
     } catch (err) {

@@ -29,11 +29,10 @@ app.use(authentication)
 
 app.get("/user", Controller.getUserById)
 app.put("/user", upload.single("imgUrl"), Controller.putUser)
-// app.get("/user/:id", Controller.fetchOnlineUser)
-app.post("/pets", Controller.addPet)
+app.post("/pets", upload.single("imgUrl"), Controller.addPet)
 app.get("/pets", Controller.fetchAllPet)
 app.get("/pets/:id", Controller.fetchPet)
-app.put("/pets/:id", Controller.putPet)
+app.put("/pets/:id", upload.single("imgUrl"), Controller.putPet)
 app.delete("/pets/:id", Controller.deletePet)
 
 app.use(errorHandler)
