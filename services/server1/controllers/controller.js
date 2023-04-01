@@ -198,12 +198,12 @@ class Controller {
 
   static async putPet(req, res, next) {
     try {
-      if (!req.file) {
-        console.log("Please insert your Pet Picture");
-      }
-
-      let link = await ImageCloud(req.file);
-      let imgUrl = link.url
+      let imgUrl = req.body.imgUrl
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        // console.log(link, "<><>");
+        let imgUrl = link.url;
+      } 
 
       const updatedPet = await Pet.update(
         {

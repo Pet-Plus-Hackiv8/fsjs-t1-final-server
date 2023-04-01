@@ -300,15 +300,12 @@ class Controller {
 
   static async putDoctor(req, res, next) {
     try {
-      if (!req.file) {
-        console.log("No file received or invalid file type");
-        // console.log("NO FILE");
-      }
-
-      let link = await ImageCloud(req.file);
-
-      // console.log(link, "<><>");
-      let imgUrl = link.url;
+      let imgUrl = req.body.imgUrl
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        // console.log(link, "<><>");
+        let imgUrl = link.url;
+      } 
 
       const doctor = await Doctor.update(
         {
@@ -413,12 +410,12 @@ class Controller {
 
   static async putPost(req, res, next) {
     try {
-    
-  
-      let link = await ImageCloud(req.file);
-
-      // console.log(link, "<><>");
-      let imageUrl = link.url;
+      let imageUrl = req.body.imageUrl
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        // console.log(link, "<><>");
+        let imageUrl = link.url;
+      } 
 
       const post = await Post.update(
         {
@@ -511,12 +508,14 @@ class Controller {
    try {
 
 
-    let link = await ImageCloud(req.file);
+    let serviceLogo = req.body.serviceLogo
+    if (req.file) {
+      let link = await ImageCloud(req.file);
+      // console.log(link, "<><>");
+      let serviceLogo = link.url;
+    } 
 
-    // console.log(link, "<><>");
-    let serviceLogo = link.url;
-
-    const post = await Post.update({
+    const service = await Service.update({
         name: req.body.name,
         serviceLogo,
         minPrice: req.body.minPrice,
@@ -526,7 +525,7 @@ class Controller {
     {
       where : {
         PetshopId: req.params.PetshopId,
-        id: req.params.PostId
+        id: req.params.ServiceId
       }
     })
 
@@ -539,7 +538,19 @@ class Controller {
   }
   static async deleteService(req, res, next) {
    try {
-    
+    const service = await Service.findByPk(req.params.ServiceId);
+    if (!service) {
+      throw { name: "notFound" };
+    }
+
+    await Service.destroy({
+      where: {
+        PetshopId: req.params.PetshopId,
+        id: req.params.ServiceId,
+      },
+    });
+
+    res.status(200).json({ message: `success to delete` });
    } catch (err) {
     console.log(err);
     // next(err);
