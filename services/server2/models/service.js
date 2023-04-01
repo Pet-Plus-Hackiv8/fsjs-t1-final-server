@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Service.belongsTo(models.Petshop)
-      Service.hasOne(models.Service)
+      Service.hasOne(models.Action)
     }
   }
   Service.init({

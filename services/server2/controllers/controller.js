@@ -63,6 +63,7 @@ class Controller {
         res.status(201).json(newDoctor);
       } catch (err) {
         console.log(err);
+        // next(err);
       }
   }
 
@@ -78,6 +79,7 @@ class Controller {
       res.status(200).json(doctor);
     } catch (err) {
       console.log(err);
+      // next(err);
     }
    
   }
@@ -95,6 +97,7 @@ class Controller {
       res.status(200).json(doctor);
     } catch (err) {
       console.log(err);
+      // next(err);
     }
   }
 
@@ -130,6 +133,7 @@ class Controller {
 
     } catch (err) {
       console.log(err);
+      // next(err);
     }
    
   }
@@ -201,7 +205,7 @@ class Controller {
         where: {
           PetshopId: req.params.PetshopId,
           id: req.params.PostId
-        }       
+        }, include: Petshop    
       });
       res.status(200).json(post);
     } catch (err) {
@@ -212,10 +216,7 @@ class Controller {
 
   static async putPost(req, res, next) {
     try {
-      if (!req.file) {
-        console.log("No file received or invalid file type");
-        // console.log("NO FILE");
-      }
+    
   
       let link = await ImageCloud(req.file);
   
@@ -263,6 +264,88 @@ class Controller {
       console.log(err);
       // next(err);
     }
+  }
+
+
+  static async addService(req, res, next) {
+    try {
+      // console.log(req.file);
+      if (!req.file) {
+        console.log("No file received or invalid file type");
+        // console.log("NO FILE");
+      }
+  
+      let link = await ImageCloud(req.file);
+  
+      // console.log(link, "<><>");
+      let serviceLogo = link.url;
+      let newService = await Service.create({
+        name: req.body.name,
+        serviceLogo,
+        minPrice: req.body.minPrice,
+        maxPrice: req.body.maxPrice,
+        PetshopId : req.params.PetshopId
+      });
+      res.status(201).json(newService);
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+   
+  }
+  static async fetchAllService(req, res, next) {
+    try {
+      const service = await Service.findAll({
+        where: {
+            PetshopId: req.params.PetshopId,
+        }
+        
+      });
+  
+      res.status(200).json(service);
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+   
+  }
+  static async putService(req, res, next) {
+   try {
+
+
+    let link = await ImageCloud(req.file);
+
+    // console.log(link, "<><>");
+    let serviceLogo = link.url;
+
+    const post = await Post.update({
+        name: req.body.name,
+        serviceLogo,
+        minPrice: req.body.minPrice,
+        maxPrice: req.body.maxPrice,
+        PetshopId : req.params.PetshopId
+    },
+    {
+      where : {
+        PetshopId: req.params.PetshopId,
+        id: req.params.PostId
+      }
+    })
+
+    res.status(200).json({ message: "Succesfully Edit Your service" });
+
+   } catch (err) {
+    console.log(err);
+    // next(err);
+   }
+  }
+  static async deleteService(req, res, next) {
+   try {
+    
+   } catch (err) {
+    console.log(err);
+    // next(err);
+   }
   }
  
 }

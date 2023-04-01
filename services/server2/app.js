@@ -109,6 +109,15 @@ app.get("/posts/:PetshopId/:PostId", Controller.fetchPost)
 app.put("/posts/:PetshopId/:PostId", upload.single("imageUrl"), Controller.putPost)
 app.delete("/posts/:PetshopId/:PostId",  Controller.deletePost)
 
+// SERVICE
+app.post("/service/:PetshopId", upload.single("serviceLogo"), Controller.addService)
+app.get("/service/:PetshopId", Controller.fetchAllService)
+app.put("/service/:PetshopId/:ServiceId", upload.single("serviceLogo"), Controller.putService)
+app.delete("/service/:PetshopId/:ServiceId",  Controller.deleteService)
+
+
+
+
 
 
 
