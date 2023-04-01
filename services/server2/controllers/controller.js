@@ -214,6 +214,7 @@ class Controller {
   }
 
   static async putRecord(req, res, next) {
+    //  NOT USED
     try {
       let { notes, DoctorId, PetScheduleId, PetshopId } = req.body;
       let {MedicalRecordId} = req.params
@@ -236,6 +237,46 @@ class Controller {
       next(err);
     }
   }
+
+  // actions
+  static async postAction(req, res, next) {
+    try {
+      let {totalPrice, ServiceId} = req.body
+      let {MedicalRecordId} = req.params
+      // console.log(req.file, "()()()()")
+
+      let document = null
+      if(req.file) {
+        let link = await ImageCloud(req.file);
+         document = link.url
+      }
+
+      let action = await Action.create({
+        document,
+        totalPrice,
+        MedicalRecordId,
+        ServiceId
+      })
+
+      res.status(201).json(action)
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  }
+
+
+  
+  // doctor schedule
+
+
+
+
+
+
+
+
+
 
   // controller (devira)
 

@@ -27,9 +27,10 @@ app.get("/petShops/:PetshopId", Controller.getPetShopById)
 app.put("/petShops/:PetshopId", upload.single("logo"), Controller.petShopEdit)
 app.get("/petShops/around", Controller.shopAroundMe);
 
-// medical records
+// medical records & action
 app.get("/medicalRecord/:PetId", Controller.getRecord)
 app.post("/medicalRecord", Controller.postRecord)
+app.post("/action/:MedicalRecordId", upload.single("document"), Controller.postAction)
 
 //doctors
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
