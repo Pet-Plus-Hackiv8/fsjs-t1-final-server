@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Doctor.belongsTo(models.Petshop)
       Doctor.hasMany(models.DoctorSchedule)
       Doctor.hasMany(models.MedicalRecord)
-      Doctor.hasOne(models.PerSchedule)
+      Doctor.hasOne(models.PetSchedule)
 
     }
   }
