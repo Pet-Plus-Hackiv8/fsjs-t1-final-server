@@ -22,6 +22,8 @@ async function errorHandler(err, req, res, next) {
     res.status(401).json({ message: "Invalid token" });
   } else if (err.name === "imageRequired") {
     res.status(401).json({ message: "Please choose Vet logo" });
+  } else if (err.name === "AggregateError") {
+    res.status(400).json({ message: err.errors[0].errors.errors[0].message });
   } else {
     res.status(500).json({ message: "Internal server error" });
   }

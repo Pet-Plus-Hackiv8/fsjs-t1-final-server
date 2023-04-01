@@ -16,6 +16,7 @@ const ImageCloud = require("../helpers/imageKit");
 
 class Controller {
   //  controller (zio)
+  //pet shops
   static async petshopRegister(req, res, next) {
     try {
       let { name, address, latitude, longitude, phoneNumber, UserId } =
@@ -23,7 +24,7 @@ class Controller {
       if (!req.file) {
         console.log("No file received or invalid file type");
         // console.log("NO FILE");
-        throw {name: "imageRequired"}
+        throw { name: "imageRequired" };
       }
 
       let link = await ImageCloud(req.file);
@@ -44,7 +45,7 @@ class Controller {
       res.status(201).json(newShop);
     } catch (err) {
       console.log(err);
-      next(err)
+      next(err);
     }
   }
 
@@ -53,14 +54,14 @@ class Controller {
       let { name, address, latitude, longitude, phoneNumber } = req.body;
       let { PetshopId } = req.params;
 
-      let shop = await Petshop.findByPk(PetshopId)
-      if(!shop) {
-        throw {name: "notFound"}
+      let shop = await Petshop.findByPk(PetshopId);
+      if (!shop) {
+        throw { name: "notFound" };
       }
       if (!req.file) {
         console.log("No file received or invalid file type");
         // console.log("NO FILE");
-        throw {name: "imageRequired"}
+        throw { name: "imageRequired" };
       }
 
       let link = await ImageCloud(req.file);
@@ -85,7 +86,7 @@ class Controller {
       res.status(201).json(editedShop);
     } catch (err) {
       console.log(err);
-      next(err)
+      next(err);
     }
   }
 
@@ -174,6 +175,65 @@ class Controller {
     } catch (error) {
       console.log(error, "INI ERROR");
       res.status(500).json(error);
+    }
+  }
+
+  //medical records
+  static async getRecord(req, res, next) {
+    try {
+      let { PetId } = req.params;
+      let record = await MedicalRecord.findAll({
+        where: { PetId: PetId },
+        include: [Doctor, PetSchedule, Petshop],
+      });
+
+      res.status(200).json(record);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async postRecord(req, res, next) {
+    try {
+      let { notes, PetId, DoctorId, PetScheduleId, PetshopId } = req.body;
+
+      let newRecord = await MedicalRecord.create({
+        notes,
+        PetId,
+        DoctorId,
+        PetScheduleId,
+        PetshopId,
+      });
+
+      res.status(201).json(newRecord);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async putRecord(req, res, next) {
+    try {
+      let { notes, DoctorId, PetScheduleId, PetshopId } = req.body;
+      let {MedicalRecordId} = req.params
+
+      let record = await MedicalRecord.findByPk(MedicalRecordId)
+      if(!record) {
+        throw {name: "notFound"}
+      }
+
+      let editedRecord = await MedicalRecord.create({
+        notes,
+        DoctorId,
+        PetScheduleId,
+        PetshopId,
+      });
+
+      res.status(201).json({ message: "Medical record has been edited" });
+    } catch (err) {
+      console.log(err);
+      next(err);
     }
   }
 
@@ -300,16 +360,16 @@ class Controller {
         console.log("No file received or invalid file type");
         // console.log("NO FILE");
       }
-  
+
       let link = await ImageCloud(req.file);
-  
+
       // console.log(link, "<><>");
       let imageUrl = link.url;
       let newPost = await Post.create({
         title: req.body.title,
         imageUrl,
         news: req.body.news,
-        PetshopId : req.params.PetshopId
+        PetshopId: req.params.PetshopId,
       });
       res.status(201).json(newPost);
     } catch (err) {
@@ -322,11 +382,10 @@ class Controller {
     try {
       const post = await Post.findAll({
         where: {
-            PetshopId: req.params.PetshopId,
-        }
-        
+          PetshopId: req.params.PetshopId,
+        },
       });
-  
+
       res.status(200).json(post);
     } catch (err) {
       console.log(err);
@@ -339,8 +398,8 @@ class Controller {
       const post = await Post.findOne({
         where: {
           PetshopId: req.params.PetshopId,
-          id: req.params.PostId
-        }       
+          id: req.params.PostId,
+        },
       });
       res.status(200).json(post);
     } catch (err) {
@@ -355,28 +414,29 @@ class Controller {
         console.log("No file received or invalid file type");
         // console.log("NO FILE");
       }
-  
+
       let link = await ImageCloud(req.file);
-  
+
       // console.log(link, "<><>");
       let imageUrl = link.url;
 
-      const post = await Post.update({
-        title: req.body.title,
-        imageUrl,
-        news: req.body.news,
-        status : req.body.status,
-        PetshopId : req.params.PetshopId
-      },
-      {
-        where : {
+      const post = await Post.update(
+        {
+          title: req.body.title,
+          imageUrl,
+          news: req.body.news,
+          status: req.body.status,
           PetshopId: req.params.PetshopId,
-          id: req.params.PostId
+        },
+        {
+          where: {
+            PetshopId: req.params.PetshopId,
+            id: req.params.PostId,
+          },
         }
-       })
+      );
 
       res.status(200).json({ message: "Succesfully Edit Your Post" });
-
     } catch (err) {
       console.log(err);
       // next(err);
@@ -393,8 +453,8 @@ class Controller {
       await Post.destroy({
         where: {
           PetshopId: req.params.PetshopId,
-          id: req.params.PostId
-        }
+          id: req.params.PostId,
+        },
       });
 
       res.status(200).json({ message: `success to delete` });
@@ -403,7 +463,6 @@ class Controller {
       // next(err);
     }
   }
- 
 }
 
 module.exports = Controller;
