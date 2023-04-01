@@ -183,7 +183,9 @@ class Controller {
 
   static async fetchPet(req, res, next) {
     try {
-      const pet = await Pet.findByPk(req.params.id);
+      const pet = await Pet.findOne({where : {
+        id: req.params.id
+      }, include: User });
       if (!pet) {
         throw { name: "notFound" };
       }
