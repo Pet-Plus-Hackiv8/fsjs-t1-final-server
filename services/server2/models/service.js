@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Service.belongsTo(models.Petshop)
+      Service.belongsTo(models.Petshop, {foreignKey: "PetshopId"})
       Service.hasOne(models.Action)
     }
   }
