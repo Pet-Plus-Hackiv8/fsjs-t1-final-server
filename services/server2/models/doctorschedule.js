@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       DoctorSchedule.belongsTo(models.Petshop)
       DoctorSchedule.belongsTo(models.Doctor)
-      // DoctorSchedule.hasOne(models.Doctor)
+      DoctorSchedule.hasOne(models.PetSchedule)
 
 
     }

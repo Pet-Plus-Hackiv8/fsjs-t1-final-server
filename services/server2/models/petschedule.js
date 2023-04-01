@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       PetSchedule.belongsTo(models.Petshop)
-      PetSchedule.hasOne(models.MedicalRecord)
       PetSchedule.belongsTo(models.DoctorSchedule)
+      PetSchedule.hasOne(models.MedicalRecord)
     }
   }
   PetSchedule.init({
