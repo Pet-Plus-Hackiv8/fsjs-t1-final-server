@@ -16,14 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PetSchedule.init({
-    complete: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "complete is required" },
-        notEmpty: { msg: "complete is required" },
-      },
-    },
+    complete: DataTypes.STRING,
     details: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -54,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'PetSchedule',
   });
   PetSchedule.beforeCreate((pet, options)=>{
-    pet.status = "ongoing"
+    pet.complete = "ongoing"
   })
   return PetSchedule;
 };

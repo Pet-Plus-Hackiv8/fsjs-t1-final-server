@@ -232,7 +232,7 @@ class Controller {
 
       res.status(201).json({ message: "Medical record has been edited" });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       next(err);
     }
   }
@@ -263,7 +263,8 @@ class Controller {
       });
       res.status(201).json(newDoctor);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
+      next(err)
     }
   }
 
@@ -277,8 +278,8 @@ class Controller {
 
       res.status(200).json(doctor);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -293,8 +294,8 @@ class Controller {
 
       res.status(200).json(doctor);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -328,8 +329,8 @@ class Controller {
         .status(200)
         .json({ message: "Succesfully Edit Profil for Your Doctor" });
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -349,8 +350,8 @@ class Controller {
 
       res.status(200).json({ message: `success to delete` });
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -373,8 +374,8 @@ class Controller {
       });
       res.status(201).json(newPost);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -388,8 +389,8 @@ class Controller {
 
       res.status(200).json(post);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -403,8 +404,8 @@ class Controller {
       });
       res.status(200).json(post);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -435,8 +436,8 @@ class Controller {
 
       res.status(200).json({ message: "Succesfully Edit Your Post" });
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -456,8 +457,8 @@ class Controller {
 
       res.status(200).json({ message: `success to delete` });
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
   }
 
@@ -483,8 +484,8 @@ class Controller {
       });
       res.status(201).json(newService);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
    
   }
@@ -499,8 +500,8 @@ class Controller {
   
       res.status(200).json(service);
     } catch (err) {
-      console.log(err);
-      // next(err);
+      // console.log(err);
+      next(err);
     }
    
   }
@@ -532,8 +533,8 @@ class Controller {
     res.status(200).json({ message: "Succesfully Edit Your service" });
 
    } catch (err) {
-    console.log(err);
-    // next(err);
+    // console.log(err);
+    next(err);
    }
   }
   static async deleteService(req, res, next) {
@@ -552,10 +553,59 @@ class Controller {
 
     res.status(200).json({ message: `success to delete` });
    } catch (err) {
-    console.log(err);
-    // next(err);
+    // console.log(err);
+    next(err);
    }
   }
+
+
+  static async createPetSchedule(req, res, next) {
+    try {
+      let doctorSchedule = await DoctorSchedule.findByPk(req.body.DoctorScheduleId)
+      // console.log(doctorSchedule);
+      let newSchedule = await PetSchedule.create({
+        details: req.body.details,
+        PetId: req.params.PetId,
+        DoctorScheduleId: req.body.DoctorScheduleId,
+        PetshopId: doctorSchedule.PetshopId
+      });
+      res.status(201).json(newSchedule);
+    } catch (err) {
+    //  console.log(err);
+     next(err);
+    }
+   }
+
+   static async fetchAllSchedule(req, res, next) {
+    try {
+   
+      let schedule = await PetSchedule.findAll({
+        where: { PetId: req.params.PetId},
+        include: [{model : DoctorSchedule, include : [Doctor]}, {model : Petshop}],
+      });
+
+      res.status(200).json(schedule);
+      
+    } catch (err) {
+     console.log(err);
+     next(err);
+    }
+   }
+ 
+   static async fetchScheduleForPetshop(req, res, next) {
+    try {
+      let schedule = await PetSchedule.findAll({
+        where: { PetshopId: req.params.PetshopId},
+        include: [{model : DoctorSchedule, include : [Doctor]}, {model : Petshop}],
+      });
+
+      res.status(200).json(schedule);
+    } catch (err) {
+     console.log(err);
+     next(err);
+    }
+   }
+ 
  
 }
 
