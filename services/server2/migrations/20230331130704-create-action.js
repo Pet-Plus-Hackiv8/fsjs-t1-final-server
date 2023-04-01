@@ -12,6 +12,9 @@ module.exports = {
       document: {
         type: Sequelize.STRING
       },
+      totalPrice: {
+        type: Sequelize.INTEGER
+      },
       MedicalRecordId: {
         type: Sequelize.INTEGER,
         references: {

@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      notes: {
+        type: Sequelize.TEXT
+      },
       PetId: {
         type: Sequelize.INTEGER
       },

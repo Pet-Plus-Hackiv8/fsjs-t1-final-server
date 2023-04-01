@@ -4,21 +4,21 @@
         "complete" : "Done",
         "PetId": 1,
         "DoctorScheduleId" : 1,
-        "PetShopId" : 1
+        "PetshopId" : 1
     },
     {
         "details": "For the past couple of days, she's been having diarrhea, and it doesn't seem to be getting better. The stools are loose and watery, and there's been a lot of them. She's also been going more frequently than usual, and sometimes she can't hold it in. I've been trying to give her some plain, boiled chicken and rice to eat, but she's not very interested in it. She's also been drinking more water than usual, and seems to be a bit lethargic.",
         "complete" : "ongoing",
         "PetId": 2,
         "DoctorScheduleId" : 2,
-        "PetShopId" : 1
+        "PetshopId" : 1
     },
     {
         "details": "For the past couple of days, she's been having diarrhea, and it doesn't seem to be getting better. The stools are loose and watery, and there's been a lot of them. She's also been going more frequently than usual, and sometimes she can't hold it in. I've been trying to give her some plain, boiled chicken and rice to eat, but she's not very interested in it. She's also been drinking more water than usual, and seems to be a bit lethargic.",
         "complete" : "ongoing",
         "PetId": 3,
         "DoctorScheduleId" : 4,
-        "PetShopId" : 1
+        "PetshopId" : 1
     } 
    
 ]

@@ -10,15 +10,51 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Petshop.hasMany(models.Doctor)
+      Petshop.hasMany(models.DoctorSchedule)
+      Petshop.hasMany(models.Post)
+      Petshop.hasMany(models.Service)
+      Petshop.hasMany(models.PetSchedule)
+      Petshop.hasMany(models.MedicalRecord)
+
+
+
     }
   }
   Petshop.init({
-    name: DataTypes.STRING,
-    logo: DataTypes.STRING,
-    address: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "name is required" },
+        notEmpty: { msg: "name is required" },
+      },
+    },
+    logo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "logo is required" },
+        notEmpty: { msg: "logo is required" },
+      },
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "address is required" },
+        notEmpty: { msg: "address is required" },
+      },
+    },
     location: DataTypes.GEOMETRY,
-    phoneNumber: DataTypes.STRING,
+    phoneNumber: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Phone Number is required" },
+        notEmpty: { msg: "Phone Number is required" },
+      },
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,

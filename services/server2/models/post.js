@@ -10,19 +10,57 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Post.belongsTo(models.Petshop)
     }
   }
   Post.init({
-    title: DataTypes.STRING,
-    postDate: DataTypes.STRING,
-    news: DataTypes.TEXT,
-    status: DataTypes.STRING,
-    imageUrl: DataTypes.STRING,
-    PetshopId: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Title is required" },
+        notEmpty: { msg: "Title is required" },
+      },
+    },
+    news: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "News is required" },
+        notEmpty: { msg: "News is required" },
+      },
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Status is required" },
+        notEmpty: { msg: "Status is required" },
+      },
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "ImageUrl is required" },
+        notEmpty: { msg: "ImageUrl is required" },
+      },
+    },
+    PetshopId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Petshop is required" },
+        notEmpty: { msg: "Petshop is required" },
+      },
+    }
   }, {
     sequelize,
     modelName: 'Post',
   });
+
+  Post.beforeCreate((post, options)=>{
+    ppst.status = "Active"
+  })
   return Post;
 };

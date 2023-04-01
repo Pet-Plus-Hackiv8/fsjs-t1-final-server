@@ -12,9 +12,6 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      postDate: {
-        type: Sequelize.STRING
-      },
       news: {
         type: Sequelize.TEXT
       },
