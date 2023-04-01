@@ -217,11 +217,11 @@ class Controller {
     //  NOT USED
     try {
       let { notes, DoctorId, PetScheduleId, PetshopId } = req.body;
-      let {MedicalRecordId} = req.params
+      let { MedicalRecordId } = req.params;
 
-      let record = await MedicalRecord.findByPk(MedicalRecordId)
-      if(!record) {
-        throw {name: "notFound"}
+      let record = await MedicalRecord.findByPk(MedicalRecordId);
+      if (!record) {
+        throw { name: "notFound" };
       }
 
       let editedRecord = await MedicalRecord.create({
@@ -241,42 +241,138 @@ class Controller {
   // actions
   static async postAction(req, res, next) {
     try {
-      let {totalPrice, ServiceId} = req.body
-      let {MedicalRecordId} = req.params
+      let { totalPrice, ServiceId } = req.body;
+      let { MedicalRecordId } = req.params;
       // console.log(req.file, "()()()()")
 
-      let document = null
-      if(req.file) {
+      let document = null;
+      if (req.file) {
         let link = await ImageCloud(req.file);
-         document = link.url
+        document = link.url;
       }
 
       let action = await Action.create({
         document,
         totalPrice,
         MedicalRecordId,
-        ServiceId
+        ServiceId,
+      });
+
+      res.status(201).json(action);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  // doctor schedule
+  static async postDocSched(req, res, next) {
+    try {
+      let { day, time, status } = req.body;
+      let { PetshopId, DoctorId } = req.params;
+
+      let exist = await DoctorSchedule.findAll({
+        where: {
+          day: day,
+          time: time,
+          status: status,
+          PetshopId: PetshopId,
+          DoctorId: DoctorId
+        }
       })
 
-      res.status(201).json(action)
+      if(exist.length !== 0) {
+        throw {name: "scheduleExist"}
+      }
+
+      let newSched = await DoctorSchedule.create({
+        day,
+        time,
+        status,
+        PetshopId,
+        DoctorId,
+      });
+
+      res.status(201).json(newSched);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async getDocSched(req, res, next) {
+    try {
+      let { PetshopId, DoctorId } = req.params;
+
+      let sched = await DoctorSchedule.findAll({
+        where: {
+          PetshopId: PetshopId,
+          DoctorId: DoctorId,
+        },
+      });
+      // console.log(sched, "{}{}{}{}")
+      if(sched.length === 0) {
+        throw {name: "notFound"}
+      }
+
+      res.status(200).json(sched[0]);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async putDocSched(req, res, next) {
+    try {
+      let { day, time, status } = req.body;
+      let { DoctorScheduleId } = req.params;
+
+      let exist = await DoctorSchedule.findByPk(DoctorScheduleId)
+      if(!exist) {
+        throw {name: "notFound"}
+      }
+
+      let editedSched = await DoctorSchedule.update(
+        {
+          day,
+          time,
+          status
+        },
+        {
+          where: {
+            id: DoctorScheduleId
+          }
+        }
+      );
+
+      res.status(201).json({message: "Schedule has been updated"});
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async deleteDocSched(req, res, next) {
+    try {
+      let {DoctorScheduleId} = req.params
+      let exist = await DoctorSchedule.findByPk(DoctorScheduleId)
+      // console.log(exist, "_+_+_+")
+      if(!exist) {
+        throw {name: "notFound"}
+      }
+
+      await DoctorSchedule.destroy({
+        where: {
+          id: DoctorScheduleId
+        }
+      })
+
+      res.status(200).json({message: "Schedule deleted"})
     } catch (err) {
       console.log(err)
       next(err)
     }
   }
-
-
-  
-  // doctor schedule
-
-
-
-
-
-
-
-
-
 
   // controller (devira)
 
@@ -305,7 +401,7 @@ class Controller {
       res.status(201).json(newDoctor);
     } catch (err) {
       // console.log(err);
-      next(err)
+      next(err);
     }
   }
 
@@ -342,12 +438,12 @@ class Controller {
 
   static async putDoctor(req, res, next) {
     try {
-      let imgUrl = req.body.imgUrl
+      let imgUrl = req.body.imgUrl;
       if (req.file) {
         let link = await ImageCloud(req.file);
         // console.log(link, "<><>");
         let imgUrl = link.url;
-      } 
+      }
 
       const doctor = await Doctor.update(
         {
@@ -440,8 +536,9 @@ class Controller {
       const post = await Post.findOne({
         where: {
           PetshopId: req.params.PetshopId,
-          id: req.params.PostId
-        }, include: Petshop    
+          id: req.params.PostId,
+        },
+        include: Petshop,
       });
       res.status(200).json(post);
     } catch (err) {
@@ -452,12 +549,12 @@ class Controller {
 
   static async putPost(req, res, next) {
     try {
-      let imageUrl = req.body.imageUrl
+      let imageUrl = req.body.imageUrl;
       if (req.file) {
         let link = await ImageCloud(req.file);
         // console.log(link, "<><>");
         let imageUrl = link.url;
-      } 
+      }
 
       const post = await Post.update(
         {
@@ -503,7 +600,6 @@ class Controller {
     }
   }
 
-
   static async addService(req, res, next) {
     try {
       // console.log(req.file);
@@ -511,9 +607,9 @@ class Controller {
         console.log("No file received or invalid file type");
         // console.log("NO FILE");
       }
-  
+
       let link = await ImageCloud(req.file);
-  
+
       // console.log(link, "<><>");
       let serviceLogo = link.url;
       let newService = await Service.create({
@@ -521,133 +617,132 @@ class Controller {
         serviceLogo,
         minPrice: req.body.minPrice,
         maxPrice: req.body.maxPrice,
-        PetshopId : req.params.PetshopId
+        PetshopId: req.params.PetshopId,
       });
       res.status(201).json(newService);
     } catch (err) {
       // console.log(err);
       next(err);
     }
-   
   }
   static async fetchAllService(req, res, next) {
     try {
       const service = await Service.findAll({
         where: {
-            PetshopId: req.params.PetshopId,
-        }
-        
+          PetshopId: req.params.PetshopId,
+        },
       });
-  
+
       res.status(200).json(service);
     } catch (err) {
       // console.log(err);
       next(err);
     }
-   
   }
   static async putService(req, res, next) {
-   try {
-
-
-    let serviceLogo = req.body.serviceLogo
-    if (req.file) {
-      let link = await ImageCloud(req.file);
-      // console.log(link, "<><>");
-      let serviceLogo = link.url;
-    } 
-
-    const service = await Service.update({
-        name: req.body.name,
-        serviceLogo,
-        minPrice: req.body.minPrice,
-        maxPrice: req.body.maxPrice,
-        PetshopId : req.params.PetshopId
-    },
-    {
-      where : {
-        PetshopId: req.params.PetshopId,
-        id: req.params.ServiceId
+    try {
+      let serviceLogo = req.body.serviceLogo;
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        // console.log(link, "<><>");
+        let serviceLogo = link.url;
       }
-    })
 
-    res.status(200).json({ message: "Succesfully Edit Your service" });
+      const service = await Service.update(
+        {
+          name: req.body.name,
+          serviceLogo,
+          minPrice: req.body.minPrice,
+          maxPrice: req.body.maxPrice,
+          PetshopId: req.params.PetshopId,
+        },
+        {
+          where: {
+            PetshopId: req.params.PetshopId,
+            id: req.params.ServiceId,
+          },
+        }
+      );
 
-   } catch (err) {
-    // console.log(err);
-    next(err);
-   }
+      res.status(200).json({ message: "Succesfully Edit Your service" });
+    } catch (err) {
+      // console.log(err);
+      next(err);
+    }
   }
   static async deleteService(req, res, next) {
-   try {
-    const service = await Service.findByPk(req.params.ServiceId);
-    if (!service) {
-      throw { name: "notFound" };
+    try {
+      const service = await Service.findByPk(req.params.ServiceId);
+      if (!service) {
+        throw { name: "notFound" };
+      }
+
+      await Service.destroy({
+        where: {
+          PetshopId: req.params.PetshopId,
+          id: req.params.ServiceId,
+        },
+      });
+
+      res.status(200).json({ message: `success to delete` });
+    } catch (err) {
+      // console.log(err);
+      next(err);
     }
-
-    await Service.destroy({
-      where: {
-        PetshopId: req.params.PetshopId,
-        id: req.params.ServiceId,
-      },
-    });
-
-    res.status(200).json({ message: `success to delete` });
-   } catch (err) {
-    // console.log(err);
-    next(err);
-   }
   }
-
 
   static async createPetSchedule(req, res, next) {
     try {
-      let doctorSchedule = await DoctorSchedule.findByPk(req.body.DoctorScheduleId)
+      let doctorSchedule = await DoctorSchedule.findByPk(
+        req.body.DoctorScheduleId
+      );
       // console.log(doctorSchedule);
       let newSchedule = await PetSchedule.create({
         details: req.body.details,
         PetId: req.params.PetId,
         DoctorScheduleId: req.body.DoctorScheduleId,
-        PetshopId: doctorSchedule.PetshopId
+        PetshopId: doctorSchedule.PetshopId,
       });
       res.status(201).json(newSchedule);
     } catch (err) {
-    //  console.log(err);
-     next(err);
+      //  console.log(err);
+      next(err);
     }
-   }
+  }
 
-   static async fetchAllSchedule(req, res, next) {
-    try {
-   
-      let schedule = await PetSchedule.findAll({
-        where: { PetId: req.params.PetId},
-        include: [{model : DoctorSchedule, include : [Doctor]}, {model : Petshop}],
-      });
-
-      res.status(200).json(schedule);
-      
-    } catch (err) {
-     console.log(err);
-     next(err);
-    }
-   }
- 
-   static async fetchScheduleForPetshop(req, res, next) {
+  static async fetchAllSchedule(req, res, next) {
     try {
       let schedule = await PetSchedule.findAll({
-        where: { PetshopId: req.params.PetshopId},
-        include: [{model : DoctorSchedule, include : [Doctor]}, {model : Petshop}],
+        where: { PetId: req.params.PetId },
+        include: [
+          { model: DoctorSchedule, include: [Doctor] },
+          { model: Petshop },
+        ],
       });
 
       res.status(200).json(schedule);
     } catch (err) {
-     console.log(err);
-     next(err);
+      console.log(err);
+      next(err);
     }
-   }
- 
- 
+  }
+
+  static async fetchScheduleForPetshop(req, res, next) {
+    try {
+      let schedule = await PetSchedule.findAll({
+        where: { PetshopId: req.params.PetshopId },
+        include: [
+          { model: DoctorSchedule, include: [Doctor] },
+          { model: Petshop },
+        ],
+      });
+
+      res.status(200).json(schedule);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }
 
 module.exports = Controller;
