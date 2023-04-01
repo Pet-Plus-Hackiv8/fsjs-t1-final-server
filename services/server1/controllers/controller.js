@@ -220,9 +220,6 @@ class Controller {
         }
       );
    
-
-    
-
       res.status(200).json({ message: "Succesfully Edit Profil for Your Pet" });
     } catch (err) {
       // console.log(err);
