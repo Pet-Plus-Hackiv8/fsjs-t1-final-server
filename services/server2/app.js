@@ -93,12 +93,21 @@ app.get("/location", async (req, res) => {
 // app.post("/petshop/register", upload.single("imgUrl"), async );
 
 app.post("/petshop/register", upload.single("logo"), Controller.petshopRegister)
+
+// DOCTOR
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
 app.get("/doctors/:PetshopId",  Controller.fetchAllDoctor)
 app.get("/doctors/:PetshopId/:DoctorId",  Controller.fetchDoctor)
 app.put("/doctors/:PetshopId/:DoctorId", upload.single("imgUrl"), Controller.putDoctor)
 app.delete("/doctors/:PetshopId/:DoctorId",  Controller.deleteDoctor)
 
+
+// POST
+app.post("/posts/:PetshopId", upload.single("imageUrl"), Controller.createPost)
+app.get("/posts/:PetshopId", Controller.fetchAllPost)
+app.get("/posts/:PetshopId/:PostId", Controller.fetchPost)
+app.put("/posts/:PetshopId/:PostId", upload.single("imageUrl"), Controller.putPost)
+app.delete("/posts/:PetshopId/:PostId",  Controller.deletePost)
 
 
 

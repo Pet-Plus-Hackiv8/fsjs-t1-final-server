@@ -154,6 +154,116 @@ class Controller {
       // next(err);
     }
   }
+
+  static async createPost(req, res, next) {
+    try {
+      if (!req.file) {
+        console.log("No file received or invalid file type");
+        // console.log("NO FILE");
+      }
+  
+      let link = await ImageCloud(req.file);
+  
+      // console.log(link, "<><>");
+      let imageUrl = link.url;
+      let newPost = await Post.create({
+        title: req.body.title,
+        imageUrl,
+        news: req.body.news,
+        PetshopId : req.params.PetshopId
+      });
+      res.status(201).json(newPost);
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+  }
+
+  static async fetchAllPost(req, res, next) {
+    try {
+      const post = await Post.findAll({
+        where: {
+            PetshopId: req.params.PetshopId,
+        }
+        
+      });
+  
+      res.status(200).json(post);
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+  }
+
+  static async fetchPost(req, res, next) {
+    try {
+      const post = await Post.findOne({
+        where: {
+          PetshopId: req.params.PetshopId,
+          id: req.params.PostId
+        }       
+      });
+      res.status(200).json(post);
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+  }
+
+  static async putPost(req, res, next) {
+    try {
+      if (!req.file) {
+        console.log("No file received or invalid file type");
+        // console.log("NO FILE");
+      }
+  
+      let link = await ImageCloud(req.file);
+  
+      // console.log(link, "<><>");
+      let imageUrl = link.url;
+
+      const post = await Post.update({
+        title: req.body.title,
+        imageUrl,
+        news: req.body.news,
+        status : req.body.status,
+        PetshopId : req.params.PetshopId
+      },
+      {
+        where : {
+          PetshopId: req.params.PetshopId,
+          id: req.params.PostId
+        }
+       })
+
+      res.status(200).json({ message: "Succesfully Edit Your Post" });
+
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+  }
+
+  static async deletePost(req, res, next) {
+    try {
+      const post = await Post.findByPk(req.params.PostId);
+      if (!post) {
+        throw { name: "notFound" };
+      }
+
+      await Post.destroy({
+        where: {
+          PetshopId: req.params.PetshopId,
+          id: req.params.PostId
+        }
+      });
+
+      res.status(200).json({ message: `success to delete` });
+    } catch (err) {
+      console.log(err);
+      // next(err);
+    }
+  }
  
 }
 

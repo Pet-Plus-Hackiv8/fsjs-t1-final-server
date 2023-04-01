@@ -30,14 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: "News is required" },
       },
     },
-    status: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Status is required" },
-        notEmpty: { msg: "Status is required" },
-      },
-    },
+    status: DataTypes.STRING,
     imageUrl: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -60,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Post.beforeCreate((post, options)=>{
-    ppst.status = "Active"
+    post.status = "Active"
   })
   return Post;
 };
