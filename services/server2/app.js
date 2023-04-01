@@ -16,85 +16,19 @@ const { Petshop } = require("./models");
 const ImageCloud = require("./helpers/imageKit");
 const upload = require("./helpers/multer");
 const Controller = require("./controllers/controller");
+const authentication = require("./middlewares/authentication");
+const errorHandler = require("./middlewares/errorHandler");
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// pet shops
+app.post("/petShop/register", upload.single("logo"), Controller.petshopRegister)
+app.get("/petShops", Controller.getAllPetShops)
+app.get("/petShops/:PetshopId", Controller.getPetShopById)
+app.put("/petShops/:PetshopId", upload.single("logo"), Controller.petShopEdit)
+app.get("/petShops/around", Controller.shopAroundMe);
 
-app.get("/location", async (req, res) => {
-  try {
-    // distance on meter unit
-    const distance = req.query.distance;
-    const long = req.query.long;
-    const lat = req.query.lat;
+// app.use(authentication)
 
-    const result = await sequelize.query(
-      `select
-        id,
-        name,
-        location
-      from
-        "Petshops"
-      where
-        ST_DWithin(location,
-        ST_MakePoint(${lat},
-        ${long}),
-        ${distance},
-      true) = true;`,
-      {
-        replacements: {
-          distance: +distance,
-          long: parseFloat(long),
-          lat: parseFloat(lat),
-        },
-        logging: console.log,
-        plain: false,
-        raw: false,
-        type: sequelize.QueryTypes.SELECT,
-      }
-    );
-    // console.log(distance, lat, long)
-    res.status(200).json(result);
-  } catch (error) {
-    console.log(error, "INI ERROR");
-    res.status(500).json(error);
-  }
-});
-
-// app.post("/petshop/register", upload.single("logo"), async (req, res, next) => {
-//   try {
-//     let { name, address, latitude, longitude, phoneNumber, UserId } = req.body;
-//     if (!req.file) {
-//       console.log("No file received or invalid file type");
-//       // console.log("NO FILE");
-//     }
-
-//     let link = await ImageCloud(req.file);
-
-//     console.log(link, "<><>");
-//     let logo = link.url;
-//     let newShop = await Petshop.create({
-//       name,
-//       logo,
-//       address,
-//       phoneNumber,
-//       UserId,
-//       location: Sequelize.fn(
-//         "ST_GeomFromText",
-//         `POINT(${latitude} ${longitude})`
-//       ),
-//     });
-//     res.status(201).json(newShop);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-
-// app.post("/petshop/register", upload.single("imgUrl"), async );
-
-app.post("/petshop/register", upload.single("logo"), Controller.petshopRegister)
-
-// DOCTOR
+//doctors
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
 app.get("/doctors/:PetshopId",  Controller.fetchAllDoctor)
 app.get("/doctors/:PetshopId/:DoctorId",  Controller.fetchDoctor)
@@ -110,9 +44,7 @@ app.put("/posts/:PetshopId/:PostId", upload.single("imageUrl"), Controller.putPo
 app.delete("/posts/:PetshopId/:PostId",  Controller.deletePost)
 
 
-
-
-
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

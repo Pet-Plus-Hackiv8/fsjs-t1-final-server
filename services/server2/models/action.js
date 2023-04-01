@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Action extends Model {
     /**
@@ -10,18 +8,34 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Action.belongsTo(models.MedicalRecord)
-      Action.belongsTo(models.Service)
-
+      Action.belongsTo(models.MedicalRecord);
+      Action.belongsTo(models.Service);
     }
   }
-  Action.init({
-    document: DataTypes.STRING,
-    MedicalRecordId: DataTypes.INTEGER,
-    ServiceId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Action',
-  });
+  Action.init(
+    {
+      document: DataTypes.STRING,
+      MedicalRecordId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Medical record ID is required" },
+          notEmpty: { msg: "Medical record ID is required" },
+        },
+      },
+      ServiceId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Service ID is required" },
+          notEmpty: { msg: "Service ID is required" },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "Action",
+    }
+  );
   return Action;
 };
