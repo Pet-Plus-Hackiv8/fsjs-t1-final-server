@@ -4,18 +4,18 @@
 // const { userTypeDefs, userResolvers } = require("./schemas/users");
 // import name from 'module';
 
-
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
-import graphqlUploadExpress  from "graphql-upload/graphqlUploadExpress.mjs";
+import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 import { userTypeDefs, userResolvers } from "./schemas/users.js";
+import { doctorScheduleResolvers, doctorScheduleTypeDefs } from "./schemas/DoctorSchedule.js";
 
 const app = express();
 
 const server = new ApolloServer({
-  typeDefs: [userTypeDefs],
-  resolvers: [userResolvers],
-  uploads: false // Disable the built-in file handling of Apollo Server
+  typeDefs: [userTypeDefs, doctorScheduleTypeDefs],
+  resolvers: [userResolvers, doctorScheduleResolvers],
+  uploads: false, // Disable the built-in file handling of Apollo Server
 });
 
 async function startApolloServer() {
@@ -27,7 +27,9 @@ async function startApolloServer() {
   // Apply the Apollo Server middleware to the Express app
   server.applyMiddleware({ app });
 
-  await new Promise(resolve => app.listen({ port: process.env.PORT || 4000 }, resolve));
+  await new Promise((resolve) =>
+    app.listen({ port: process.env.PORT || 4000 }, resolve)
+  );
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
 }
 

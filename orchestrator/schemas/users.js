@@ -160,7 +160,6 @@ export const userResolvers = {
       }
     },
 
-
     async login(parent, { email, password }) {
       try {
         let { data } = await axios({

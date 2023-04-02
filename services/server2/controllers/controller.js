@@ -341,6 +341,7 @@ class Controller {
   }
 
   static async getDocSched(req, res, next) {
+    console.log("MASUK DOCSCHED")
     try {
       let { PetshopId, DoctorId } = req.params;
 
@@ -355,7 +356,7 @@ class Controller {
         throw { name: "notFound" };
       }
 
-      res.status(200).json(sched[0]);
+      res.status(200).json(sched);
     } catch (err) {
       console.log(err);
       next(err);
@@ -394,6 +395,7 @@ class Controller {
 
   static async deleteDocSched(req, res, next) {
     try {
+      console.log(req.params, "+++")
       let { DoctorScheduleId } = req.params;
       let exist = await DoctorSchedule.findByPk(DoctorScheduleId);
       // console.log(exist, "_+_+_+")
