@@ -25,15 +25,15 @@ app.get('/', (req, res) => {
 app.post("/register", upload.single("imgUrl"), Controller.register)
 app.post("/login", Controller.login)
 
-app.use(authentication)
+// app.use(authentication)
 
 app.get("/user", Controller.getUserById)
 app.put("/user", upload.single("imgUrl"), Controller.putUser)
 app.post("/pets", upload.single("imgUrl"), Controller.addPet)
-app.get("/pets", Controller.fetchAllPet)
-app.get("/pets/:id", Controller.fetchPet)
-app.put("/pets/:id", upload.single("imgUrl"), Controller.putPet)
-app.delete("/pets/:id", Controller.deletePet)
+app.get("/pets/:UserId", Controller.fetchAllPet)
+app.get("/pets/:UserId/:id", Controller.fetchPet)
+app.put("/pets/:UserId/:id", upload.single("imgUrl"), Controller.putPet)
+app.delete("/pets/:UserId/:id", Controller.deletePet)
 
 app.use(errorHandler)
 

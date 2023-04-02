@@ -14,6 +14,7 @@ const timeSetter = require("../helpers/timeConvert");
 const dotSeparator = require("../helpers/dotSeparator");
 const ImageCloud = require("../helpers/imageKit");
 const Xendit = require("xendit-node");
+const XENDIT_KEY = process.env.XENDIT_KEY
 
 class Controller {
   //  controller (zio)
@@ -269,8 +270,7 @@ class Controller {
   static async paymentXendit(req, res, next) {
     try {
       const x = new Xendit({
-        secretKey:
-          "your secret key"
+        secretKey: XENDIT_KEY
       });
 
       const { Invoice } = x;
@@ -278,36 +278,29 @@ class Controller {
 
       let invoice = await i.createInvoice({
         externalID: Date.now().toString(),
-        payerEmail: "example@gmail.com",
+        payerEmail: "deviradwita@gmail.com",
         description: "Invoice for Shoes Purchase",
         amount: 100000,
         customer: {
           given_names: "xen customer",
-          email: "example@gmail.com",
+          email: "deviradwita@gmail.com",
         },
         customerNotificationPreference: {
           invoice_created: ["email"],
         },
       });
-      console.log("created invoice", invoice); // eslint-disable-line no-console
+      console.log("created invoice", invoice);
+      res.status(201).json(invoice)
 
-      const retrievedInvoice = await i.getInvoice({ invoiceID: invoice.id });
-      // eslint-disable-next-line no-console
-      console.log("retrieved invoice", retrievedInvoice);
+      // const retrievedInvoice = await i.getInvoice({ invoiceID: invoice.id });
+     
+      // console.log("retrieved invoice", retrievedInvoice);
 
-      // const expiredInvoice = await i.expireInvoice({
-      //   invoiceID: retrievedInvoice.id,
-      // });
-      // // eslint-disable-next-line no-console
-      // console.log("expired invoice", expiredInvoice);
-
-      // const invoices = await i.getAllInvoices();
-      // // eslint-disable-next-line no-console
-      // console.log("first 10 invoices", invoices);
+ 
 
       process.exit(0);
     } catch (e) {
-      console.error(e); // eslint-disable-line no-console
+      console.error(e); 
       process.exit(1);
     }
   }
