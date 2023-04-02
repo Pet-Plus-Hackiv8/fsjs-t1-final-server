@@ -32,6 +32,8 @@ app.get("/medicalRecord/:PetId", Controller.getRecord)
 app.post("/medicalRecord", Controller.postRecord)
 app.post("/action/:MedicalRecordId", upload.single("document"), Controller.postAction)
 
+app.post("/xendit", Controller.paymentXendit)
+
 // Doctor Schedule
 app.post("/doctorSchedule/:DoctorId/:PetshopId", Controller.postDocSched)
 app.get("/doctorSchedule/:DoctorId/:PetshopId", Controller.getDocSched)

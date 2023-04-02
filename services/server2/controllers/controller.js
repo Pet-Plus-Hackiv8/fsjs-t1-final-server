@@ -13,6 +13,7 @@ const { Op } = require("sequelize");
 const timeSetter = require("../helpers/timeConvert");
 const dotSeparator = require("../helpers/dotSeparator");
 const ImageCloud = require("../helpers/imageKit");
+const Xendit = require("xendit-node");
 
 class Controller {
   //  controller (zio)
@@ -265,6 +266,52 @@ class Controller {
     }
   }
 
+  static async paymentXendit(req, res, next) {
+    try {
+      const x = new Xendit({
+        secretKey:
+          "your secret key"
+      });
+
+      const { Invoice } = x;
+      const i = new Invoice({});
+
+      let invoice = await i.createInvoice({
+        externalID: Date.now().toString(),
+        payerEmail: "example@gmail.com",
+        description: "Invoice for Shoes Purchase",
+        amount: 100000,
+        customer: {
+          given_names: "xen customer",
+          email: "example@gmail.com",
+        },
+        customerNotificationPreference: {
+          invoice_created: ["email"],
+        },
+      });
+      console.log("created invoice", invoice); // eslint-disable-line no-console
+
+      const retrievedInvoice = await i.getInvoice({ invoiceID: invoice.id });
+      // eslint-disable-next-line no-console
+      console.log("retrieved invoice", retrievedInvoice);
+
+      // const expiredInvoice = await i.expireInvoice({
+      //   invoiceID: retrievedInvoice.id,
+      // });
+      // // eslint-disable-next-line no-console
+      // console.log("expired invoice", expiredInvoice);
+
+      // const invoices = await i.getAllInvoices();
+      // // eslint-disable-next-line no-console
+      // console.log("first 10 invoices", invoices);
+
+      process.exit(0);
+    } catch (e) {
+      console.error(e); // eslint-disable-line no-console
+      process.exit(1);
+    }
+  }
+
   // doctor schedule
   static async postDocSched(req, res, next) {
     try {
@@ -277,12 +324,12 @@ class Controller {
           time: time,
           status: status,
           PetshopId: PetshopId,
-          DoctorId: DoctorId
-        }
-      })
+          DoctorId: DoctorId,
+        },
+      });
 
-      if(exist.length !== 0) {
-        throw {name: "scheduleExist"}
+      if (exist.length !== 0) {
+        throw { name: "scheduleExist" };
       }
 
       let newSched = await DoctorSchedule.create({
@@ -311,8 +358,8 @@ class Controller {
         },
       });
       // console.log(sched, "{}{}{}{}")
-      if(sched.length === 0) {
-        throw {name: "notFound"}
+      if (sched.length === 0) {
+        throw { name: "notFound" };
       }
 
       res.status(200).json(sched[0]);
@@ -327,25 +374,25 @@ class Controller {
       let { day, time, status } = req.body;
       let { DoctorScheduleId } = req.params;
 
-      let exist = await DoctorSchedule.findByPk(DoctorScheduleId)
-      if(!exist) {
-        throw {name: "notFound"}
+      let exist = await DoctorSchedule.findByPk(DoctorScheduleId);
+      if (!exist) {
+        throw { name: "notFound" };
       }
 
       let editedSched = await DoctorSchedule.update(
         {
           day,
           time,
-          status
+          status,
         },
         {
           where: {
-            id: DoctorScheduleId
-          }
+            id: DoctorScheduleId,
+          },
         }
       );
 
-      res.status(201).json({message: "Schedule has been updated"});
+      res.status(201).json({ message: "Schedule has been updated" });
     } catch (err) {
       console.log(err);
       next(err);
@@ -354,23 +401,23 @@ class Controller {
 
   static async deleteDocSched(req, res, next) {
     try {
-      let {DoctorScheduleId} = req.params
-      let exist = await DoctorSchedule.findByPk(DoctorScheduleId)
+      let { DoctorScheduleId } = req.params;
+      let exist = await DoctorSchedule.findByPk(DoctorScheduleId);
       // console.log(exist, "_+_+_+")
-      if(!exist) {
-        throw {name: "notFound"}
+      if (!exist) {
+        throw { name: "notFound" };
       }
 
       await DoctorSchedule.destroy({
         where: {
-          id: DoctorScheduleId
-        }
-      })
+          id: DoctorScheduleId,
+        },
+      });
 
-      res.status(200).json({message: "Schedule deleted"})
+      res.status(200).json({ message: "Schedule deleted" });
     } catch (err) {
-      console.log(err)
-      next(err)
+      console.log(err);
+      next(err);
     }
   }
 
