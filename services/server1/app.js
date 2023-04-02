@@ -26,9 +26,13 @@ app.post("/register", upload.single("imgUrl"), Controller.register)
 app.post("/login", Controller.login)
 
 // app.use(authentication)
+<<<<<<< HEAD
+=======
 
-app.get("/user", Controller.getUserById)
-app.put("/user", upload.single("imgUrl"), Controller.putUser)
+app.get("/user/:UserId", Controller.getUserById)
+app.put("/user/:UserId", upload.single("imgUrl"), Controller.putUser)
+>>>>>>> 4f0528bf636b3be2c604819df6373d4fcd6c7d7e
+
 app.post("/pets", upload.single("imgUrl"), Controller.addPet)
 app.get("/pets/:UserId", Controller.fetchAllPet)
 app.get("/pets/:UserId/:id", Controller.fetchPet)

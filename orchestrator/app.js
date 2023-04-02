@@ -1,22 +1,34 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-const { ApolloServer} = require("@apollo/server");
-const { startStandaloneServer } = require("@apollo/server/standalone");
-const { petTypeDefs, petResolvers } = require("./petSchema");
+// const { ApolloServer } = require("@apollo/server")
+// // const fastify = require("fastify")()
+// const { startStandaloneServer } = require("@apollo/server/standalone");
+// const { userTypeDefs, userResolvers } = require("./schemas/users");
+// import name from 'module';
+
+
+import { ApolloServer } from "apollo-server-express";
+import express from "express";
+import graphqlUploadExpress  from "graphql-upload/graphqlUploadExpress.mjs";
+import { userTypeDefs, userResolvers } from "./schemas/users.js";
+
+const app = express();
 
 const server = new ApolloServer({
-  typeDefs: [petTypeDefs],
-  resolvers: [petResolvers],
-  introspection: true,
+  typeDefs: [userTypeDefs],
+  resolvers: [userResolvers],
+  uploads: false // Disable the built-in file handling of Apollo Server
 });
 
+async function startApolloServer() {
+  await server.start();
 
-startStandaloneServer(server, {
-  listen: { port: process.env.PORT || 4000 },
-  
-}).then(({ url }) => {
-  console.log(`🚀  Server ready at: ${url}`);
-});
+  // Add the graphqlUploadExpress middleware
+  app.use(graphqlUploadExpress());
 
+  // Apply the Apollo Server middleware to the Express app
+  server.applyMiddleware({ app });
 
+  await new Promise(resolve => app.listen({ port: process.env.PORT || 4000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+}
+
+startApolloServer();

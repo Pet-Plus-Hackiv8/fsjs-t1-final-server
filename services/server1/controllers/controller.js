@@ -22,9 +22,11 @@ class Controller {
         password,
         phoneNumber,
         address,
+        role
       } = req.body;
-
-      let role = "client";
+      console.log(req.body, "INI BODY")
+      console.log(req.file, "INI FILE")
+      // let role = "client";
       password = bcrypt.hashSync(password, 10);
       let link = await ImageCloud(req.file);
       let imgUrl = link.url
@@ -89,7 +91,8 @@ class Controller {
         console.log("Please insert profile picture");
       }
       // console.log("MASUK PUT");
-      let UserId = req.user.UserId;
+      // let UserId = req.user.UserId;
+      let {UserId} = req.params
       let {
         username,
         fullName,
@@ -127,11 +130,14 @@ class Controller {
 
   static async getUserById(req, res, next) {
     try {
-      let UserId = req.user.UserId;
+      // let UserId = req.user.UserId;
+      let {UserId} = req.params
       let user = await User.findByPk(UserId);
       if (!user) {
         throw { name: "notFound" };
       }
+      user.password = "unknown"
+      // console.log(user)
       res.status(200).json(user);
     } catch (err) {
       console.log(err);
