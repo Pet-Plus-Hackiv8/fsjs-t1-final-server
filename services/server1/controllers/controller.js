@@ -180,9 +180,10 @@ class Controller {
 
   static async fetchAllPet(req, res, next) {
     try {
+      console.log(req.params);
       const pet = await Pet.findAll({
         where: {
-          UserId: req.user.id,
+          UserId: req.params.UserId,
         },
       });
       res.status(200).json(pet);
