@@ -42,7 +42,7 @@ export const userTypeDefs = `
 
   type Mutation {
     register(username: String, fullName:String,  email: String, password: String, imgUrl: Upload, role: String, phoneNumber: String, address: String): MessageCreate
-    putUser(username: String, fullName:String,  email: String, password: String, imgUrl: String, role: String, phoneNumber: String, address: String): MessageCreate
+    putUser(UserId: ID!, username: String, fullName:String,  email: String, password: String, imgUrl: Upload, role: String, phoneNumber: String, address: String): MessageCreate
     login(email: String, password: String): token 
   }
 `;
@@ -72,29 +72,6 @@ export const userResolvers = {
     },
   },
   Mutation: {
-    // async register(
-    //   parent,
-    //   { username, fullName, email, password, imgUrl, role, phoneNumber, address }
-    // ) {
-    //   try {
-    //     const form = new FormData()
-    //     form.append("imgUrl", imgUrl)
-    //     const { data } = await axios({
-    //       method: "POST",
-    //       url: SERVER_ONE + "/register",
-    //       data: { username, fullName, email, password, imgUrl, role, phoneNumber, address },
-    //       headers: {
-    //         "Content-Type": ""
-    //       }
-    //     });
-    //     // console.log(data);
-    //     // redis.del("users:all");
-    //     return data;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
-
     async register(
       parent,
       {
@@ -108,6 +85,7 @@ export const userResolvers = {
         address,
       }
     ) {
+      console.log("MASUK REGISTER")
       try {
         // console.log(imgUrl.file, "INI IMAGE")
         const { createReadStream, filename, mimetype, encoding } = await imgUrl.file;
@@ -133,12 +111,14 @@ export const userResolvers = {
         return data;
       } catch (error) {
         console.log(error);
+        return error.response.data;
       }
     },
 
     async putUser(
       parent,
       {
+        UserId,
         username,
         fullName,
         email,
@@ -149,28 +129,37 @@ export const userResolvers = {
         address,
       }
     ) {
+      // console.log("MASUK SINI BROOOO")
+      console.log(imgUrl.file, "INI  FILEEE")
       try {
-        const { data } = await axios({
-          method: "POST",
-          url: SERVER_ONE,
-          data: {
-            username,
-            fullName,
-            email,
-            password,
-            imgUrl,
-            role,
-            phoneNumber,
-            address,
+        // console.log(imgUrl.file, "INI IMAGE")
+        let { createReadStream, filename, mimetype, encoding } = await imgUrl.file;
+        let stream = createReadStream();
+        let formData = new FormData();
+
+        formData.append("username", username);
+        formData.append("fullName", fullName);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("role", role);
+        formData.append("phoneNumber", phoneNumber);
+        formData.append("address", address);
+        formData.append("imgUrl", stream, { filename });
+
+        const { data } = await axios.put(SERVER_ONE + "/user/" + UserId, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
           },
         });
-        // console.log(data);
-        // redis.del("users:all");
+        // console.log(data, "INI DATA")
+
         return data;
       } catch (error) {
-        console.log(error);
+        console.log(error, "INI ERROR");
+        return error.response.data;
       }
     },
+
 
     async login(parent, { email, password }) {
       try {

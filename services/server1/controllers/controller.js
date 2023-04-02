@@ -10,7 +10,7 @@ class Controller {
   // users controller (zio)
   static async register(req, res, next) {
     try {
-      // console.log(req.body, "<><><><><>");
+      console.log(req.body, "<><><><><>");
       if (!req.file) {
         console.log("Please insert profile picture");
       }
@@ -87,6 +87,7 @@ class Controller {
 
   static async putUser(req, res, next) {
     try {
+      console.log("MASUK PUT");
       if (!req.file) {
         console.log("Please insert profile picture");
       }
@@ -101,7 +102,12 @@ class Controller {
         phoneNumber,
         address,
       } = req.body;
-      let role = "client";
+
+      let exist = await User.findByPk(UserId)
+      if(!exist) {
+        throw {name: "notFound"}
+      }
+      
       password = bcrypt.hashSync(password, 10);
       let link = await ImageCloud(req.file);
       let imgUrl = link.url
@@ -113,7 +119,6 @@ class Controller {
           email,
           password,
           imgUrl,
-          role,
           phoneNumber,
           address,
         },
