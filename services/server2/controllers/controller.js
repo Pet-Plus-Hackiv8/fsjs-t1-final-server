@@ -208,7 +208,7 @@ class Controller {
         PetshopId,
       });
 
-      res.status(201).json(newRecord);
+      res.status(201).json({message: "Medical record has been created"});
     } catch (err) {
       console.log(err);
       next(err);
