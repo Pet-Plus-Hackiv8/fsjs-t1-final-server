@@ -14,7 +14,7 @@ class Controller {
 
       let { username, fullName, email, password, phoneNumber, address, role } =
         req.body;
-      // console.log(req.body, "INI BODY")
+      console.log(req.body, "INI BODY")
       // console.log(req.file, "INI FILE")
       // let role = "client";
       // password = bcrypt.hashSync(password, 10);
