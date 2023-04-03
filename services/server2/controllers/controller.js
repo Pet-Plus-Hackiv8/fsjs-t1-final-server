@@ -269,28 +269,36 @@ class Controller {
 
   static async paymentXendit(req, res, next) {
     try {
+      // console.log(req.body, "?????");
+      let {email, PetshopId, total, fullname}= req.body
       const x = new Xendit({
         secretKey: XENDIT_KEY
       });
+
+      // console.log(PetshopId, "pet id");
+      let petshop = await Petshop.findByPk(PetshopId)
+      // console.log(petshop.name);
+
+
 
       const { Invoice } = x;
       const i = new Invoice({});
 
       let invoice = await i.createInvoice({
         externalID: Date.now().toString(),
-        payerEmail: "deviradwita@gmail.com",
-        description: "Invoice for Shoes Purchase",
-        amount: 100000,
+        payerEmail: email,
+        description: `Invoice for ${petshop.name} `,
+        amount: total,
         customer: {
-          given_names: "xen customer",
-          email: "deviradwita@gmail.com",
+          given_names: fullname,
+          email: email,
         },
         customerNotificationPreference: {
           invoice_created: ["email"],
         },
       });
-      console.log("created invoice", invoice);
-      res.status(201).json(invoice)
+      // console.log("created invoice", invoice);
+      res.status(201).json({invoice: invoice.invoice_url})
 
       // const retrievedInvoice = await i.getInvoice({ invoiceID: invoice.id });
      

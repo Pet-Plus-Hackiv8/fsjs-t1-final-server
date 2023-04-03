@@ -32,7 +32,7 @@ app.put("/user/:UserId", upload.single("imgUrl"), Controller.putUser)
 
 app.post("/pets/:UserId", upload.single("imgUrl"), Controller.addPet)
 app.get("/pets/:UserId", Controller.fetchAllPet)
-app.get("/pets/:UserId/:id", Controller.fetchPet)
+app.get("/pet/:id", Controller.fetchPet)
 app.put("/pets/:UserId/:id", upload.single("imgUrl"), Controller.putPet)
 app.delete("/pets/:UserId/:id", Controller.deletePet)
 

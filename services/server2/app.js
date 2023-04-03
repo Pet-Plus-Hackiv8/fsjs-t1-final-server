@@ -42,7 +42,7 @@ app.delete("/doctorSchedule/:DoctorScheduleId", Controller.deleteDocSched)
 
 //doctors
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
-app.get("/doctors/:PetshopId",  Controller.fetchAllDoctor)
+app.get("/doctors/:PetshopId", authentication,  Controller.fetchAllDoctor)
 app.get("/doctors/:PetshopId/:DoctorId",  Controller.fetchDoctor)
 app.put("/doctors/:PetshopId/:DoctorId", upload.single("imgUrl"), Controller.putDoctor)
 app.delete("/doctors/:PetshopId/:DoctorId",  Controller.deleteDoctor)

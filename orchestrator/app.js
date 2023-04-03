@@ -17,17 +17,24 @@ import {
 import { doctorResolvers, doctorTypeDefs } from "./schemas/Doctor.js";
 import { postResolvers, postTypeDefs } from "./schemas/Post.js";
 import { serviceResolvers, serviceTypeDefs } from "./schemas/Service.js";
+import { petScheduleResolvers, petScheduleTypeDefs } from "./schemas/petSchedule.js";
+import { invoiceResolvers, invoiceTypeDefs } from "./schemas/Xendit.js";
 
 const app = express();
 
 const server = new ApolloServer({
-  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs, medicalRecordTypeDefs, doctorTypeDefs, postTypeDefs, serviceTypeDefs ],
-  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers, medicalRecordResolvers,  doctorResolvers, postResolvers, serviceResolvers ],
+  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs, medicalRecordTypeDefs, doctorTypeDefs, postTypeDefs, serviceTypeDefs, petScheduleTypeDefs, invoiceTypeDefs ],
+  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers, medicalRecordResolvers,  doctorResolvers, postResolvers, serviceResolvers, petScheduleResolvers, invoiceResolvers ],
   uploads: false, // Disable the built-in file handling of Apollo Server
+  context : ({req})=>{
+    // console.log(req.headers.access_token,">>>>>>>");
+    return {access_token: req.headers.access_token}
+  }
 });
 
 async function startApolloServer() {
   await server.start();
+  // console.log(server.," >>>>>>>>>>");
 
   // Add the graphqlUploadExpress middleware
   app.use(graphqlUploadExpress());

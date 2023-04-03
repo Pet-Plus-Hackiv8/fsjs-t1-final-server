@@ -28,22 +28,13 @@ export const petTypeDefs = `
     description: String
     weight: String
     UserId: ID!
-    Owner : Owner
-  }
-
-  type Owner {
-    username: String
-    fullname: String
-    email: String
-    imgUrl: String
-    phoneNumber: String
-    address: String
+    User : User
   }
 
 
   type Query {
     fetchPets(UserId: ID!): [Pet]
-    fetchPet(UserId: ID!, id: ID!): onePet
+    fetchPet( id: ID!): onePet
 
   }
 
@@ -64,7 +55,7 @@ export const petTypeDefs = `
 
 export const petResolvers = {
   Query: {
-    async fetchPets(parent, { UserId }) {
+    async fetchPets(parent, { UserId }, context) {
       try {
         // let inMemory = await redis.get("pets:all");
         // if (inMemory) {
@@ -72,9 +63,13 @@ export const petResolvers = {
         //   return JSON.parse(inMemory);
         // }
         // console.log(UserId, "INI ID")
+        console.log(context,">>>>>>>>>>>>>>>");
         let { data } = await axios({
           method: "GET",
           url: SERVER_ONE + "/pets/" + UserId,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         // await redis.set("pets:all", JSON.stringify(data));
@@ -85,23 +80,15 @@ export const petResolvers = {
         throw new GraphQLError(error.response.data.message);
       }
     },
-    async fetchPet(parent, { UserId, id }) {
+    async fetchPet(parent, { id }) {
       try {
 
         let { data: pet } = await axios({
           method: "GET",
-          url: `${SERVER_ONE}/pets/${UserId}/${id}`,
+          url: `${SERVER_ONE}/pet/${id}`,
         });
 
-        //   console.log(pet, "+_+_+_+");
-
-        let { data: user } = await axios({
-          method: "GET",
-          url: `${SERVER_ONE}/user/${UserId}`,
-        });
-
-        pet.Owner = user;
-        //   console.log(pet, ">><<<");
+        // console.log(pet, "+_+_+_+");
         return pet;
       } catch (error) {
         // console.log(error.response.data);

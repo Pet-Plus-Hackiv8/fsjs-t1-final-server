@@ -197,6 +197,7 @@ class Controller {
 
   static async fetchPet(req, res, next) {
     try {
+      // console.log(req.params);
       const pet = await Pet.findOne({where : {
         id: req.params.id
       }, include: User });
