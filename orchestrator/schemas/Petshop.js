@@ -77,7 +77,7 @@ export const petshopTypeDefs = `
 
 export const petshopResolvers = {
   Query: {
-    async getAllPetshops(parent, { serviceFilter, nameFilter }) {
+    async getAllPetshops(parent, { serviceFilter, nameFilter }, context) {
       try {
         let link = SERVER_TWO + "/petShops";
         if (serviceFilter) {
@@ -104,7 +104,7 @@ export const petshopResolvers = {
       }
     },
 
-    async getShopsAroundMe(parent, { distance, lat, long }) {
+    async getShopsAroundMe(parent, { distance, lat, long }, context) {
       try {
         let link =
           SERVER_TWO +
@@ -122,7 +122,7 @@ export const petshopResolvers = {
       }
     },
 
-    async getShopById(parent, { PetshopId }) {
+    async getShopById(parent, { PetshopId }, context) {
       try {
         let { data } = await axios({
           method: "GET",
@@ -139,7 +139,7 @@ export const petshopResolvers = {
   Mutation: {
     async postPetshop(
       parent,
-      { name, address, latitude, longitude, phoneNumber, UserId, logo }
+      { name, address, latitude, longitude, phoneNumber, UserId, logo }, context
     ) {
       console.log("MASUK post petshop");
       try {
@@ -180,7 +180,7 @@ export const petshopResolvers = {
 
     async putPetshop(
       parent,
-      { name, address, latitude, longitude, phoneNumber, logo, PetshopId }
+      { name, address, latitude, longitude, phoneNumber, logo, PetshopId }, context
     ) {
       //   console.log("MASUK put petshop");
       try {
