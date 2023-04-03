@@ -570,7 +570,7 @@ class Controller {
 
       res.status(200).json(post);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       next(err);
     }
   }
@@ -596,7 +596,7 @@ class Controller {
       let imageUrl = req.body.imageUrl;
       if (req.file) {
         let link = await ImageCloud(req.file);
-        // console.log(link, "<><>");
+        console.log(link, "<><>");
         let imageUrl = link.url;
       }
 
@@ -618,7 +618,7 @@ class Controller {
 
       res.status(200).json({ message: "Succesfully Edit Your Post" });
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       next(err);
     }
   }
