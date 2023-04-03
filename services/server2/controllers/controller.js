@@ -24,7 +24,7 @@ class Controller {
       let { name, address, latitude, longitude, phoneNumber, UserId } =
         req.body;
 
-      let logo;
+      let logo = null
       if (req.file) {
         let link = await ImageCloud(req.file);
         logo = link.url;
@@ -59,7 +59,7 @@ class Controller {
         throw { name: "notFound" };
       }
       
-      let logo
+      let logo = null
       if(req.file) {
         let link = await ImageCloud(req.file);
          logo = link.url;

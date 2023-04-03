@@ -9,7 +9,7 @@ export const serviceTypeDefs = `
   type Service {
     id: ID!
     name: String
-    minPrice: String
+    minPrice: Int
     maxPrice: Int
     serviceLogo: String
     PetshopId: ID!

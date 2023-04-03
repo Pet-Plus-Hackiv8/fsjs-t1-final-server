@@ -14,7 +14,7 @@ export const petshopTypeDefs = `
     address: String
     location: Location
     phoneNumber: String
-    UserId: Int
+    UserId: ID
   }
 
   type Location {
@@ -147,6 +147,7 @@ export const petshopResolvers = {
         const formData = new FormData();
 
         if (logo) {
+          // console.log(logo, "{}{}{}")
           const { createReadStream, filename, mimetype, encoding } =
             await logo.file;
           const stream = createReadStream();

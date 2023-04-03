@@ -60,13 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       imgUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "Profile picture is required" },
-          notEmpty: { msg: "Profile picture is required" },
-          isUrl: { msg: "Invalid URl" },
-        },
+        type: DataTypes.STRING
       },
       role: {
         type: DataTypes.STRING,

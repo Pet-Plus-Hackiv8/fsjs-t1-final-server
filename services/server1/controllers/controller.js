@@ -11,25 +11,19 @@ class Controller {
   static async register(req, res, next) {
     try {
       console.log(req.body, "<><><><><>");
-      if (!req.file) {
-        console.log("Please insert profile picture");
-      }
 
-      let {
-        username,
-        fullName,
-        email,
-        password,
-        phoneNumber,
-        address,
-        role
-      } = req.body;
-      console.log(req.body, "INI BODY")
-      console.log(req.file, "INI FILE")
+      let { username, fullName, email, password, phoneNumber, address, role } =
+        req.body;
+      // console.log(req.body, "INI BODY")
+      // console.log(req.file, "INI FILE")
       // let role = "client";
       password = bcrypt.hashSync(password, 10);
-      let link = await ImageCloud(req.file);
-      let imgUrl = link.url
+
+      let imgUrl = null
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        imgUrl = link.url;
+      }
 
       let newUser = await User.create({
         username,
@@ -87,30 +81,21 @@ class Controller {
 
   static async putUser(req, res, next) {
     try {
-      console.log("MASUK PUT");
-      if (!req.file) {
-        console.log("Please insert profile picture");
-      }
-      // console.log("MASUK PUT");
-      // let UserId = req.user.UserId;
-      let {UserId} = req.params
-      let {
-        username,
-        fullName,
-        email,
-        password,
-        phoneNumber,
-        address,
-      } = req.body;
+      let { UserId } = req.params;
+      let { username, fullName, email, password, phoneNumber, address } =
+        req.body;
 
-      let exist = await User.findByPk(UserId)
-      if(!exist) {
-        throw {name: "notFound"}
+      let exist = await User.findByPk(UserId);
+      if (!exist) {
+        throw { name: "notFound" };
       }
-      
       password = bcrypt.hashSync(password, 10);
-      let link = await ImageCloud(req.file);
-      let imgUrl = link.url
+
+      let imgUrl = null
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        imgUrl = link.url;
+      }
 
       let newUser = await User.update(
         {
@@ -136,12 +121,12 @@ class Controller {
   static async getUserById(req, res, next) {
     try {
       // let UserId = req.user.UserId;
-      let {UserId} = req.params
+      let { UserId } = req.params;
       let user = await User.findByPk(UserId);
       if (!user) {
         throw { name: "notFound" };
       }
-      user.password = "unknown"
+      user.password = "unknown";
       // console.log(user)
       res.status(200).json(user);
     } catch (err) {
@@ -160,7 +145,7 @@ class Controller {
       // console.log(req.params.UserId, "id");
       // console.log(req.file, ">>>>>>>>>>");
       let link = await ImageCloud(req.file);
-      let imgUrl = link.url
+      let imgUrl = link.url;
       // console.log(imgUrl, ">>>>>>>>>>>>>>>>>>>>>>>");
 
       const pet = await Pet.create({
@@ -197,9 +182,12 @@ class Controller {
 
   static async fetchPet(req, res, next) {
     try {
-      const pet = await Pet.findOne({where : {
-        id: req.params.id
-      }, include: User });
+      const pet = await Pet.findOne({
+        where: {
+          id: req.params.id,
+        },
+        include: User,
+      });
       if (!pet) {
         throw { name: "notFound" };
       }
@@ -212,12 +200,12 @@ class Controller {
 
   static async putPet(req, res, next) {
     try {
-      let imgUrl = req.body.imgUrl
+      let imgUrl = req.body.imgUrl;
       if (req.file) {
         let link = await ImageCloud(req.file);
         // console.log(link, "<><>");
         let imgUrl = link.url;
-      } 
+      }
 
       const updatedPet = await Pet.update(
         {
@@ -235,7 +223,7 @@ class Controller {
           },
         }
       );
-   
+
       res.status(200).json({ message: "Succesfully Edit Profil for Your Pet" });
     } catch (err) {
       // console.log(err);
