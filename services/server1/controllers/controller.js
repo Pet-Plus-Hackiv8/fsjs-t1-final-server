@@ -19,7 +19,7 @@ class Controller {
       // let role = "client";
       // password = bcrypt.hashSync(password, 10);
       // console.log(password, "PWD")
-      let imgUrl = null
+      let imgUrl = null;
       if (req.file) {
         let link = await ImageCloud(req.file);
         imgUrl = link.url;
@@ -38,7 +38,7 @@ class Controller {
 
       res.status(201).json({ message: "Account created" });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       next(err);
     }
   }
@@ -46,7 +46,7 @@ class Controller {
   static async login(req, res, next) {
     // console.log("MASUK")
     try {
-      // console.log(req.body, "OKOKOK");
+      console.log(req.body, "OKOKOK");
       let { email, password } = req.body;
       if (!email) {
         throw { name: "emailRequired" };
@@ -55,12 +55,14 @@ class Controller {
         throw { name: "passwordRequired" };
       }
 
-      const user = await User.findOne({ where: { email: email } });
+      const user = await User.findOne({
+        where: { email: email }
+      });
       if (!user) {
         // console.log('error di email')
         throw { name: "InvalidCredential" };
       }
-
+      console.log(user);
       if (await bcrypt.compare(password, user.password)) {
         const access_token = createToken({ UserId: user.id, email: email });
         // console.log('masuk', '<<<<<<<<<<<<')
@@ -91,7 +93,7 @@ class Controller {
       }
       // password = bcrypt.hashSync(password, 10);
 
-      let imgUrl = null
+      let imgUrl = null;
       if (req.file) {
         let link = await ImageCloud(req.file);
         imgUrl = link.url;

@@ -2,6 +2,7 @@
 // const exp = require("constants");
 // const redis = require("../config/redis");
 const SERVER_ONE = process.env.SERVER_ONE || "http://localhost:4001";
+const SERVER_TWO = process.env.SERVER_TWO || "http://localhost:4002";
 
 import FormData from "form-data";
 import axios from "axios";
@@ -173,7 +174,7 @@ export const userResolvers = {
 
     async login(parent, { email, password }) {
       try {
-        let { data } = await axios({
+        let { data:user } = await axios({
           method: "POST",
           url: SERVER_ONE + "/login",
           data: {

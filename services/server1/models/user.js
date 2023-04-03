@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       phoneNumber: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: { msg: "Phone number is required" },
@@ -80,12 +80,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       address: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "Address is required" },
-          notEmpty: { msg: "Address is required" },
-        },
+        type: DataTypes.TEXT
       },
     },
     {

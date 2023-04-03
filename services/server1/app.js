@@ -17,11 +17,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-
 app.post("/register", upload.single("imgUrl"), Controller.register)
 app.post("/login", Controller.login)
 
