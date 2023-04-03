@@ -37,8 +37,8 @@ app.post("/action/:MedicalRecordId", upload.single("document"), Controller.postA
 app.post("/xendit", Controller.paymentXendit)
 
 // Doctor Schedule
-app.post("/doctorSchedule/:DoctorId/:PetshopId", Controller.postDocSched)
 app.get("/doctorSchedule/:DoctorId/:PetshopId", Controller.getDocSched)
+app.post("/doctorSchedule/:DoctorId/:PetshopId", Controller.postDocSched)
 app.put("/doctorSchedule/:DoctorScheduleId", Controller.putDocSched)
 app.delete("/doctorSchedule/:DoctorScheduleId", Controller.deleteDocSched)
 
@@ -75,6 +75,8 @@ app.get("/petSchedule/:PetshopId", Controller.fetchScheduleForPetshop)
 
 app.use(errorHandler)
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
+
+module.exports = app

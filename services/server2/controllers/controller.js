@@ -194,7 +194,7 @@ class Controller {
         where: { PetId: PetId },
         include: [Doctor, PetSchedule, Petshop, Action],
       });
-
+      // console.log(record, "POPOPOP")
       res.status(200).json(record);
     } catch (err) {
       console.log(err);
@@ -355,7 +355,7 @@ class Controller {
   }
 
   static async getDocSched(req, res, next) {
-    console.log("MASUK DOCSCHED");
+    // console.log("MASUK DOCSCHED");
     try {
       let { PetshopId, DoctorId } = req.params;
 
