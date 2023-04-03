@@ -66,7 +66,7 @@ export const petshopTypeDefs = `
   type Query {
     getAllPetshops(serviceFilter: String, nameFilter: String): [Petshop]
     getShopsAroundMe(distance: Int, lat: String, long: String): [Petshop]
-    getShopById(PetshopId: Int): Output
+    getShopById(UserId: Int): Output
   }
 
   type Mutation {
@@ -122,11 +122,11 @@ export const petshopResolvers = {
       }
     },
 
-    async getShopById(parent, { PetshopId }, context) {
+    async getShopById(parent, { UserId }, context) {
       try {
         let { data } = await axios({
           method: "GET",
-          url: SERVER_TWO + "/petShop/" + PetshopId,
+          url: SERVER_TWO + "/petShop/" + UserId,
         });
         console.log(data)
         return data;
