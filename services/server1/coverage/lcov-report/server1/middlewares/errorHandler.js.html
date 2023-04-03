@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/22</span>
+                <span class='fraction'>18/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>12/16</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">81.81% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/22</span>
+                <span class='fraction'>18/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -97,20 +97,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,21 +125,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 &nbsp;
 async function errorHandler(err, req, res, next) {
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "notFound") {
-<span class="cstat-no" title="statement not covered" >    res.status(404).json({ message: "Resource not found" });</span>
+  if (err.name === "notFound") {
+    res.status(404).json({ message: "Resource not found" });
   } else if (err.name === "SequelizeValidationError") {
     res.status(400).json({ message: err.errors[0].message });
   } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "JsonWebTokenError") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Invalid token" });</span>
   } else if (err.name === "SequelizeUniqueConstraintError") {
     res.status(400).json({ message: err.errors[0].message });
-  } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (err.name === "InvalidCredential") {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Wrong email or password" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "emailRequired") {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Please fill email" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "passwordRequired") {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Please fill password" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "InvalidToken") {</span>
+  } else if (err.name === "InvalidCredential") {
+    res.status(401).json({ message: "Wrong email or password" });
+  } else if (err.name === "emailRequired") {
+    res.status(400).json({ message: "Please fill email" });
+  } else if (err.name === "passwordRequired") {
+    res.status(400).json({ message: "Please fill password" });
+  } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (err.name === "InvalidToken") {</span>
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Invalid token" });</span>
   } else {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Internal server error" });</span>
@@ -154,7 +154,7 @@ module.exports = errorHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-03T14:21:40.543Z
+                at 2023-04-03T17:26:37.766Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

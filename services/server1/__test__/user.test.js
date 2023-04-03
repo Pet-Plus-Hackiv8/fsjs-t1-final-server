@@ -217,3 +217,98 @@ describe("POST /login", () => {
         expect(response.body.message).toEqual("Wrong email or password")
     })
 }) 
+
+describe("PUT /user/:UserId", () => {
+    it('success edit account', async () => {
+        const response = await request(app).put('/user/2').send({
+            username : 'BobbyFishing',
+            fullName: "Bobby Fishing",
+            email: 'bobba@mail.com',
+            password : '123456', 
+            phoneNumber : '081356987412',
+            address : 'Jakarta' ,
+            role: "Client"
+        })
+        expect(response.status).toEqual(201)
+        expect(typeof response.body).toEqual('object')
+
+        expect(response.body).toHaveProperty('message')
+        expect(typeof response.body.message).toEqual("string")
+        
+        expect(response.body.message).toEqual('Your account has been updated')
+    })
+
+    it('success input existing username', async () => {
+        const response = await request(app).put('/user/2').send({
+            username : 'Pet Vet',
+            fullName: "Bobby Fishing",
+            email: 'bobba@mail.com',
+            password : '123456', 
+            phoneNumber : '081356987412',
+            address : 'Jakarta' ,
+            role: "Client"
+        })
+        expect(response.status).toEqual(400)
+        expect(typeof response.body).toEqual('object')
+
+        expect(response.body).toHaveProperty('message')
+        expect(typeof response.body.message).toEqual("string")
+        
+        expect(response.body.message).toEqual('Username already exist')
+    })
+    it('success input existing email', async () => {
+        const response = await request(app).put('/user/2').send({
+            username : 'Bobby Bola',
+            fullName: "Bobby Fishing",
+            email: 'lalisa@mail.com',
+            password : '123456', 
+            phoneNumber : '081356987412',
+            address : 'Jakarta' ,
+            role: "Client"
+        })
+        expect(response.status).toEqual(400)
+        expect(typeof response.body).toEqual('object')
+
+        expect(response.body).toHaveProperty('message')
+        expect(typeof response.body.message).toEqual("string")
+        
+        expect(response.body.message).toEqual('E-mail already exist')
+    })
+})
+
+describe("GET /user/:UserId", () => {
+    it('success get', async () => {
+        const response = await request(app).get('/user/1').send({
+            username : 'Maxikars',
+            fullName: "Kars Sugoi",
+            email: 'MaxKars@mail.com',
+            password : '123456', 
+            phoneNumber : '081212345678',
+            address : 'address' ,
+            role: "owner"
+        })
+        expect(response.status).toEqual(200)
+        expect(typeof response.body).toEqual('object')
+
+        expect(response.body).toHaveProperty('username')
+        expect(response.body).toHaveProperty('fullName')
+        expect(response.body).toHaveProperty('email')
+        expect(response.body).toHaveProperty('phoneNumber')
+        expect(response.body).toHaveProperty('address')
+        expect(response.body).toHaveProperty('role')
+        expect(response.body).toHaveProperty('password')
+        
+        expect(response.body.password).toEqual('unknown')
+    })
+
+    it('user not found', async () => {
+        const response = await request(app).get('/user/99')
+        expect(response.status).toEqual(404)
+        expect(typeof response.body).toEqual('object')
+
+        expect(response.body).toHaveProperty('message')
+        expect(typeof response.body.message).toEqual("string")
+        
+        expect(response.body.message).toEqual('Resource not found')
+    })
+})
