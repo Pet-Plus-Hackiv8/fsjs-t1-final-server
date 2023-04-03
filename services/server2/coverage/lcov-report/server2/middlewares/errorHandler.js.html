@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.85% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/28</span>
+                <span class='fraction'>17/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/22</span>
+                <span class='fraction'>11/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.85% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/28</span>
+                <span class='fraction'>17/28</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -103,26 +103,26 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,28 +136,28 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 &nbsp;
-async function <span class="fstat-no" title="function not covered" >errorHandler(</span>err, req, res, next) {
-<span class="cstat-no" title="statement not covered" >  if (err.name === "notFound") {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(404).json({ message: "Resource not found" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "SequelizeValidationError") {</span>
+async function errorHandler(err, req, res, next) {
+  if (err.name === "notFound") {
+    res.status(404).json({ message: "Resource not found" });
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "SequelizeValidationError") {
 <span class="cstat-no" title="statement not covered" >    res.status(400).json({ message: err.errors[0].message });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "JsonWebTokenError") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "JsonWebTokenError") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Invalid token" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "SequelizeUniqueConstraintError") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "SequelizeUniqueConstraintError") {
 <span class="cstat-no" title="statement not covered" >    res.status(400).json({ message: err.errors[0].message });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "InvalidCredential") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "InvalidCredential") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Wrong email or password" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "emailRequired") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "emailRequired") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Please fill email" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "passwordRequired") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "passwordRequired") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Please fill password" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "InvalidToken") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "InvalidToken") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Invalid token" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "imageRequired") {</span>
+  } else <span class="missing-if-branch" title="if path not taken" >I</span>if (err.name === "imageRequired") {
 <span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Please choose Vet logo" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "scheduleExist") {</span>
-<span class="cstat-no" title="statement not covered" >    res.status(401).json({ message: "Schedule already exist" });</span>
-  } else <span class="cstat-no" title="statement not covered" >if (err.name === "AggregateError") {</span>
+  } else if (err.name === "scheduleExist") {
+    res.status(400).json({ message: "Schedule already exist" });
+  } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>if (err.name === "AggregateError") {</span>
 <span class="cstat-no" title="statement not covered" >    res.status(400).json({ message: err.errors[0].errors.errors[0].message });</span>
   } else {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Internal server error" });</span>
@@ -172,7 +172,7 @@ module.exports = errorHandler;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-04-03T18:29:18.927Z
+                at 2023-04-03T18:57:46.722Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

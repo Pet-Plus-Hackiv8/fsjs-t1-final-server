@@ -38,16 +38,82 @@ describe('GET /doctorSchedule/:DoctorId/:PetshopId', () => {
         expect(typeof response.body[0].DoctorId).toEqual("number")
     })
 
-    // it('Client did not hard code role', async () => {
-    //     const response = await request(app).post('/register').send({
-    //         fullName: "name",
-    //         username : 'NoPassword',
-    //         password: "1234",
-    //         email: "nopw@mail.com",
-    //         phoneNumber: "084651235",
-    //         address : 'address',
-    //     })
-    //     expect(response.status).toEqual(400)
-    //     expect(response.body.message).toEqual('Role is required')
-    // })
+    it('Does not have any schedule', async () => {
+        const response = await request(app).get('/doctorSchedule/99/99')
+        expect(response.status).toEqual(404)
+        expect(response.body.message).toEqual('Resource not found')
+    })
+})
+
+describe("POST /doctorSchedule/:DoctorId/:PetshopId", () => {
+    it('Sucess created schedule', async () => {
+        const response = await request(app).post('/doctorSchedule/1/1').send({
+            day : 'Saturday',
+            time: "Session 1",
+            status: 'Available'
+        })
+
+        expect(response.status).toEqual(201)
+        expect(response.body).toHaveProperty("day")
+        expect(response.body).toHaveProperty("time")
+        expect(response.body).toHaveProperty("status")
+        expect(response.body).toHaveProperty("PetshopId")
+        expect(response.body).toHaveProperty("DoctorId")
+    })
+
+    it('Schedule exist', async () => {
+        const response = await request(app).post('/doctorSchedule/1/1').send({
+            day : 'Saturday',
+            time: "Session 1",
+            status: 'Available'
+        })
+
+        expect(response.status).toEqual(400)
+        expect(response.body).toHaveProperty("message")
+        expect(response.body.message).toEqual("Schedule already exist")
+    })
+})
+
+describe("PUT /doctorSchedule/:DoctorScheduleId", () => {
+    it('Sucess edit schedule', async () => {
+        const response = await request(app).put('/doctorSchedule/9').send({
+            day : 'Monday',
+            time: "Session 2",
+            status: 'Unavailable'
+        })
+
+        expect(response.status).toEqual(201)
+        expect(response.body).toHaveProperty("message")
+        expect(response.body.message).toEqual("Schedule has been updated")
+    })
+
+    it('Schedule not exist', async () => {
+        const response = await request(app).put('/doctorSchedule/22').send({
+            day : 'Saturday',
+            time: "Session 1",
+            status: 'Available'
+        })
+
+        expect(response.status).toEqual(404)
+        expect(response.body).toHaveProperty("message")
+        expect(response.body.message).toEqual("Resource not found")
+    })
+})
+
+describe("DELETE /doctorSchedule/:DoctorScheduleId", () => {
+    it('Sucess delete schedule', async () => {
+        const response = await request(app).delete('/doctorSchedule/1')
+
+        expect(response.status).toEqual(200)
+        expect(response.body).toHaveProperty("message")
+        expect(response.body.message).toEqual("Schedule deleted")
+    })
+
+    it('Schedule not exist', async () => {
+        const response = await request(app).delete('/doctorSchedule/22')
+
+        expect(response.status).toEqual(404)
+        expect(response.body).toHaveProperty("message")
+        expect(response.body.message).toEqual("Resource not found")
+    })
 })
