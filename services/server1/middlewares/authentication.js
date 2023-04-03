@@ -17,6 +17,7 @@ async function authentication(req, res, next) {
         // console.log(decoded, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
         const user = await User.findByPk(decoded.UserId)
+        // console.log(user, ">>>user");
         if (!user) {
           throw { name: "InvalidToken" }
         }

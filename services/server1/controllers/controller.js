@@ -10,11 +10,11 @@ class Controller {
   // users controller (zio)
   static async register(req, res, next) {
     try {
-      console.log(req.body, "<><><><><>");
+      // console.log(req.body, "<><><><><>");
 
       let { username, fullName, email, password, phoneNumber, address, role } =
         req.body;
-      console.log(req.body, "INI BODY")
+      // console.log(req.body, "INI BODY")
       // console.log(req.file, "INI FILE")
       // let role = "client";
       // password = bcrypt.hashSync(password, 10);
@@ -138,14 +138,14 @@ class Controller {
   // pet controller (devira)
   static async addPet(req, res, next) {
     try {
-      if (!req.file) {
-        console.log("Please insert your Pet Picture");
-        // throw { name: "No file received or invalid file type" };
+      let imgUrl = null
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        let imgUrl = link.url;
       }
-      // console.log(req.params.UserId, "id");
-      // console.log(req.file, ">>>>>>>>>>");
-      let link = await ImageCloud(req.file);
-      let imgUrl = link.url;
+
+
+    
       // console.log(imgUrl, ">>>>>>>>>>>>>>>>>>>>>>>");
 
       const pet = await Pet.create({

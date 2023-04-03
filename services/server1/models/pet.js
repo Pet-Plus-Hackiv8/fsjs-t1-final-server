@@ -22,15 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Pet name is required" },
         },
       },
-      imgUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notNull: { msg: "Pet image is required" },
-          notEmpty: { msg: "Pet image is required" },
-          isUrl: { msg: "Invalid URl" },
-        },
-      },
+      imgUrl: DataTypes.STRING,
       gender: {
         type: DataTypes.STRING,
         allowNull: false,
