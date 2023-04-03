@@ -5,10 +5,10 @@ const db = require('../models/index')
 const queryInterface = db.sequelize.getQueryInterface()
 const app = require('../app')
 
-const bulkInsertCustomer = require('../library/seedUser')
+const bulkInsertUser = require('../library/seedUser')
 
 beforeAll(async () => {
-    await bulkInsertCustomer()
+    await bulkInsertUser()
 })
 
 afterAll(async () => {

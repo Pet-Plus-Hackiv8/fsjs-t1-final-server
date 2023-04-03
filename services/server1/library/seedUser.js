@@ -3,7 +3,7 @@ const db = require('../models')
 const queryInterface = db.sequelize.getQueryInterface()
 const bcrypt = require('bcrypt');
 
-async function bulkInsertCustomer() {
+async function bulkInsertUser() {
     try {
     await queryInterface.bulkDelete('Users', {}, {truncate: true, restartIdentity: true, cascade:true})
     
@@ -21,4 +21,4 @@ async function bulkInsertCustomer() {
     }
 }
 
-module.exports = bulkInsertCustomer
+module.exports = bulkInsertUser
