@@ -12,7 +12,7 @@ export const doctorTypeDefs = `
     imgUrl: String
     gender: String
     education: String
-    PetshopId: ID!
+    PetshopId: ID
   }
 
  
@@ -42,26 +42,33 @@ export const doctorTypeDefs = `
 
 export const doctorResolvers = {
   Query: {
-    async fetchDoctor(parent, { PetshopId }) {
+    async fetchDoctor(parent, { PetshopId }, context) {
       try {
+        console.log(context, "access");
         let { data } = await axios({
           method: "GET",
           url: `${SERVER_TWO}/doctors/${PetshopId}`,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         // console.log(data, "+_+_+_+");
         return data;
       } catch (error) {
-        // console.log(error.response.data);
+        console.log(error);
         throw new GraphQLError(error.response.data.message);
       }
     },
-    async fetchOneDoctor(parent, { PetshopId, DoctorId }) {
+    async fetchOneDoctor(parent, { PetshopId, DoctorId }, context) {
         try {
          
           let { data } = await axios({
             method: "GET",
-            url: `${SERVER_TWO}/doctors/${PetshopId}/${DoctorId}`
+            url: `${SERVER_TWO}/doctors/${PetshopId}/${DoctorId}`,
+            headers : {
+              access_token : context.access_token
+            }
           });
   
           return data;
@@ -72,7 +79,7 @@ export const doctorResolvers = {
       },
   },
   Mutation: {
-    async addDoctor(parent,{name, imgUrl, gender, education, PetshopId}) {
+    async addDoctor(parent,{name, imgUrl, gender, education, PetshopId}, context) {
         try {
             // console.log("MASUK ADD doctor")
           // console.log(imgUrl.file, "INI IMAGE")
@@ -88,7 +95,10 @@ export const doctorResolvers = {
           const { data } = await axios({
             method: "POST",
             url: `${SERVER_TWO}/doctors/${PetshopId}`,
-            data: formData
+            data: formData,
+            headers : {
+              access_token : context.access_token
+            }
             })
     
         //   console.log(data, "ini data");
@@ -98,7 +108,7 @@ export const doctorResolvers = {
           throw new GraphQLError(error.response.data.message)
         }
     },
-    async editDoctor(parent,{name, imgUrl, gender, education, PetshopId, DoctorId}) {
+    async editDoctor(parent,{name, imgUrl, gender, education, PetshopId, DoctorId}, context) {
         try {
             // console.log("MASUK editdoctor")
           // console.log(imgUrl.file, "INI IMAGE")
@@ -114,7 +124,10 @@ export const doctorResolvers = {
           const { data } = await axios({
             method: "PUT",
             url: `${SERVER_TWO}/doctors/${PetshopId}/${DoctorId}`,
-            data: formData
+            data: formData,
+            headers : {
+              access_token : context.access_token
+            }
             })
     
         //   console.log(data, "ini data");
@@ -125,11 +138,14 @@ export const doctorResolvers = {
           throw new GraphQLError(error.response.data.message)
         }
     },
-    async deleteDoctor(parent, { PetshopId, DoctorId }) {
+    async deleteDoctor(parent, { PetshopId, DoctorId }, context) {
         try {
           const { data } = await axios({
             method: "DELETE",
             url: `${SERVER_TWO}/doctors/${PetshopId}/${DoctorId}`,
+            headers : {
+              access_token : context.access_token
+            }
           });
   
           return data;

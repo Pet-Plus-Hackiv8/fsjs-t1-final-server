@@ -12,14 +12,11 @@ async function authentication(req, res, next) {
     try {
       
         let access_token = req.headers.access_token
-        // console.log(access_token,"???");
+        console.log(access_token,"???");
         if (!access_token) {
           throw { name: "InvalidToken" }
         }
 
-        let petshop = await petshop.findByPk(req.body.PetshopId)
-
-        console.log(petshop);
 
         let decoded = decodeToken(access_token)
         // console.log(decoded, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<');

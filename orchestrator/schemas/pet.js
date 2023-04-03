@@ -15,7 +15,7 @@ export const petTypeDefs = `
     breed: String
     description: String
     weight: String
-    UserId: ID!
+    UserId: ID
   }
 
   type onePet {
@@ -27,14 +27,14 @@ export const petTypeDefs = `
     breed: String
     description: String
     weight: String
-    UserId: ID!
+    UserId: ID
     User : User
   }
 
 
   type Query {
-    fetchPets(UserId: ID!): [Pet]
-    fetchPet( id: ID!): onePet
+    fetchPets(UserId: ID): [Pet]
+    fetchPet( id: ID): onePet
 
   }
 
@@ -63,7 +63,7 @@ export const petResolvers = {
         //   return JSON.parse(inMemory);
         // }
         // console.log(UserId, "INI ID")
-        console.log(context,">>>>>>>>>>>>>>>");
+        // console.log(context,">>>>>>>>>>>>>>>");
         let { data } = await axios({
           method: "GET",
           url: SERVER_ONE + "/pets/" + UserId,
@@ -73,19 +73,22 @@ export const petResolvers = {
         });
 
         // await redis.set("pets:all", JSON.stringify(data));
-        console.log(data, "+_+_+_+");
+        // console.log(data, "+_+_+_+");
         return data;
       } catch (error) {
         console.log(error.response.data);
         throw new GraphQLError(error.response.data.message);
       }
     },
-    async fetchPet(parent, { id }) {
+    async fetchPet(parent, { id }, context) {
       try {
 
         let { data: pet } = await axios({
           method: "GET",
           url: `${SERVER_ONE}/pet/${id}`,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         // console.log(pet, "+_+_+_+");
@@ -99,7 +102,7 @@ export const petResolvers = {
   Mutation: {
     async addPet(
       parent,
-      { name, imgUrl, gender, species, breed, description, weight, UserId }
+      { name, imgUrl, gender, species, breed, description, weight, UserId }, context
     ) {
       try {
         // console.log("MASUK ADD PET")
@@ -122,6 +125,9 @@ export const petResolvers = {
           method: "POST",
           url: `${SERVER_ONE}/pets/${UserId}`,
           data: formData,
+          headers : {
+            access_token : context.access_token
+          }
         });
         // redis.del("pets:all")
 
@@ -144,7 +150,7 @@ export const petResolvers = {
         weight,
         UserId,
         editId,
-      }
+      }, context
     ) {
       try {
         // console.log("MASUK edit PET")
@@ -168,6 +174,9 @@ export const petResolvers = {
           method: "PUT",
           url: `${SERVER_ONE}/pets/${UserId}/${editId}`,
           data: formData,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         //   console.log(data, "ini data");
@@ -178,11 +187,14 @@ export const petResolvers = {
         throw new GraphQLError(error.response.data.message);
       }
     },
-    async deletePet(parent, { petId, UserId }) {
+    async deletePet(parent, { petId, UserId }, context) {
       try {
         const { data } = await axios({
           method: "DELETE",
           url: `${SERVER_ONE}/pets/${UserId}/${petId}`,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         return data;

@@ -68,12 +68,15 @@ export const postTypeDefs = `
 
 export const postResolvers = {
   Query: {
-    async fetchPost(parent, { PetshopId }) {
+    async fetchPost(parent, { PetshopId }, context) {
       try {
         console.log(PetshopId, "petshop id");
         let { data } = await axios({
           method: "GET",
           url: `${SERVER_TWO}/posts/${PetshopId}`,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         // console.log(data, "+_+_+_+");
@@ -83,20 +86,30 @@ export const postResolvers = {
         throw new GraphQLError(error.response.data.message);
       }
     },
-    async fetchOnePost(parent, { PetshopId, PostId }) {
+    async fetchOnePost(parent, { PetshopId, PostId }, context) {
         try {
+          console.log(PetshopId, PostId,"???????????");
          
           let { data:post } = await axios({
             method: "GET",
-            url: `${SERVER_TWO}/posts/${PetshopId}/${PostId}`
+            url: `${SERVER_TWO}/posts/${PetshopId}/${PostId}`,
+            headers : {
+              access_token : context.access_token
+            }
           });
+          console.log(post, ">>>>>>>>>>");
           
-        let { data: petshop } = await axios({
-            method: "GET",
-            url: `${SERVER_TWO}/petShops/${PetshopId}`,
-          });
+        // let { data: petshop } = await axios({
+        //     method: "GET",
+        //     url: `${SERVER_TWO}/petShops/${PetshopId}`,
+        //     headers : {
+        //       access_token : context.access_token
+        //     }
+        //   });
 
-          post.petshop = petshop
+        //   console.log(petshop,"ini petshop");
+
+        //   post.petshop = petshop
   
           return post;
         } catch (error) {
@@ -108,7 +121,7 @@ export const postResolvers = {
   Mutation: {
     async addPost(
       parent,
-      { title, imageUrl, news, PetshopId }
+      { title, imageUrl, news, PetshopId }, context
     ) {
       try {
         console.log("MASUK ADD Post")
@@ -127,6 +140,9 @@ export const postResolvers = {
           method: "POST",
           url: `${SERVER_TWO}/posts/${PetshopId}`,
           data: formData,
+          headers : {
+            access_token : context.access_token
+          }
         });
         // redis.del("pets:all")
 
@@ -139,7 +155,7 @@ export const postResolvers = {
     },
     async editPost(
         parent,
-        { title, imageUrl, news, status, PetshopId, PostId }
+        { title, imageUrl, news, status, PetshopId, PostId }, context
       ) {
         try {
         //   console.log("MASUK EDIT Post")
@@ -159,6 +175,9 @@ export const postResolvers = {
             method: "PUT",
             url: `${SERVER_TWO}/posts/${PetshopId}/${PostId}`,
             data: formData,
+            headers : {
+              access_token : context.access_token
+            }
           });
           // redis.del("pets:all")
   
@@ -169,11 +188,14 @@ export const postResolvers = {
           throw new GraphQLError(error.response.data.message);
         }
       },
-      async deletePost(parent, { PetshopId, PostId }) {
+      async deletePost(parent, { PetshopId, PostId }, context) {
         try {
           const { data } = await axios({
             method: "DELETE",
             url: `${SERVER_TWO}/posts/${PetshopId}/${PostId}`,
+            headers : {
+              access_token : context.access_token
+            }
           });
   
           return data;

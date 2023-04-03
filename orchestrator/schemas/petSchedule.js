@@ -14,9 +14,9 @@ export const petScheduleTypeDefs = `
     details:String
     PetId:ID
     Pet: Pet
-    DoctorScheduleId: ID
+    DoctorScheduleId:  Int
     DoctorSchedule: DoctorSchedule
-    PetshopId: ID
+    PetshopId: Int
     Petshop : Petshop
   }
 
@@ -30,7 +30,7 @@ export const petScheduleTypeDefs = `
     breed: String
     description: String
     weight: String
-    UserId: ID!
+    UserId: ID
     User: User
   }
 
@@ -39,13 +39,13 @@ export const petScheduleTypeDefs = `
     complete:String
     details:String
     PetId:ID
-    DoctorScheduleId: ID
-    PetshopId: ID
+    DoctorScheduleId: Int
+    PetshopId: Int
   }
 
   input scheduleForm{
     details:String
-    PetId:ID
+    PetId: ID
     DoctorScheduleId: ID
     PetshopId: ID
   }
@@ -77,12 +77,15 @@ export const petScheduleTypeDefs = `
 
 export const petScheduleResolvers = {
   Query: {
-    async fetchPetSchedule(parent, { PetId }) {
+    async fetchPetSchedule(parent, { PetId }, context) {
       try {
         // console.log(PetId, "petshop id");
         let { data : petSchedule } = await axios({
           method: "GET",
           url: `${SERVER_TWO}/petSchedule/public/${PetId}`,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         let schedule = petSchedule.map(async el=>{
@@ -90,6 +93,9 @@ export const petScheduleResolvers = {
             let { data: pet } = await axios({
             method: "GET",
             url: `${SERVER_ONE}/pet/${el.PetId}`,
+            headers : {
+              access_token : context.access_token
+            }
             });
 
             el.Pet = pet
@@ -104,12 +110,15 @@ export const petScheduleResolvers = {
         throw new GraphQLError(error.response.data.message);
       }
     },
-    async fetchPetScheduleForPetshop(parent, { PetshopId }) {
+    async fetchPetScheduleForPetshop(parent, { PetshopId }, context) {
         try {
           // console.log(PetId, "petshop id");
           let { data : petSchedule } = await axios({
             method: "GET",
             url: `${SERVER_TWO}/petSchedule/${PetshopId}`,
+            headers : {
+              access_token : context.access_token
+            }
           });
 
         //   console.log(petSchedule, ">>>>>>>>>>>");
@@ -119,6 +128,9 @@ export const petScheduleResolvers = {
               let { data: pet } = await axios({
               method: "GET",
               url: `${SERVER_ONE}/pet/${el.PetId}`,
+              headers : {
+                access_token : context.access_token
+              }
               });
   
               el.Pet = pet
@@ -140,7 +152,7 @@ export const petScheduleResolvers = {
   },
 
   Mutation: {
-    async addPetSchedule( parent, args) {
+    async addPetSchedule( parent, args, context) {
       try {
         const { newSchedule } = args;
         // console.log(newSchedule, "MASUK ADD Schedule pet")
@@ -150,6 +162,9 @@ export const petScheduleResolvers = {
           method: "POST",
           url:  `${SERVER_TWO}/petSchedule/public/${newSchedule.PetId}`,
           data: newSchedule,
+          headers : {
+            access_token : context.access_token
+          }
         });
         // redis.del("pets:all")
 

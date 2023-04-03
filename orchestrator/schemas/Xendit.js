@@ -30,17 +30,21 @@ export const invoiceTypeDefs = `
 
 export const invoiceResolvers = {
     Mutation: {
-        async generateInvoice( parent, args) {
+        async generateInvoice( parent, args, context) {
           try {
             // console.log(args, "test");
             const { newInvoice } = args;
-            console.log(newInvoice, "MASUK ADD Schedule pet")
+            // console.log(newInvoice, "MASUK ADD Schedule pet")
             const { data } = await axios({
               method: "POST",
               url:  `${SERVER_TWO}/xendit`,
               data: newInvoice,
+              headers : {
+                access_token : context.access_token
+              }
             });
-            console.log(data);
+
+            // console.log(data);
             return data;
           } catch (error) {
               console.log(error);

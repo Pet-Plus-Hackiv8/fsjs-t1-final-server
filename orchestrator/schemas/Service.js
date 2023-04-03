@@ -40,12 +40,15 @@ export const serviceTypeDefs = `
 
 export const serviceResolvers = {
   Query: {
-    async fetchService(parent, { PetshopId }) {
+    async fetchService(parent, { PetshopId }, context) {
       try {
         console.log(PetshopId, "petshop id");
         let { data } = await axios({
           method: "GET",
           url: `${SERVER_TWO}/service/${PetshopId}`,
+          headers : {
+            access_token : context.access_token
+          }
         });
 
         // console.log(data, "+_+_+_+");
@@ -60,7 +63,7 @@ export const serviceResolvers = {
   Mutation: {
     async addService(
       parent,
-      { name, serviceLogo, minPrice, maxPrice, PetshopId }
+      { name, serviceLogo, minPrice, maxPrice, PetshopId }, context
     ) {
       try {
         // console.log("MASUK ADD service")
@@ -80,6 +83,9 @@ export const serviceResolvers = {
           method: "POST",
           url: `${SERVER_TWO}/service/${PetshopId}`,
           data: formData,
+          headers : {
+            access_token : context.access_token
+          }
         });
         // redis.del("pets:all")
 
@@ -92,7 +98,7 @@ export const serviceResolvers = {
     },
     async editService(
         parent,
-        { name, serviceLogo, minPrice, maxPrice, PetshopId, ServiceId }
+        { name, serviceLogo, minPrice, maxPrice, PetshopId, ServiceId }, context
       ) {
         try {
         //   console.log("MASUK ADD service")
@@ -112,6 +118,9 @@ export const serviceResolvers = {
             method: "PUT",
             url: `${SERVER_TWO}/service/${PetshopId}/${ServiceId}`,
             data: formData,
+            headers : {
+              access_token : context.access_token
+            }
           });
           // redis.del("pets:all")
   
@@ -122,11 +131,14 @@ export const serviceResolvers = {
           throw new GraphQLError(error.response.data.message);
         }
       },
-      async deleteService(parent, { PetshopId, ServiceId }) {
+      async deleteService(parent, { PetshopId, ServiceId }, context) {
         try {
           const { data } = await axios({
             method: "DELETE",
             url: `${SERVER_TWO}/service/${PetshopId}/${ServiceId}`,
+            headers : {
+              access_token : context.access_token
+            }
           });
   
           return data;

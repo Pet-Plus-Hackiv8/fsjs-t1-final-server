@@ -30,6 +30,7 @@ app.post("/login", Controller.login)
 app.get("/user/:UserId", Controller.getUserById)
 app.put("/user/:UserId", upload.single("imgUrl"), Controller.putUser)
 
+app.use(authentication)
 app.post("/pets/:UserId", upload.single("imgUrl"), Controller.addPet)
 app.get("/pets/:UserId", Controller.fetchAllPet)
 app.get("/pet/:id", Controller.fetchPet)

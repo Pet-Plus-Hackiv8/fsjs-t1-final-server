@@ -18,7 +18,9 @@ const upload = require("./helpers/multer");
 const Controller = require("./controllers/controller");
 const authentication = require("./middlewares/authentication");
 const errorHandler = require("./middlewares/errorHandler");
-// app.use(authentication)
+
+
+app.use(authentication)
 
 // pet shops
 app.post("/petShop/register", upload.single("logo"), Controller.petshopRegister)
@@ -41,8 +43,9 @@ app.put("/doctorSchedule/:DoctorScheduleId", Controller.putDocSched)
 app.delete("/doctorSchedule/:DoctorScheduleId", Controller.deleteDocSched)
 
 //doctors
+
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
-app.get("/doctors/:PetshopId", authentication,  Controller.fetchAllDoctor)
+app.get("/doctors/:PetshopId", Controller.fetchAllDoctor)
 app.get("/doctors/:PetshopId/:DoctorId",  Controller.fetchDoctor)
 app.put("/doctors/:PetshopId/:DoctorId", upload.single("imgUrl"), Controller.putDoctor)
 app.delete("/doctors/:PetshopId/:DoctorId",  Controller.deleteDoctor)
