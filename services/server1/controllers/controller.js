@@ -17,8 +17,8 @@ class Controller {
       // console.log(req.body, "INI BODY")
       // console.log(req.file, "INI FILE")
       // let role = "client";
-      password = bcrypt.hashSync(password, 10);
-
+      // password = bcrypt.hashSync(password, 10);
+      // console.log(password, "PWD")
       let imgUrl = null
       if (req.file) {
         let link = await ImageCloud(req.file);
@@ -89,7 +89,7 @@ class Controller {
       if (!exist) {
         throw { name: "notFound" };
       }
-      password = bcrypt.hashSync(password, 10);
+      // password = bcrypt.hashSync(password, 10);
 
       let imgUrl = null
       if (req.file) {
