@@ -38,7 +38,7 @@ class Controller {
 
       res.status(201).json({ message: "Account created" });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       next(err);
     }
   }
@@ -46,7 +46,7 @@ class Controller {
   static async login(req, res, next) {
     // console.log("MASUK")
     try {
-      // console.log(req.body, "OKOKOK");
+      console.log(req.body, "OKOKOK");
       let { email, password } = req.body;
       if (!email) {
         throw { name: "emailRequired" };

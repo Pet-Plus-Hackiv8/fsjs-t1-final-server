@@ -182,10 +182,6 @@ export const userResolvers = {
             password,
           },
         });
-
-        let {data: petshop} = await axios({
-          method
-        })
         // console.log(data, "INI DATA");
         // redis.del("users:" + id);
         return data;

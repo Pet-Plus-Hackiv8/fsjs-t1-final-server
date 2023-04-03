@@ -134,7 +134,7 @@ class Controller {
       if (!shop) {
         throw { name: "notFound" };
       }
-      console.log(shop, "()()()()")
+      // console.log(shop, "()()()()")
       res.status(200).json(shop);
     } catch (err) {
       console.log(err);

@@ -15,9 +15,9 @@ async function errorHandler(err, req, res, next) {
   } else if (err.name === "InvalidCredential") {
     res.status(401).json({ message: "Wrong email or password" });
   } else if (err.name === "emailRequired") {
-    res.status(401).json({ message: "Please fill email" });
+    res.status(400).json({ message: "Please fill email" });
   } else if (err.name === "passwordRequired") {
-    res.status(401).json({ message: "Please fill password" });
+    res.status(400).json({ message: "Please fill password" });
   } else if (err.name === "InvalidToken") {
     res.status(401).json({ message: "Invalid token" });
   } else {
