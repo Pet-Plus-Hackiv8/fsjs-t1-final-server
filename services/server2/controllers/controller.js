@@ -485,7 +485,7 @@ class Controller {
       let imgUrl = req.body.imgUrl;
       if (req.file) {
         let link = await ImageCloud(req.file);
-        // console.log(link, "<><>");
+        console.log(link, "LINK<><>");
         let imgUrl = link.url;
       }
 
@@ -510,7 +510,7 @@ class Controller {
         .status(200)
         .json({ message: "Succesfully Edit Profil for Your Doctor" });
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       next(err);
     }
   }

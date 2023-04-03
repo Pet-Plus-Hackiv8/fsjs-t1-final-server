@@ -14,12 +14,13 @@ import {
   medicalRecordResolvers,
   medicalRecordTypeDefs,
 } from "./schemas/MedicalRecord.js";
+import { doctorResolvers, doctorTypeDefs } from "./schemas/Doctor.js";
 
 const app = express();
 
 const server = new ApolloServer({
-  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs, medicalRecordTypeDefs],
-  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers, medicalRecordResolvers],
+  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs, medicalRecordTypeDefs, doctorTypeDefs  ],
+  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers, medicalRecordResolvers,  doctorResolvers  ],
   uploads: false, // Disable the built-in file handling of Apollo Server
 });
 
