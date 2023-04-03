@@ -188,7 +188,7 @@ class Controller {
       let { PetId } = req.params;
       let record = await MedicalRecord.findAll({
         where: { PetId: PetId },
-        include: [Doctor, PetSchedule, Petshop],
+        include: [Doctor, PetSchedule, Petshop, Action],
       });
 
       res.status(200).json(record);
@@ -210,7 +210,7 @@ class Controller {
         PetshopId,
       });
 
-      res.status(201).json({ message: "Medical record has been created" });
+      res.status(201).json(newRecord);
     } catch (err) {
       console.log(err);
       next(err);
