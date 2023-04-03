@@ -248,7 +248,7 @@ class Controller {
       let { totalPrice, ServiceId } = req.body;
       let { MedicalRecordId } = req.params;
       // console.log(req.file, "()()()()")
-
+      console.log(req.body.totalPrice, "+_+_+")
       let document = null;
       if (req.file) {
         let link = await ImageCloud(req.file);
@@ -257,11 +257,11 @@ class Controller {
 
       let action = await Action.create({
         document,
-        totalPrice,
+        totalPrice: totalPrice,
         MedicalRecordId,
         ServiceId,
       });
-
+      console.log(action, ">>>")
       res.status(201).json(action);
     } catch (err) {
       console.log(err);

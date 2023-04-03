@@ -31,6 +31,14 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Service ID is required" },
         },
       },
+      totalPrice: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Total price is required" },
+          notEmpty: { msg: "Total price is required" },
+        },
+      },
     },
     {
       sequelize,

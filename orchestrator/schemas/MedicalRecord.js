@@ -1,4 +1,5 @@
 const SERVER_TWO = process.env.SERVER_TWO || "http://localhost:4002";
+const SERVER_ONE = process.env.SERVER_ONE || "http://localhost:4001";
 import axios from "axios";
 import { GraphQLError } from "graphql";
 
@@ -47,7 +48,6 @@ type Action {
 input InputAction {
   document: String
   totalPrice: Int
-  MedicalRecordId: Int
   ServiceId: Int
 }
 
@@ -70,8 +70,17 @@ type Petshop {
   UserId: ID
 }
 
+type outputPost {
+  id: ID
+  notes: String
+  PetId: Int
+  DoctorId: Int
+  PetScheduleId: Int
+  PetshopId: Int
+}
+
 type Mutation {
-    postRecord(newPost: Create): message
+    postRecord(newPost: Create): outputPost
 }
 
 type message {
@@ -97,14 +106,21 @@ export const medicalRecordResolvers = {
   },
 
   Mutation: {
-    async postRecord(
-      parent,
-      { Create }
-    ) {
+    async postRecord(parent, { newPost }) {
       try {
-        let {notes, PetId, DoctorId, PetScheduleId, PetshopId, Actions} = Create
-        console.log(notes, PetId, DoctorId, PetScheduleId, PetshopId, Actions, "()()()()")
-        const { data } = await axios({
+        console.log(newPost, "OKOKOKOKOK")
+        let { notes, PetId, DoctorId, PetScheduleId, PetshopId, Actions } =
+          newPost;
+        console.log(
+          notes,
+          PetId,
+          DoctorId,
+          PetScheduleId,
+          PetshopId,
+          Actions,
+          "()()()()"
+        );
+        const { data: MedRec } = await axios({
           method: "POST",
           url: SERVER_TWO + "/medicalRecord",
           data: {
@@ -116,9 +132,19 @@ export const medicalRecordResolvers = {
           },
         });
 
-        console.log("");
+        console.log(MedRec, "DATA");
+        console.log(Actions, "Action");
 
-        return data;
+
+        for (let i = 0; i < Actions.length; i++) {
+          const { data } = await axios({
+            method: "POST",
+            url: SERVER_TWO + "/action/" + MedRec.id,
+            data: Actions[i],
+          });
+        }
+        
+        return MedRec;
       } catch (error) {
         console.log(error.response.data);
         throw new GraphQLError(error.response.data.message);
