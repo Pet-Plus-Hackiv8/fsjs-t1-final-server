@@ -23,9 +23,9 @@ const errorHandler = require("./middlewares/errorHandler");
 // pet shops
 app.post("/petShop/register", upload.single("logo"), Controller.petshopRegister)
 app.get("/petShops", Controller.getAllPetShops)
-app.get("/petShops/:PetshopId", Controller.getPetShopById)
-app.put("/petShops/:PetshopId", upload.single("logo"), Controller.petShopEdit)
 app.get("/petShops/around", Controller.shopAroundMe);
+app.get("/petShop/:PetshopId", Controller.getPetShopById)
+app.put("/petShop/:PetshopId", upload.single("logo"), Controller.petShopEdit)
 
 // medical records & action
 app.get("/medicalRecord/:PetId", Controller.getRecord)

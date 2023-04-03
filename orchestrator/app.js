@@ -8,7 +8,10 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 import { userTypeDefs, userResolvers } from "./schemas/users.js";
-import { doctorScheduleResolvers, doctorScheduleTypeDefs } from "./schemas/DoctorSchedule.js";
+import {
+  doctorScheduleResolvers,
+  doctorScheduleTypeDefs,
+} from "./schemas/DoctorSchedule.js";
 import { petResolvers, petTypeDefs } from "./schemas/pet.js";
 import {
   medicalRecordResolvers,
@@ -17,12 +20,31 @@ import {
 import { doctorResolvers, doctorTypeDefs } from "./schemas/Doctor.js";
 import { postResolvers, postTypeDefs } from "./schemas/Post.js";
 import { serviceResolvers, serviceTypeDefs } from "./schemas/Service.js";
+import { petshopResolvers, petshopTypeDefs } from "./schemas/Petshop.js";
 
 const app = express();
 
 const server = new ApolloServer({
-  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs, medicalRecordTypeDefs, doctorTypeDefs, postTypeDefs, serviceTypeDefs ],
-  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers, medicalRecordResolvers,  doctorResolvers, postResolvers, serviceResolvers ],
+  typeDefs: [
+    userTypeDefs,
+    doctorScheduleTypeDefs,
+    petTypeDefs,
+    medicalRecordTypeDefs,
+    doctorTypeDefs,
+    postTypeDefs,
+    serviceTypeDefs,
+    petshopTypeDefs,
+  ],
+  resolvers: [
+    userResolvers,
+    doctorScheduleResolvers,
+    petResolvers,
+    medicalRecordResolvers,
+    doctorResolvers,
+    postResolvers,
+    serviceResolvers,
+    petshopResolvers,
+  ],
   uploads: false, // Disable the built-in file handling of Apollo Server
 });
 
