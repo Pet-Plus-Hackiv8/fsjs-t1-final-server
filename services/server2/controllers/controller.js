@@ -123,10 +123,14 @@ class Controller {
 
   static async getPetShopById(req, res, next) {
     try {
-      let { PetshopId } = req.params;
-      let shop = await Petshop.findByPk(PetshopId, {
-        include: [Doctor, Post, Service],
-      });
+      let { UserId } = req.params;
+      // let shop = await Petshop.findByPk(PetshopId, {
+      //   include: [Doctor, Post, Service],
+      // });
+      let shop = await Petshop.findOne({
+        where: {UserId: UserId},
+        include: [Doctor, Post, Service]
+      })
       if (!shop) {
         throw { name: "notFound" };
       }

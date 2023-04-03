@@ -20,13 +20,13 @@ const authentication = require("./middlewares/authentication");
 const errorHandler = require("./middlewares/errorHandler");
 
 
-app.use(authentication)
+// app.use(authentication)
 
 // pet shops
 app.post("/petShop/register", upload.single("logo"), Controller.petshopRegister)
 app.get("/petShops", Controller.getAllPetShops)
 app.get("/petShops/around", Controller.shopAroundMe);
-app.get("/petShop/:PetshopId", Controller.getPetShopById)
+app.get("/petShop/:UserId", Controller.getPetShopById)
 app.put("/petShop/:PetshopId", upload.single("logo"), Controller.petShopEdit)
 
 // medical records & action

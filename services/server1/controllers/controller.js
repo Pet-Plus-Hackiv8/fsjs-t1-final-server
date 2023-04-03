@@ -14,12 +14,12 @@ class Controller {
 
       let { username, fullName, email, password, phoneNumber, address, role } =
         req.body;
-      console.log(req.body, "INI BODY")
+      console.log(req.body, "INI BODY");
       // console.log(req.file, "INI FILE")
       // let role = "client";
       // password = bcrypt.hashSync(password, 10);
       // console.log(password, "PWD")
-      let imgUrl = null
+      let imgUrl = null;
       if (req.file) {
         let link = await ImageCloud(req.file);
         imgUrl = link.url;
@@ -55,12 +55,14 @@ class Controller {
         throw { name: "passwordRequired" };
       }
 
-      const user = await User.findOne({ where: { email: email } });
+      const user = await User.findOne({
+        where: { email: email }
+      });
       if (!user) {
         // console.log('error di email')
         throw { name: "InvalidCredential" };
       }
-
+      console.log(user);
       if (await bcrypt.compare(password, user.password)) {
         const access_token = createToken({ UserId: user.id, email: email });
         // console.log('masuk', '<<<<<<<<<<<<')
@@ -91,7 +93,7 @@ class Controller {
       }
       // password = bcrypt.hashSync(password, 10);
 
-      let imgUrl = null
+      let imgUrl = null;
       if (req.file) {
         let link = await ImageCloud(req.file);
         imgUrl = link.url;
