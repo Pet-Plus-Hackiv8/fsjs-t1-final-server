@@ -56,8 +56,6 @@ export const postTypeDefs = `
     addPost(title: String, imageUrl: Upload, news:String, PetshopId: ID ): Post
     editPost(title: String, imageUrl: Upload, status: String, news:String, PetshopId: ID, PostId: ID): message
     deletePost(PetshopId: ID, PostId: ID): message
-
-   
   }
 
  
