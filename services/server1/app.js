@@ -35,8 +35,8 @@ app.use(errorHandler)
 
 
 
-// module.exports = app
+module.exports = app
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
