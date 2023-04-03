@@ -23,7 +23,7 @@ async function errorHandler(err, req, res, next) {
   } else if (err.name === "imageRequired") {
     res.status(401).json({ message: "Please choose Vet logo" });
   } else if (err.name === "scheduleExist") {
-    res.status(401).json({ message: "Schedule already exist" });
+    res.status(400).json({ message: "Schedule already exist" });
   } else if (err.name === "AggregateError") {
     res.status(400).json({ message: err.errors[0].errors.errors[0].message });
   } else {
