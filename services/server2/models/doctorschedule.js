@@ -62,8 +62,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'DoctorSchedule',
   });
-   DoctorSchedule.beforeCreate((schedule, options)=>{
-    schedule.status = "Available"
-  })
   return DoctorSchedule;
 };

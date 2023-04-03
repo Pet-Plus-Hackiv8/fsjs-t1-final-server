@@ -5,6 +5,7 @@ const SERVER_ONE = process.env.SERVER_ONE || "http://localhost:4001";
 
 import FormData from 'form-data';
 import axios from "axios";
+import { GraphQLError } from "graphql";
 
 export const userTypeDefs = `
   scalar Upload
@@ -67,7 +68,8 @@ export const userResolvers = {
         return data;
       } catch (error) {
         console.log(error.response.data);
-        return error.response.data;
+        // return error.response.data;
+        throw new GraphQLError(error.response.data.message)
       }
     },
   },
@@ -110,8 +112,8 @@ export const userResolvers = {
 
         return data;
       } catch (error) {
-        console.log(error);
-        return error.response.data;
+        console.log(error.response.data);
+        throw new GraphQLError(error.response.data.message)
       }
     },
 
@@ -156,7 +158,7 @@ export const userResolvers = {
         return data;
       } catch (error) {
         console.log(error, "INI ERROR");
-        return error.response.data;
+        throw new GraphQLError(error.response.data.message)
       }
     },
 
@@ -175,7 +177,7 @@ export const userResolvers = {
         return data;
       } catch (error) {
         console.log(error.response.data);
-        return error.response.data;
+        throw new GraphQLError(error.response.data.message)
       }
     },
   },
