@@ -155,11 +155,13 @@ class Controller {
     try {
       if (!req.file) {
         console.log("Please insert your Pet Picture");
+        // throw { name: "No file received or invalid file type" };
       }
-      // console.log(req.user.use);
-      let { UserId } = req.user
+      // console.log(req.params.UserId, "id");
+      // console.log(req.file, ">>>>>>>>>>");
       let link = await ImageCloud(req.file);
       let imgUrl = link.url
+      // console.log(imgUrl, ">>>>>>>>>>>>>>>>>>>>>>>");
 
       const pet = await Pet.create({
         name: req.body.name,
@@ -169,11 +171,11 @@ class Controller {
         species: req.body.species,
         breed: req.body.breed,
         weight: req.body.weight,
-        UserId,
+        UserId: req.params.UserId,
       });
       res.status(201).json(pet);
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       next(err);
     }
   }
