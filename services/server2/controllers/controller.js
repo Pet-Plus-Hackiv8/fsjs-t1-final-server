@@ -208,7 +208,7 @@ class Controller {
         PetshopId,
       });
 
-      res.status(201).json(newRecord);
+      res.status(201).json({message: "Medical record has been created"});
     } catch (err) {
       console.log(err);
       next(err);
@@ -310,8 +310,9 @@ class Controller {
     try {
       let { day, time, status } = req.body;
       let { PetshopId, DoctorId } = req.params;
+      // console.log(day, time, PetshopId, DoctorId, "ISI")
 
-      let exist = await DoctorSchedule.findAll({
+      let exist = await DoctorSchedule.findOne({
         where: {
           day: day,
           time: time,
@@ -320,8 +321,9 @@ class Controller {
           DoctorId: DoctorId,
         },
       });
+      // console.log(exist, "exist")
 
-      if (exist.length !== 0) {
+      if (exist) {
         throw { name: "scheduleExist" };
       }
 

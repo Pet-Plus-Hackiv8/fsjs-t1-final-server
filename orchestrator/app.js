@@ -10,12 +10,16 @@ import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 import { userTypeDefs, userResolvers } from "./schemas/users.js";
 import { doctorScheduleResolvers, doctorScheduleTypeDefs } from "./schemas/DoctorSchedule.js";
 import { petResolvers, petTypeDefs } from "./schemas/pet.js";
+import {
+  medicalRecordResolvers,
+  medicalRecordTypeDefs,
+} from "./schemas/MedicalRecord.js";
 
 const app = express();
 
 const server = new ApolloServer({
-  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs],
-  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers],
+  typeDefs: [userTypeDefs, doctorScheduleTypeDefs, petTypeDefs, medicalRecordTypeDefs],
+  resolvers: [userResolvers, doctorScheduleResolvers, petResolvers, medicalRecordResolvers],
   uploads: false, // Disable the built-in file handling of Apollo Server
 });
 

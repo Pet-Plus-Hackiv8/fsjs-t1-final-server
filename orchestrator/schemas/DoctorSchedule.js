@@ -1,5 +1,6 @@
 const SERVER_TWO = process.env.SERVER_TWO || "http://localhost:4002";
 import axios from "axios";
+import { GraphQLError } from "graphql";
 
 export const doctorScheduleTypeDefs = `
 type DoctorSchedule {
@@ -29,18 +30,19 @@ type message {
 export const doctorScheduleResolvers = {
   Query: {
     async getDocSched(parent, { DoctorId, PetshopId }) {
-      console.log(SERVER_TWO + "/doctorSchedule/" + DoctorId + "/" + PetshopId);
+      //   console.log(SERVER_TWO + "/doctorSchedule/" + DoctorId + "/" + PetshopId);
       try {
-        console.log(DoctorId, PetshopId, "ini data");
+        // console.log(DoctorId, PetshopId, "ini data");
 
         let { data } = await axios({
           method: "GET",
           url: SERVER_TWO + "/doctorSchedule/" + DoctorId + "/" + PetshopId,
         });
-        // console.log(response)
+        // console.log(data)
         return data;
       } catch (error) {
-        return error;
+        console.log(error.response.data);
+        throw new GraphQLError(error.response.data.message)
       }
     },
   },
@@ -62,7 +64,8 @@ export const doctorScheduleResolvers = {
 
         return data;
       } catch (error) {
-        return error.response.data;
+        console.log(error.response.data)
+        throw new GraphQLError(error.response.data.message)
       }
     },
 
@@ -72,7 +75,7 @@ export const doctorScheduleResolvers = {
     ) {
       try {
         const { data } = await axios({
-          method: "POST",
+          method: "PUT",
           url: SERVER_TWO + "/doctorSchedule/" + DoctorScheduleId,
           data: {
             day,
@@ -85,11 +88,12 @@ export const doctorScheduleResolvers = {
 
         return data;
       } catch (error) {
-        return error.response.data;
+        console.log(error.response.data)
+        throw new GraphQLError(error.response.data.message)
       }
     },
 
-    async deleteDocSched(parent, {DoctorScheduleId}) {
+    async deleteDocSched(parent, { DoctorScheduleId }) {
       try {
         console.log(DoctorScheduleId, "IDIDID");
         const { data } = await axios({
@@ -99,7 +103,8 @@ export const doctorScheduleResolvers = {
 
         return data;
       } catch (error) {
-        return error.response.data;
+        console.log(error.response.data)
+        throw new GraphQLError(error.response.data.message)
       }
     },
   },
