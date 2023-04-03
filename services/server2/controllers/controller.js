@@ -14,7 +14,7 @@ const timeSetter = require("../helpers/timeConvert");
 const dotSeparator = require("../helpers/dotSeparator");
 const ImageCloud = require("../helpers/imageKit");
 const Xendit = require("xendit-node");
-const XENDIT_KEY = process.env.XENDIT_KEY
+const XENDIT_KEY = process.env.XENDIT_KEY;
 
 class Controller {
   //  controller (zio)
@@ -23,16 +23,14 @@ class Controller {
     try {
       let { name, address, latitude, longitude, phoneNumber, UserId } =
         req.body;
-      if (!req.file) {
-        console.log("No file received or invalid file type");
-        // console.log("NO FILE");
-        throw { name: "imageRequired" };
+
+      let logo = null
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+        logo = link.url;
       }
 
-      let link = await ImageCloud(req.file);
-
-      console.log(link, "<><>");
-      let logo = link.url;
+      // console.log(link, "<><>");
       let newShop = await Petshop.create({
         name,
         logo,
@@ -60,16 +58,14 @@ class Controller {
       if (!shop) {
         throw { name: "notFound" };
       }
-      if (!req.file) {
-        console.log("No file received or invalid file type");
-        // console.log("NO FILE");
-        throw { name: "imageRequired" };
+      
+      let logo = null
+      if(req.file) {
+        let link = await ImageCloud(req.file);
+         logo = link.url;
       }
 
-      let link = await ImageCloud(req.file);
-
       // console.log(link, "<><>");
-      let logo = link.url;
       let editedShop = await Petshop.update(
         {
           name,
@@ -85,7 +81,7 @@ class Controller {
           where: { id: PetshopId },
         }
       );
-      res.status(201).json(editedShop);
+      res.status(201).json({message: "Update success"});
     } catch (err) {
       console.log(err);
       next(err);
@@ -97,6 +93,7 @@ class Controller {
       //filternya apa aja?
       let { serviceFilter, nameFilter } = req.query;
       // nameFilter = "Avenue"
+      console.log(serviceFilter, nameFilter, "FILTER");
       let input = {
         include: [
           {
@@ -128,11 +125,12 @@ class Controller {
     try {
       let { PetshopId } = req.params;
       let shop = await Petshop.findByPk(PetshopId, {
-        include: [Doctor, DoctorSchedule, Post, Service, PetSchedule],
+        include: [Doctor, Post, Service],
       });
       if (!shop) {
         throw { name: "notFound" };
       }
+      console.log(shop, "()()()()")
       res.status(200).json(shop);
     } catch (err) {
       console.log(err);
@@ -142,16 +140,19 @@ class Controller {
 
   static async shopAroundMe(req, res, next) {
     try {
+      // console.log("masuk ???")
       // distance on meter unit
       const distance = req.query.distance;
       const long = req.query.long;
       const lat = req.query.lat;
-
+      // console.log(distance, lat, long, "????")
       const result = await sequelize.query(
         `select
           id,
           name,
-          location
+          location,
+          logo,
+          address
         from
           "Petshops"
         where
@@ -173,6 +174,7 @@ class Controller {
         }
       );
       // console.log(distance, lat, long)
+      console.log(result);
       res.status(200).json(result);
     } catch (error) {
       console.log(error, "INI ERROR");
@@ -186,7 +188,7 @@ class Controller {
       let { PetId } = req.params;
       let record = await MedicalRecord.findAll({
         where: { PetId: PetId },
-        include: [Doctor, PetSchedule, Petshop],
+        include: [Doctor, PetSchedule, Petshop, Action],
       });
 
       res.status(200).json(record);
@@ -208,7 +210,7 @@ class Controller {
         PetshopId,
       });
 
-      res.status(201).json({message: "Medical record has been created"});
+      res.status(201).json(newRecord);
     } catch (err) {
       console.log(err);
       next(err);
@@ -246,7 +248,7 @@ class Controller {
       let { totalPrice, ServiceId } = req.body;
       let { MedicalRecordId } = req.params;
       // console.log(req.file, "()()()()")
-
+      console.log(req.body.totalPrice, "+_+_+")
       let document = null;
       if (req.file) {
         let link = await ImageCloud(req.file);
@@ -255,11 +257,11 @@ class Controller {
 
       let action = await Action.create({
         document,
-        totalPrice,
+        totalPrice: totalPrice,
         MedicalRecordId,
         ServiceId,
       });
-
+      console.log(action, ">>>")
       res.status(201).json(action);
     } catch (err) {
       console.log(err);
@@ -272,7 +274,7 @@ class Controller {
       // console.log(req.body, "?????");
       let {email, PetshopId, total, fullname}= req.body
       const x = new Xendit({
-        secretKey: XENDIT_KEY
+        secretKey: XENDIT_KEY,
       });
 
       // console.log(PetshopId, "pet id");
@@ -301,14 +303,12 @@ class Controller {
       res.status(201).json({invoice: invoice.invoice_url})
 
       // const retrievedInvoice = await i.getInvoice({ invoiceID: invoice.id });
-     
-      // console.log("retrieved invoice", retrievedInvoice);
 
- 
+      // console.log("retrieved invoice", retrievedInvoice);
 
       process.exit(0);
     } catch (e) {
-      console.error(e); 
+      console.error(e);
       process.exit(1);
     }
   }
@@ -351,7 +351,7 @@ class Controller {
   }
 
   static async getDocSched(req, res, next) {
-    console.log("MASUK DOCSCHED")
+    console.log("MASUK DOCSCHED");
     try {
       let { PetshopId, DoctorId } = req.params;
 
@@ -405,7 +405,7 @@ class Controller {
 
   static async deleteDocSched(req, res, next) {
     try {
-      console.log(req.params, "+++")
+      console.log(req.params, "+++");
       let { DoctorScheduleId } = req.params;
       let exist = await DoctorSchedule.findByPk(DoctorScheduleId);
       // console.log(exist, "_+_+_+")

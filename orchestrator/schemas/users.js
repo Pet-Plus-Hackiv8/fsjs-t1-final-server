@@ -3,7 +3,7 @@
 // const redis = require("../config/redis");
 const SERVER_ONE = process.env.SERVER_ONE || "http://localhost:4001";
 
-import FormData from 'form-data';
+import FormData from "form-data";
 import axios from "axios";
 import { GraphQLError } from "graphql";
 
@@ -57,7 +57,7 @@ export const userResolvers = {
         //   // console.log(JSON.parse(inMemory))
         //   return JSON.parse(inMemory);
         // }
-        console.log(id, "INI ID")
+        console.log(id, "INI ID");
         let { data } = await axios({
           method: "GET",
           url: SERVER_ONE + "/user/" + id,
@@ -69,7 +69,7 @@ export const userResolvers = {
       } catch (error) {
         console.log(error.response.data);
         // return error.response.data;
-        throw new GraphQLError(error.response.data.message)
+        throw new GraphQLError(error.response.data.message);
       }
     },
   },
@@ -87,13 +87,18 @@ export const userResolvers = {
         address,
       }
     ) {
-      console.log("MASUK REGISTER")
+      console.log("MASUK REGISTER");
       try {
         // console.log(imgUrl.file, "INI IMAGE")
-        const { createReadStream, filename, mimetype, encoding } = await imgUrl.file;
+        console.log(imgUrl, "<><><>")
 
-        const stream = createReadStream();
         const formData = new FormData();
+        if (imgUrl) {
+          const { createReadStream, filename, mimetype, encoding } =
+            await imgUrl.file;
+          const stream = createReadStream();
+          formData.append("imgUrl", stream, { filename });
+        }
 
         formData.append("username", username);
         formData.append("fullName", fullName);
@@ -102,7 +107,6 @@ export const userResolvers = {
         formData.append("role", role);
         formData.append("phoneNumber", phoneNumber);
         formData.append("address", address);
-        formData.append("imgUrl", stream, { filename });
 
         const { data } = await axios.post(SERVER_ONE + "/register", formData, {
           headers: {
@@ -112,8 +116,8 @@ export const userResolvers = {
 
         return data;
       } catch (error) {
-        console.log(error.response.data);
-        throw new GraphQLError(error.response.data.message)
+        console.log(error);
+        throw new GraphQLError(error.response.data.message);
       }
     },
 
@@ -131,13 +135,15 @@ export const userResolvers = {
         address,
       }
     ) {
-      // console.log("MASUK SINI BROOOO")
-      console.log(imgUrl.file, "INI  FILEEE")
       try {
-        // console.log(imgUrl.file, "INI IMAGE")
-        let { createReadStream, filename, mimetype, encoding } = await imgUrl.file;
-        let stream = createReadStream();
         let formData = new FormData();
+
+        if (imgUrl) {
+          let { createReadStream, filename, mimetype, encoding } =
+            await imgUrl.file;
+          let stream = createReadStream();
+          formData.append("imgUrl", stream, { filename });
+        }
 
         formData.append("username", username);
         formData.append("fullName", fullName);
@@ -146,19 +152,22 @@ export const userResolvers = {
         formData.append("role", role);
         formData.append("phoneNumber", phoneNumber);
         formData.append("address", address);
-        formData.append("imgUrl", stream, { filename });
 
-        const { data } = await axios.put(SERVER_ONE + "/user/" + UserId, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        const { data } = await axios.put(
+          SERVER_ONE + "/user/" + UserId,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         // console.log(data, "INI DATA")
 
         return data;
       } catch (error) {
         console.log(error, "INI ERROR");
-        throw new GraphQLError(error.response.data.message)
+        throw new GraphQLError(error.response.data.message);
       }
     },
 
@@ -177,7 +186,7 @@ export const userResolvers = {
         return data;
       } catch (error) {
         console.log(error.response.data);
-        throw new GraphQLError(error.response.data.message)
+        throw new GraphQLError(error.response.data.message);
       }
     },
   },

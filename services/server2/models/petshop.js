@@ -31,29 +31,14 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     logo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "logo is required" },
-        notEmpty: { msg: "logo is required" },
-      },
+      type: DataTypes.STRING
     },
     address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "address is required" },
-        notEmpty: { msg: "address is required" },
-      },
+      type: DataTypes.STRING
     },
     location: DataTypes.GEOMETRY,
     phoneNumber: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Phone Number is required" },
-        notEmpty: { msg: "Phone Number is required" },
-      },
+      type: DataTypes.STRING
     },
     UserId: DataTypes.INTEGER
   }, {
