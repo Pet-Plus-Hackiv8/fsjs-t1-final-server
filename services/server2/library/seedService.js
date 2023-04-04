@@ -11,13 +11,13 @@ async function seedService() {
     );
 
     let data = require("../data/services.json");
-    let service = data.map((el) => {
+     data.map((el) => {
       el.createdAt = new Date();
       el.updatedAt = new Date();
       return el;
     });
     // console.log(data, "{}{}{}{}")
-    await Service.bulkCreate(service);
+    await Service.bulkCreate(data);
   } catch (error) {
     console.log(error, "<<<<<<<<<<<<<<<<<<<");
   }

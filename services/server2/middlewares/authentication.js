@@ -12,20 +12,21 @@ async function authentication(req, res, next) {
     try {
       
         let access_token = req.headers.access_token
-        // console.log(access_token,"???");
+        console.log(access_token,"???");
         if (!access_token) {
           throw { name: "InvalidToken" }
         }
 
 
         let decoded = decodeToken(access_token)
-        // console.log(decoded, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+        console.log(decoded, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
         let { data : user } = await axios({
           method: "GET",
-          url: SERVER_ONE + "/user/" + decoded.UserId,
+          url: SERVER_ONE + "/user/" + Number(decoded.UserId),
+          headers: {access_token: access_token}
         });
-        // console.log(data);
+        console.log(user, "user exist>>>");
 
         // const user = await User.findByPk(decoded.UserId)
         if (!user) {

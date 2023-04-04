@@ -19,6 +19,9 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
+    // await queryInterface.bulkDelete('DoctorSchedules', {}, {truncate: true, restartIdentity: true, cascade:true})
+    // await queryInterface.bulkDelete('Doctors', {}, {truncate: true, restartIdentity: true, cascade:true})
+    // await queryInterface.bulkDelete('Petshops', {}, {truncate: true, restartIdentity: true, cascade:true})
     db.sequelize.close()
 })
 

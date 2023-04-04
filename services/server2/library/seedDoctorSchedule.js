@@ -13,7 +13,8 @@ async function seedDocSched() {
         el.updatedAt = new Date()
     })
     // console.log(data, "{}{}{}{}")
-    await DoctorSchedule.bulkCreate(data)
+   await DoctorSchedule.bulkCreate(data)
+//    console.log(result," >>>>>>>>>>>>>>>>>>>>>>>>>>");
     } catch (error) {
         console.log(error, '<<<<<<<<<<<<<<<<<<<')
     }

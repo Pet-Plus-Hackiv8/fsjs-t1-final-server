@@ -1,5 +1,6 @@
 const { Doctor } = require('../models')
 const db = require('../models')
+const seedDocSched = require('./seedDoctorSchedule')
 const queryInterface = db.sequelize.getQueryInterface()
 
 async function seedDoctor() {
@@ -13,7 +14,12 @@ async function seedDoctor() {
         el.updatedAt = new Date()
     })
     // console.log(data, "{}{}{}{}")
-    await Doctor.bulkCreate(data)
+    let result = await Doctor.bulkCreate(data)
+    // console.log(result, "result doctor");
+    await seedDocSched()
+    return result
+
+
     } catch (error) {
         console.log(error, '<<<<<<<<<<<<<<<<<<<')
     }
