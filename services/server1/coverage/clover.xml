@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<coverage generated="1680583863615" clover="3.2.0">
+  <project timestamp="1680583863615" name="All files">
+=======
+<<<<<<< HEAD
 <coverage generated="1680576897493" clover="3.2.0">
   <project timestamp="1680576897493" name="All files">
     <metrics statements="258" coveredstatements="211" conditionals="70" coveredconditionals="44" methods="29" coveredmethods="25" elements="357" coveredelements="280" complexity="0" loc="258" ncloc="258" packages="6" files="14" classes="14"/>
@@ -9,6 +13,7 @@
 =======
 <coverage generated="1680576729048" clover="3.2.0">
   <project timestamp="1680576729048" name="All files">
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
     <metrics statements="256" coveredstatements="196" conditionals="70" coveredconditionals="41" methods="29" coveredmethods="22" elements="355" coveredelements="259" complexity="0" loc="256" ncloc="256" packages="6" files="14" classes="14"/>
     <package name="server1">
       <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>

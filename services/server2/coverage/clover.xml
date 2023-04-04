@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <coverage generated="1680590118193" clover="3.2.0">
   <project timestamp="1680590118193" name="All files">
     <metrics statements="531" coveredstatements="394" conditionals="88" coveredconditionals="54" methods="69" coveredmethods="57" elements="688" coveredelements="505" complexity="0" loc="531" ncloc="531" packages="6" files="23" classes="23"/>
+=======
+<<<<<<< HEAD
+<coverage generated="1680590105948" clover="3.2.0">
+  <project timestamp="1680590105948" name="All files">
+    <metrics statements="549" coveredstatements="360" conditionals="86" coveredconditionals="43" methods="72" coveredmethods="46" elements="707" coveredelements="449" complexity="0" loc="549" ncloc="549" packages="6" files="25" classes="25"/>
+=======
+<coverage generated="1680583866341" clover="3.2.0">
+  <project timestamp="1680583866341" name="All files">
+    <metrics statements="526" coveredstatements="379" conditionals="88" coveredconditionals="51" methods="69" coveredmethods="55" elements="683" coveredelements="485" complexity="0" loc="526" ncloc="526" packages="6" files="23" classes="23"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
     <package name="server2">
       <metrics statements="50" coveredstatements="50" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\app.js">
+<<<<<<< HEAD
         <metrics statements="50" coveredstatements="50" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
         <line num="1" count="6" type="cond" truecount="1" falsecount="1"/>
         <line num="2" count="6" type="stmt"/>
@@ -56,12 +69,128 @@
         <line num="74" count="6" type="stmt"/>
         <line num="79" count="6" type="stmt"/>
         <line num="85" count="6" type="stmt"/>
+=======
+        <metrics statements="48" coveredstatements="48" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
+<<<<<<< HEAD
+        <line num="1" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="57" count="3" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
+        <line num="62" count="3" type="stmt"/>
+        <line num="63" count="3" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+        <line num="68" count="3" type="stmt"/>
+        <line num="69" count="3" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="76" count="3" type="stmt"/>
+        <line num="82" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="server2.controllers">
+      <metrics statements="247" coveredstatements="111" conditionals="40" coveredconditionals="19" methods="30" coveredmethods="12"/>
+      <file name="controller.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\controllers\controller.js">
+        <metrics statements="247" coveredstatements="111" conditionals="40" coveredconditionals="19" methods="30" coveredmethods="12"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+=======
+        <line num="1" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="34" count="5" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="55" count="5" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
+        <line num="57" count="5" type="stmt"/>
+        <line num="58" count="5" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
+        <line num="62" count="5" type="stmt"/>
+        <line num="63" count="5" type="stmt"/>
+        <line num="64" count="5" type="stmt"/>
+        <line num="65" count="5" type="stmt"/>
+        <line num="68" count="5" type="stmt"/>
+        <line num="69" count="5" type="stmt"/>
+        <line num="70" count="5" type="stmt"/>
+        <line num="76" count="5" type="stmt"/>
+        <line num="82" count="5" type="stmt"/>
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
     </package>
     <package name="server2.controllers">
       <metrics statements="256" coveredstatements="157" conditionals="42" coveredconditionals="27" methods="31" coveredmethods="23"/>
       <file name="controller.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\controllers\controller.js">
         <metrics statements="256" coveredstatements="157" conditionals="42" coveredconditionals="27" methods="31" coveredmethods="23"/>
+<<<<<<< HEAD
         <line num="10" count="6" type="stmt"/>
         <line num="11" count="6" type="stmt"/>
         <line num="12" count="6" type="stmt"/>
@@ -70,6 +199,17 @@
         <line num="15" count="6" type="stmt"/>
         <line num="16" count="6" type="stmt"/>
         <line num="17" count="6" type="stmt"/>
+=======
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
         <line num="23" count="2" type="stmt"/>
         <line num="25" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
@@ -125,75 +265,192 @@
         <line num="183" count="2" type="stmt"/>
         <line num="185" count="0" type="stmt"/>
         <line num="186" count="0" type="stmt"/>
-        <line num="192" count="0" type="stmt"/>
-        <line num="193" count="0" type="stmt"/>
-        <line num="194" count="0" type="stmt"/>
-        <line num="199" count="0" type="stmt"/>
-        <line num="201" count="0" type="stmt"/>
-        <line num="202" count="0" type="stmt"/>
+        <line num="192" count="1" type="stmt"/>
+        <line num="193" count="1" type="stmt"/>
+        <line num="194" count="1" type="stmt"/>
+        <line num="204" count="1" type="stmt"/>
+        <line num="206" count="0" type="stmt"/>
         <line num="207" count="0" type="stmt"/>
-        <line num="208" count="0" type="stmt"/>
-        <line num="210" count="0" type="stmt"/>
-        <line num="218" count="0" type="stmt"/>
-        <line num="220" count="0" type="stmt"/>
-        <line num="221" count="0" type="stmt"/>
-        <line num="227" count="0" type="stmt"/>
-        <line num="228" count="0" type="stmt"/>
-        <line num="229" count="0" type="stmt"/>
-        <line num="231" count="0" type="stmt"/>
-        <line num="232" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="233" count="0" type="stmt"/>
-        <line num="236" count="0" type="stmt"/>
-        <line num="243" count="0" type="stmt"/>
-        <line num="246" count="0" type="stmt"/>
+        <line num="212" count="1" type="stmt"/>
+        <line num="213" count="1" type="stmt"/>
+        <line num="215" count="1" type="stmt"/>
+        <line num="223" count="1" type="stmt"/>
+        <line num="225" count="0" type="stmt"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="232" count="1" type="stmt"/>
+        <line num="233" count="1" type="stmt"/>
+        <line num="234" count="1" type="stmt"/>
+        <line num="236" count="1" type="stmt"/>
+        <line num="237" count="1" type="stmt"/>
+        <line num="238" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="240" count="0" type="stmt"/>
+        <line num="243" count="1" type="stmt"/>
+        <line num="249" count="1" type="stmt"/>
+        <line num="250" count="1" type="stmt"/>
         <line num="252" count="0" type="stmt"/>
         <line num="253" count="0" type="stmt"/>
-        <line num="254" count="0" type="stmt"/>
-        <line num="256" count="0" type="stmt"/>
-        <line num="257" count="0" type="stmt"/>
-        <line num="258" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="259" count="0" type="stmt"/>
-        <line num="260" count="0" type="stmt"/>
-        <line num="263" count="0" type="stmt"/>
-        <line num="269" count="0" type="stmt"/>
-        <line num="270" count="0" type="stmt"/>
+        <line num="261" count="0" type="stmt"/>
+        <line num="262" count="0" type="stmt"/>
+        <line num="267" count="0" type="stmt"/>
         <line num="272" count="0" type="stmt"/>
         <line num="273" count="0" type="stmt"/>
-        <line num="278" count="0" type="stmt"/>
-        <line num="280" count="0" type="stmt"/>
-        <line num="281" count="0" type="stmt"/>
-        <line num="286" count="0" type="stmt"/>
-        <line num="291" count="0" type="stmt"/>
-        <line num="292" count="0" type="stmt"/>
-        <line num="294" count="0" type="stmt"/>
-        <line num="308" count="0" type="stmt"/>
-        <line num="314" count="0" type="stmt"/>
-        <line num="316" count="0" type="stmt"/>
-        <line num="317" count="0" type="stmt"/>
-        <line num="323" count="2" type="stmt"/>
-        <line num="324" count="2" type="stmt"/>
-        <line num="325" count="2" type="stmt"/>
-        <line num="328" count="2" type="stmt"/>
-        <line num="339" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="340" count="1" type="stmt"/>
-        <line num="343" count="1" type="stmt"/>
-        <line num="351" count="1" type="stmt"/>
-        <line num="353" count="1" type="stmt"/>
-        <line num="354" count="1" type="stmt"/>
-        <line num="360" count="2" type="stmt"/>
-        <line num="361" count="2" type="stmt"/>
+        <line num="275" count="0" type="stmt"/>
+        <line num="289" count="0" type="stmt"/>
+        <line num="295" count="0" type="stmt"/>
+        <line num="297" count="0" type="stmt"/>
+        <line num="298" count="0" type="stmt"/>
+        <line num="304" count="2" type="stmt"/>
+        <line num="305" count="2" type="stmt"/>
+        <line num="306" count="2" type="stmt"/>
+        <line num="309" count="2" type="stmt"/>
+        <line num="320" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="321" count="1" type="stmt"/>
+        <line num="324" count="1" type="stmt"/>
+        <line num="332" count="1" type="stmt"/>
+        <line num="334" count="1" type="stmt"/>
+        <line num="335" count="1" type="stmt"/>
+        <line num="341" count="2" type="stmt"/>
+        <line num="342" count="2" type="stmt"/>
+        <line num="344" count="2" type="stmt"/>
+        <line num="351" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="352" count="1" type="stmt"/>
+        <line num="355" count="1" type="stmt"/>
+        <line num="357" count="1" type="stmt"/>
+        <line num="358" count="1" type="stmt"/>
         <line num="363" count="2" type="stmt"/>
-        <line num="370" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="371" count="1" type="stmt"/>
-        <line num="374" count="1" type="stmt"/>
-        <line num="376" count="1" type="stmt"/>
-        <line num="377" count="1" type="stmt"/>
-        <line num="382" count="2" type="stmt"/>
-        <line num="383" count="2" type="stmt"/>
-        <line num="384" count="2" type="stmt"/>
-        <line num="386" count="2" type="stmt"/>
-        <line num="387" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="364" count="2" type="stmt"/>
+        <line num="365" count="2" type="stmt"/>
+        <line num="367" count="2" type="stmt"/>
+        <line num="368" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="369" count="1" type="stmt"/>
+        <line num="372" count="1" type="stmt"/>
+        <line num="385" count="1" type="stmt"/>
+        <line num="387" count="1" type="stmt"/>
         <line num="388" count="1" type="stmt"/>
+<<<<<<< HEAD
+        <line num="393" count="2" type="stmt"/>
+        <line num="394" count="2" type="stmt"/>
+        <line num="395" count="2" type="stmt"/>
+        <line num="396" count="2" type="stmt"/>
+        <line num="398" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="399" count="1" type="stmt"/>
+        <line num="402" count="1" type="stmt"/>
+        <line num="408" count="1" type="stmt"/>
+        <line num="410" count="1" type="stmt"/>
+        <line num="411" count="1" type="stmt"/>
+        <line num="418" count="0" type="stmt"/>
+        <line num="422" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="423" count="0" type="stmt"/>
+        <line num="427" count="0" type="stmt"/>
+        <line num="430" count="0" type="stmt"/>
+        <line num="431" count="0" type="stmt"/>
+        <line num="439" count="0" type="stmt"/>
+        <line num="442" count="0" type="stmt"/>
+        <line num="447" count="0" type="stmt"/>
+        <line num="448" count="0" type="stmt"/>
+        <line num="454" count="0" type="stmt"/>
+        <line num="457" count="0" type="stmt"/>
+        <line num="462" count="0" type="stmt"/>
+        <line num="463" count="0" type="stmt"/>
+        <line num="470" count="0" type="stmt"/>
+        <line num="473" count="0" type="stmt"/>
+        <line num="478" count="0" type="stmt"/>
+        <line num="479" count="0" type="stmt"/>
+        <line num="480" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="481" count="0" type="stmt"/>
+        <line num="482" count="0" type="stmt"/>
+        <line num="483" count="0" type="stmt"/>
+        <line num="486" count="0" type="stmt"/>
+        <line num="503" count="0" type="stmt"/>
+        <line num="507" count="0" type="stmt"/>
+        <line num="508" count="0" type="stmt"/>
+        <line num="513" count="0" type="stmt"/>
+        <line num="514" count="0" type="stmt"/>
+        <line num="515" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="516" count="0" type="stmt"/>
+        <line num="519" count="0" type="stmt"/>
+        <line num="526" count="0" type="stmt"/>
+        <line num="529" count="0" type="stmt"/>
+        <line num="534" count="0" type="stmt"/>
+        <line num="535" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="536" count="0" type="stmt"/>
+        <line num="540" count="0" type="stmt"/>
+        <line num="543" count="0" type="stmt"/>
+        <line num="544" count="0" type="stmt"/>
+        <line num="550" count="0" type="stmt"/>
+        <line num="553" count="0" type="stmt"/>
+        <line num="558" count="0" type="stmt"/>
+        <line num="559" count="0" type="stmt"/>
+        <line num="565" count="0" type="stmt"/>
+        <line num="567" count="0" type="stmt"/>
+        <line num="568" count="0" type="stmt"/>
+        <line num="573" count="0" type="stmt"/>
+        <line num="574" count="0" type="stmt"/>
+        <line num="581" count="0" type="stmt"/>
+        <line num="584" count="0" type="stmt"/>
+        <line num="589" count="0" type="stmt"/>
+        <line num="590" count="0" type="stmt"/>
+        <line num="591" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="592" count="0" type="stmt"/>
+        <line num="593" count="0" type="stmt"/>
+        <line num="594" count="0" type="stmt"/>
+        <line num="597" count="0" type="stmt"/>
+        <line num="613" count="0" type="stmt"/>
+        <line num="615" count="0" type="stmt"/>
+        <line num="616" count="0" type="stmt"/>
+        <line num="621" count="0" type="stmt"/>
+        <line num="622" count="0" type="stmt"/>
+        <line num="623" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="624" count="0" type="stmt"/>
+        <line num="627" count="0" type="stmt"/>
+        <line num="634" count="0" type="stmt"/>
+        <line num="637" count="0" type="stmt"/>
+        <line num="642" count="0" type="stmt"/>
+        <line num="644" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="645" count="0" type="stmt"/>
+        <line num="649" count="0" type="stmt"/>
+        <line num="652" count="0" type="stmt"/>
+        <line num="653" count="0" type="stmt"/>
+        <line num="660" count="0" type="stmt"/>
+        <line num="663" count="0" type="stmt"/>
+        <line num="667" count="0" type="stmt"/>
+        <line num="668" count="0" type="stmt"/>
+        <line num="674" count="0" type="stmt"/>
+        <line num="677" count="0" type="stmt"/>
+        <line num="681" count="0" type="stmt"/>
+        <line num="682" count="0" type="stmt"/>
+        <line num="683" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="684" count="0" type="stmt"/>
+        <line num="686" count="0" type="stmt"/>
+        <line num="689" count="0" type="stmt"/>
+        <line num="705" count="0" type="stmt"/>
+        <line num="708" count="0" type="stmt"/>
+        <line num="712" count="0" type="stmt"/>
+        <line num="713" count="0" type="stmt"/>
+        <line num="714" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="715" count="0" type="stmt"/>
+        <line num="718" count="0" type="stmt"/>
+        <line num="725" count="0" type="stmt"/>
+        <line num="728" count="0" type="stmt"/>
+        <line num="733" count="0" type="stmt"/>
+        <line num="734" count="0" type="stmt"/>
+        <line num="738" count="0" type="stmt"/>
+        <line num="744" count="0" type="stmt"/>
+        <line num="747" count="0" type="stmt"/>
+        <line num="752" count="0" type="stmt"/>
+        <line num="753" count="0" type="stmt"/>
+        <line num="761" count="0" type="stmt"/>
+        <line num="763" count="0" type="stmt"/>
+        <line num="764" count="0" type="stmt"/>
+        <line num="769" count="0" type="stmt"/>
+        <line num="770" count="0" type="stmt"/>
+        <line num="778" count="0" type="stmt"/>
+        <line num="780" count="0" type="stmt"/>
+        <line num="781" count="0" type="stmt"/>
+        <line num="786" count="3" type="stmt"/>
+=======
         <line num="391" count="1" type="stmt"/>
         <line num="404" count="1" type="stmt"/>
         <line num="406" count="1" type="stmt"/>
@@ -317,7 +574,12 @@
         <line num="809" count="0" type="stmt"/>
         <line num="811" count="0" type="stmt"/>
         <line num="812" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="817" count="6" type="stmt"/>
+=======
+        <line num="817" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
     </package>
     <package name="server2.helpers">
@@ -331,18 +593,37 @@
         <line num="6" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="7" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="13" count="6" type="stmt"/>
       </file>
       <file name="imageKit.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\helpers\imageKit.js">
         <metrics statements="9" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="6" type="stmt"/>
         <line num="2" count="6" type="stmt"/>
+=======
+<<<<<<< HEAD
+        <line num="13" count="3" type="stmt"/>
+=======
+        <line num="13" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="imageKit.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\helpers\imageKit.js">
+        <metrics statements="9" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+<<<<<<< HEAD
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+=======
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="24" count="6" type="stmt"/>
       </file>
       <file name="multer.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\helpers\multer.js">
@@ -352,6 +633,29 @@
         <line num="4" count="6" type="stmt"/>
         <line num="5" count="6" type="stmt"/>
         <line num="17" count="6" type="stmt"/>
+=======
+<<<<<<< HEAD
+        <line num="24" count="3" type="stmt"/>
+=======
+        <line num="24" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="multer.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\helpers\multer.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+<<<<<<< HEAD
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+=======
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
       <file name="timeConvert.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\helpers\timeConvert.js">
         <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -360,7 +664,20 @@
         <line num="9" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="21" count="6" type="stmt"/>
+=======
+<<<<<<< HEAD
+        <line num="21" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="server2.library">
+      <metrics statements="90" coveredstatements="83" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="14"/>
+      <file name="seedAction.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedAction.js">
+        <metrics statements="14" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+=======
+        <line num="21" count="5" type="stmt"/>
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
     </package>
     <package name="server2.library">
@@ -414,11 +731,131 @@
       </file>
       <file name="seedPost.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\library\seedPost.js">
         <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
+<<<<<<< HEAD
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+      </file>
+      <file name="seedDoctor.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedDoctor.js">
+        <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="12" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+      <file name="seedDoctorSchedule.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedDoctorSchedule.js">
+        <metrics statements="11" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="16" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+      <file name="seedMedicalRecord.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedMedicalRecord.js">
+        <metrics statements="14" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+      </file>
+      <file name="seedPetSchedule.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedPetSchedule.js">
+        <metrics statements="14" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+      <file name="seedPetshops.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedPetshops.js">
+        <metrics statements="13" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+      </file>
+      <file name="seedService.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\library\seedService.js">
+        <metrics statements="13" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="46" type="stmt"/>
+        <line num="16" count="46" type="stmt"/>
+        <line num="17" count="46" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="server2.middlewares">
+      <metrics statements="55" coveredstatements="30" conditionals="28" coveredconditionals="14" methods="4" coveredmethods="1"/>
+      <file name="authentication.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\middlewares\authentication.js">
+        <metrics statements="22" coveredstatements="9" conditionals="6" coveredconditionals="2" methods="1" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+=======
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
@@ -446,6 +883,7 @@
     <package name="server2.middlewares">
       <metrics statements="54" coveredstatements="41" conditionals="28" coveredconditionals="17" methods="4" coveredmethods="4"/>
       <file name="authentication.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\middlewares\authentication.js">
+<<<<<<< HEAD
         <metrics statements="21" coveredstatements="16" conditionals="6" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="1" count="6" type="stmt"/>
         <line num="2" count="6" type="stmt"/>
@@ -458,6 +896,21 @@
         <line num="12" count="4" type="stmt"/>
         <line num="14" count="4" type="stmt"/>
         <line num="16" count="4" type="cond" truecount="1" falsecount="1"/>
+=======
+        <metrics statements="21" coveredstatements="9" conditionals="6" coveredconditionals="2" methods="1" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
         <line num="17" count="0" type="stmt"/>
         <line num="21" count="4" type="stmt"/>
         <line num="24" count="4" type="stmt"/>
@@ -465,6 +918,7 @@
         <line num="32" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="43" count="4" type="stmt"/>
         <line num="44" count="4" type="stmt"/>
         <line num="49" count="6" type="stmt"/>
@@ -476,6 +930,31 @@
         <line num="3" count="6" type="stmt"/>
         <line num="4" count="6" type="stmt"/>
         <line num="7" count="20" type="cond" truecount="2" falsecount="0"/>
+=======
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+<<<<<<< HEAD
+        <line num="49" count="3" type="stmt"/>
+=======
+        <line num="49" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="errorHandler.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\middlewares\errorHandler.js">
+        <metrics statements="28" coveredstatements="18" conditionals="22" coveredconditionals="12" methods="1" coveredmethods="1"/>
+<<<<<<< HEAD
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="7" count="8" type="cond" truecount="2" falsecount="0"/>
+=======
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="7" count="16" type="cond" truecount="2" falsecount="0"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
         <line num="8" count="5" type="stmt"/>
         <line num="9" count="15" type="cond" truecount="2" falsecount="0"/>
         <line num="10" count="10" type="stmt"/>
@@ -497,6 +976,7 @@
         <line num="26" count="1" type="stmt"/>
         <line num="27" count="4" type="cond" truecount="1" falsecount="1"/>
         <line num="28" count="0" type="stmt"/>
+<<<<<<< HEAD
         <line num="30" count="4" type="stmt"/>
         <line num="34" count="6" type="stmt"/>
       </file>
@@ -507,12 +987,37 @@
         <line num="5" count="4" type="stmt"/>
         <line num="9" count="4" type="stmt"/>
         <line num="12" count="6" type="stmt"/>
+=======
+        <line num="30" count="0" type="stmt"/>
+<<<<<<< HEAD
+        <line num="34" count="3" type="stmt"/>
+      </file>
+      <file name="jwt.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\middlewares\jwt.js">
+        <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+=======
+        <line num="34" count="5" type="stmt"/>
+      </file>
+      <file name="jwt.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\middlewares\jwt.js">
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
     </package>
     <package name="server2.models">
       <metrics statements="81" coveredstatements="79" conditionals="10" coveredconditionals="7" methods="21" coveredmethods="20"/>
       <file name="action.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\action.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
         <line num="2" count="6" type="stmt"/>
         <line num="3" count="6" type="stmt"/>
         <line num="11" count="6" type="stmt"/>
@@ -599,6 +1104,192 @@
         <line num="18" count="6" type="stmt"/>
         <line num="24" count="6" type="stmt"/>
         <line num="48" count="6" type="stmt"/>
+=======
+<<<<<<< HEAD
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+=======
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="doctor.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\doctor.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+=======
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="58" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="doctorschedule.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\doctorschedule.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+=======
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="65" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="index.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\index.js">
+        <metrics statements="21" coveredstatements="20" conditionals="10" coveredconditionals="7" methods="3" coveredmethods="3"/>
+<<<<<<< HEAD
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="27" type="stmt"/>
+        <line num="30" count="24" type="stmt"/>
+        <line num="31" count="24" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="24" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="24" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+=======
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="13" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="22" count="45" type="stmt"/>
+        <line num="30" count="40" type="stmt"/>
+        <line num="31" count="40" type="stmt"/>
+        <line num="34" count="5" type="stmt"/>
+        <line num="35" count="40" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="40" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="medicalrecord.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\medicalrecord.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
+=======
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="petschedule.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\petschedule.js">
+        <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+<<<<<<< HEAD
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+=======
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="petshop.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\petshop.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+      </file>
+      <file name="post.js" path="C:\Hacktiv8 Bootcamp\Phase3\Final Project\fsjs-t1-final-server\services\server2\models\post.js">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+=======
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="48" count="5" type="stmt"/>
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
       <file name="post.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\post.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
@@ -608,6 +1299,7 @@
         <line num="16" count="6" type="stmt"/>
         <line num="48" count="6" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
+<<<<<<< HEAD
         <line num="51" count="6" type="stmt"/>
       </file>
       <file name="service.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\service.js">
@@ -618,6 +1310,28 @@
         <line num="15" count="6" type="stmt"/>
         <line num="18" count="6" type="stmt"/>
         <line num="56" count="6" type="stmt"/>
+=======
+        <line num="51" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+      </file>
+      <file name="service.js" path="C:\Users\devir\Desktop\challenge\fsjs-t1-final-server\services\server2\models\service.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+<<<<<<< HEAD
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="63" count="3" type="stmt"/>
+=======
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
+>>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+>>>>>>> 437350046b5d0c96ac37f9748eb000d939ba760c
       </file>
     </package>
   </project>
