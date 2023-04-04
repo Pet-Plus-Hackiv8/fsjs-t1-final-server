@@ -24,14 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: "name is required" },
       },
     },
-    serviceLogo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: { msg: "Logo is required" },
-        notEmpty: { msg: "Logo is required" },
-      },
-    },
+    serviceLogo:  DataTypes.STRING,
     minPrice:{
       type: DataTypes.INTEGER,
       allowNull: false,

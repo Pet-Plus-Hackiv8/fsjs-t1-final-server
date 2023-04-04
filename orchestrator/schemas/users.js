@@ -184,7 +184,7 @@ export const userResolvers = {
         });
         // console.log(data, "INI DATA");
         // redis.del("users:" + id);
-        return data;
+        return user;
       } catch (error) {
         console.log(error.response.data);
         throw new GraphQLError(error.response.data.message);

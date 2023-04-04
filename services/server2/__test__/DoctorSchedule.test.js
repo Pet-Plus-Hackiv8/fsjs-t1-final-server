@@ -9,6 +9,7 @@ const seedDocSched = require('../library/seedDoctorSchedule')
 const seedPetshop = require('../library/seedPetshops')
 const seedDoctor = require('../library/seedDoctor')
 
+
 beforeAll(async () => {
     await seedPetshop()
     await seedDoctor()
