@@ -2,8 +2,6 @@ const { User, Pet } = require("../models/index");
 const bcrypt = require("bcrypt");
 const { createToken } = require("../middlewares/jwt");
 const { Op } = require("sequelize");
-const timeSetter = require("../helpers/timeConvert");
-const dotSeparator = require("../helpers/dotSeparator");
 const ImageCloud = require("../helpers/imageKit");
 
 class Controller {

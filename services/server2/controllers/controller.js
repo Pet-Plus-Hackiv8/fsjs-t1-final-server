@@ -10,8 +10,6 @@ const {
 } = require("../models/index");
 const { sequelize, Sequelize } = require("../models");
 const { Op } = require("sequelize");
-const timeSetter = require("../helpers/timeConvert");
-const dotSeparator = require("../helpers/dotSeparator");
 const ImageCloud = require("../helpers/imageKit");
 const Xendit = require("xendit-node");
 const XENDIT_KEY = process.env.XENDIT_KEY;
@@ -191,6 +189,7 @@ class Controller {
   static async getRecord(req, res, next) {
     try {
       let { PetId } = req.params;
+      
       let record = await MedicalRecord.findAll({
         where: { PetId: PetId },
         include: [

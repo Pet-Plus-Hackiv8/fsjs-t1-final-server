@@ -77,6 +77,22 @@ describe("POST /medicalRecord/:PetId", () => {
   });
 });
 
+describe("POST /medicalRecord/:PetId", () => {
+  it("Faild due to null notes", async () => {
+    const response = await request(app).post("/medicalRecord").send({
+      notes: null,
+      PetId: 1,
+      DoctorId: 1,
+      PetScheduleId: 2,
+      PetshopId: 1
+    });
+    expect(response.status).toEqual(400);
+
+    expect(response.body).toHaveProperty("message");
+    expect(response.body.message).toEqual("notes is required")
+  });
+});
+
 describe("POST /action/:MedicalRecordId", () => {
   it("success post data", async () => {
     const response = await request(app).post("/action/2").send({
@@ -93,5 +109,18 @@ describe("POST /action/:MedicalRecordId", () => {
 
     expect(response.body).toHaveProperty("ServiceId");
     expect(typeof response.body.ServiceId).toEqual("number")
+  });
+});
+
+describe("POST /action/:MedicalRecordId", () => {
+  it("Failed due to null total price", async () => {
+    const response = await request(app).post("/action/2").send({
+      totalPrice: null,
+      ServiceId: 1
+    });
+    expect(response.status).toEqual(400);
+
+    expect(response.body).toHaveProperty("message");
+    expect(response.body.message).toEqual("Total price is required");
   });
 });
