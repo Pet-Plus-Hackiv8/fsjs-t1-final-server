@@ -384,7 +384,7 @@ describe("PUT /pets/:UserId/:id", () => {
 
 
 describe("Get /pet/:id", () => {
-    it('success edit pet accounnt', async () => {
+    it('success fetch pet accounnt by id', async () => {
         const response = await request(app)
         .get('/pet/1')
         .set('access_token', access_token)

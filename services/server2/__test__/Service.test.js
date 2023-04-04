@@ -37,7 +37,7 @@ describe("POST /service/:PetshopId", () => {
             maxPrice: 1000000,
             PetshopId : 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -59,7 +59,7 @@ describe("POST /service/:PetshopId", () => {
             maxPrice: 1000000,
             PetshopId : 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -84,7 +84,7 @@ describe("POST /service/:PetshopId", () => {
             maxPrice: 1000000,
             PetshopId : 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -109,7 +109,7 @@ describe("POST /service/:PetshopId", () => {
             // maxPrice: 1000000,
             PetshopId : 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -132,7 +132,7 @@ describe('GET /service/:PetshopId', () => {
     it('success fetch all post created by specific petshop', async () => {
         const response = await request(app)
         .get('/service/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
         expect(response.status).toEqual(200)
@@ -140,6 +140,23 @@ describe('GET /service/:PetshopId', () => {
         expect(response.body[0]).toHaveProperty("name")
         expect(response.body[0]).toHaveProperty("minPrice")
         expect(response.body[0]).toHaveProperty("maxPrice")
+
+    })
+
+    it('Petshop not exist', async () => {
+        const response = await request(app)
+        .get('/service/100000')
+        .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 
@@ -157,7 +174,7 @@ describe("PUT /service/:PetshopId/:ServiceId", () => {
             maxPrice: 1000000,
             PetshopId : 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -173,6 +190,30 @@ describe("PUT /service/:PetshopId/:ServiceId", () => {
        
     })
 
+    it('service Not exist', async () => {
+        const response = await request(app)
+        .put('/service/1/100000')
+        .send({
+            name : 'swimmingg LESSON',
+            minPrice: 10000,
+            maxPrice: 1000000,
+            PetshopId : 1
+        })
+        .set('access_token', access_token)
+        // console.log(access_token, "token>>>");
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
+
+    })
+
 
 
 
@@ -182,7 +223,7 @@ describe("PUT /service/:PetshopId/:ServiceId", () => {
 describe("DELETE  /service/:PetshopId/:ServiceId", () => {
     it('Sucess delete service', async () => {
         const response = await request(app).delete('/service/1/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
         const expectedRes = {
             message: response.body.message
@@ -191,6 +232,23 @@ describe("DELETE  /service/:PetshopId/:ServiceId", () => {
         expect(response.status).toEqual(200)
         expect(response.body).toHaveProperty("message")
          expect(response.body).toEqual(expectedRes)
+
+    })
+
+
+    it('service Not exist', async () => {
+        const response = await request(app).delete('/service/1/1')
+        .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 

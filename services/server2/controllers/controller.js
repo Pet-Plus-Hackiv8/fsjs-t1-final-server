@@ -447,6 +447,11 @@ class Controller {
 
   static async fetchAllDoctor(req, res, next) {
     try {
+      const petshop = await Petshop.findByPk(req.params.PetshopId);
+      
+      if (!petshop) {
+        throw { name: "notFound" };
+      }
       const doctor = await Doctor.findAll({
         where: {
           PetshopId: req.params.PetshopId,
@@ -462,6 +467,12 @@ class Controller {
 
   static async fetchDoctor(req, res, next) {
     try {
+
+      const petshop = await Petshop.findByPk(req.params.PetshopId);
+      
+      if (!petshop) {
+        throw { name: "notFound" };
+      }
       const doctor = await Doctor.findOne({
         where: {
           PetshopId: req.params.PetshopId,
@@ -483,6 +494,11 @@ class Controller {
         let link = await ImageCloud(req.file);
         console.log(link, "LINK<><>");
         let imgUrl = link.url;
+      }
+
+      const doctorfound = await Doctor.findByPk(req.params.DoctorId);
+      if (!doctorfound) {
+        throw { name: "notFound" };
       }
 
       const doctor = await Doctor.update(
@@ -561,6 +577,10 @@ class Controller {
 
   static async fetchAllPost(req, res, next) {
     try {
+      const petshop = await Petshop.findByPk(req.params.PetshopId);
+      if (!petshop) {
+        throw { name: "notFound" };
+      }
       const post = await Post.findAll({
         where: {
           PetshopId: req.params.PetshopId,
@@ -576,6 +596,11 @@ class Controller {
 
   static async fetchPost(req, res, next) {
     try {
+      const petshop = await Petshop.findByPk(req.params.PostId);
+      if (!petshop) {
+        throw { name: "notFound" };
+      }
+
       const post = await Post.findOne({
         where: {
           PetshopId: req.params.PetshopId,
@@ -597,6 +622,11 @@ class Controller {
         let link = await ImageCloud(req.file);
         console.log(link, "<><>");
         let imageUrl = link.url;
+      }
+
+      const postfound = await Post.findByPk(req.params.PostId);
+      if (!postfound) {
+        throw { name: "notFound" };
       }
 
       const post = await Post.update(
@@ -675,6 +705,11 @@ class Controller {
   }
   static async fetchAllService(req, res, next) {
     try {
+      const petshop = await Petshop.findByPk(req.params.PetshopId);
+      
+      if (!petshop) {
+        throw { name: "notFound" };
+      }
       const service = await Service.findAll({
         where: {
           PetshopId: req.params.PetshopId,
@@ -694,6 +729,12 @@ class Controller {
         let link = await ImageCloud(req.file);
         // console.log(link, "<><>");
         let serviceLogo = link.url;
+      }
+
+      const servicefound = await Service.findByPk(req.params.ServiceId);
+
+      if (!servicefound) {
+        throw { name: "notFound" };
       }
 
       const service = await Service.update(
@@ -760,6 +801,7 @@ class Controller {
 
   static async fetchAllSchedule(req, res, next) {
     try {
+    
       let schedule = await PetSchedule.findAll({
         where: { PetId: req.params.PetId },
         include: [
@@ -777,6 +819,12 @@ class Controller {
 
   static async fetchScheduleForPetshop(req, res, next) {
     try {
+      let petshop = await Petshop.findByPk(req.params.PetshopId)
+
+      if (!petshop) {
+        throw { name: "notFound" };
+      }
+
       let schedule = await PetSchedule.findAll({
         where: { PetshopId: req.params.PetshopId },
         include: [

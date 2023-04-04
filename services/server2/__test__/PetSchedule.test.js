@@ -121,6 +121,23 @@ describe('GET /petSchedule/:PetshopId', () => {
 
     })
 
+    it('Petshop Not exist', async () => {
+        const response = await request(app)
+        .get('/petSchedule/1000')
+        .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
+
+    })
+
    
 })
 

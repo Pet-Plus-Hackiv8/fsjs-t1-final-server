@@ -35,7 +35,7 @@ describe("POST /posts/:PetshopId", () => {
             news: 'If you love your pet, register now!',
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -54,7 +54,7 @@ describe("POST /posts/:PetshopId", () => {
             news: 'If you love your pet, register now!',
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -78,7 +78,7 @@ describe("POST /posts/:PetshopId", () => {
             // news: 'If you love your pet, register now!',
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -101,14 +101,32 @@ describe('GET /posts/:PetshopId', () => {
     it('success fetch all post created by specific petshop', async () => {
         const response = await request(app)
         .get('/posts/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
-        // console.log(response.body, "response>>>>");
+        console.log(response.body, "response post>>>>");
         expect(response.status).toEqual(200)
         expect(Array.isArray(response.body)).toEqual(true)
         expect(response.body[0]).toHaveProperty("title")
         expect(response.body[0]).toHaveProperty("news")
         expect(response.body[0]).toHaveProperty("status")
+
+    })
+
+    it('Petshop Not exist', async () => {
+        const response = await request(app)
+        .get('/posts/100')
+        .set('access_token', access_token)
+        // console.log(access_token, "token>>>");
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 
@@ -120,7 +138,7 @@ describe('GET /posts/:PetshopId/:PostId', () => {
     it('success fetch specific post created by specific petshop', async () => {
         const response = await request(app)
         .get('/posts/1/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
         expect(response.status).toEqual(200)
@@ -128,6 +146,24 @@ describe('GET /posts/:PetshopId/:PostId', () => {
         expect(response.body).toHaveProperty('title')
         expect(response.body).toHaveProperty('news')
         expect(response.body).toHaveProperty('status')
+
+    })
+
+    it('Petshop Not exist', async () => {
+        const response = await request(app)
+        .get('/posts/1/100000')
+        .set('access_token', access_token)
+        // console.log(access_token, "token>>>");
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 
@@ -144,7 +180,7 @@ describe("PUT /posts/:PetshopId/:PostId", () => {
             news: 'If you love your pet, register now!',
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         expect(response.status).toEqual(200)
@@ -160,6 +196,29 @@ describe("PUT /posts/:PetshopId/:PostId", () => {
        
     })
 
+    it('Post Not exist', async () => {
+        const response = await request(app)
+        .put('/posts/1/100000')
+        .send({
+            title : 'Pet care with Dr. wednesday',
+            news: 'If you love your pet, register now!',
+            PetshopId: 1
+        })
+        .set('access_token', access_token)
+        // console.log(access_token, "token>>>");
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
+
+    })
+
 
 
 
@@ -168,7 +227,7 @@ describe("PUT /posts/:PetshopId/:PostId", () => {
 describe("DELETE /posts/:PetshopId/:PostId", () => {
     it('Sucess delete post by id', async () => {
         const response = await request(app).delete('/posts/1/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
         const expectedRes = {
             message: response.body.message
@@ -177,6 +236,22 @@ describe("DELETE /posts/:PetshopId/:PostId", () => {
         expect(response.status).toEqual(200)
         expect(response.body).toHaveProperty("message")
          expect(response.body).toEqual(expectedRes)
+
+    })
+
+    it('Post Not exist', async () => {
+        const response = await request(app).delete('/posts/1/1')
+        .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 
