@@ -71,7 +71,6 @@ app.post("/petSchedule/public/:PetId", Controller.createPetSchedule)
 app.get("/petSchedule/public/:PetId", Controller.fetchAllSchedule)
 app.get("/petSchedule/:PetshopId", Controller.fetchScheduleForPetshop)
 
-app.use(authentication)
 
 
 

@@ -9,38 +9,25 @@ const { createToken } = require("../middlewares/jwt");
 const bulkInsertPet = require('../library/seedPet')
 
 
-let access_token;
+let access_token=  createToken({UserId: 1})
 
 beforeAll(async () => {
-    // await queryInterface.bulkDelete('Pets', null, {
-    //     truncate: true, 
-    //     restartIdentity:true,
-    //     cascade: true
-    // })
- 
-        await bulkInsertPet()
- 
-    
-   
-    // await queryInterface.bulkDelete('Users', null, {
-    //     truncate: true, 
-    //     restartIdentity:true,
-    //     cascade: true
-    // })
 
-    const user = await User.create({
-        username : "jiso",
-        fullName: "jisoo",
-        email : "jiso@mail.com",
-        password : "12345",
-        phoneNumber : "21712", 
-        address : "Jakarta",
-        role : "Owner"
-    })
+        await bulkInsertPet()
+
+    // const user = await User.create({
+    //     username : "jiso",
+    //     fullName: "jisoo",
+    //     email : "jiso@mail.com",
+    //     password : "12345",
+    //     phoneNumber : "21712", 
+    //     address : "Jakarta",
+    //     role : "Owner"
+    // })
 
     // console.log(user.dataValues.id, "ini user>>>>>>>>>");
 
-    access_token = createToken({UserId: user.id})
+   
     // console.log(access_token,">>>>>>");
     
 })
@@ -296,6 +283,20 @@ describe('GET /pets/2', () => {
         expect(response.body).toEqual(expectedRes)
 
     })
+
+    it('User does not exist', async () => {
+        const response = await request(app)
+        .get('/pets/10')
+        .set('access_token', access_token)
+
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+    })
 })
 
 
@@ -354,6 +355,30 @@ describe("PUT /pets/:UserId/:id", () => {
 
     })
 
+    it('Pet does not exist', async () => {
+        const response = await request(app)
+        .put('/pets/2/100')
+        .send({
+            name: 'Bobo1',
+            imgUrl: "bobooo",
+            gender: 'Female',
+            species : 'Cat', 
+            breed : 'Himalayan',
+            description : 'white cat' ,
+            weight: "2 kg",
+            UserId: 2
+        })
+        .set('access_token', access_token)
+
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+    })
+
 })
 
 
@@ -401,6 +426,20 @@ describe("Get /pet/:id", () => {
       
     })
 
+    it('Pet does not exist', async () => {
+        const response = await request(app)
+        .get('/pets/100')
+        .set('access_token', access_token)
+
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+    })
+
 
     
 
@@ -421,5 +460,22 @@ describe("DELETE /pets/:UserId/:id", () => {
 
     })
 
+    it('Pet Not exist', async () => {
+        const response = await request(app).delete('/pets/2/100')
+        .set('access_token', access_token)
+
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toEqual(404)
+        expect(response.body).toHaveProperty("message")
+         expect(response.body).toEqual(expectedRes)
+
+    })
+
+    
+
 
 })
+

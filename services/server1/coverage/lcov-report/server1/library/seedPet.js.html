@@ -23,15 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
-                <span class="strong">91.66% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/12</span>
-=======
-                <span class="strong">100% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
+                <span class='fraction'>12/13</span>
             </div>
         
             
@@ -50,15 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
-                <span class="strong">91.66% </span>
+                <span class="strong">92.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/12</span>
-=======
-                <span class="strong">100% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
+                <span class='fraction'>12/13</span>
             </div>
         
             
@@ -96,38 +84,34 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-=======
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-=======
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,34 +121,24 @@ const queryInterface = db.sequelize.getQueryInterface()
 &nbsp;
 &nbsp;
 async function bulkInsertPet() {
-<<<<<<< HEAD
     try {
-    console.log('MASUUUUUUUKKKKKKKKKK');
-=======
-    // try {
     await queryInterface.bulkDelete('Pets', {}, {truncate: true, restartIdentity: true, cascade:true})
     
-    // console.log('MASUUUUUUUKKKKKKKKKK');
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
+&nbsp;
+&nbsp;
+&nbsp;
+    console.log('MASUUUUUUUKKKKKKKKKK');
     let data = require("../data/pet.json")
     data.forEach(el =&gt; {
         el.createdAt = new Date(),
         el.updatedAt = new Date()
     })
-<<<<<<< HEAD
     console.log(data, "{}{}{}{}")
     await Pet.bulkCreate(data)
     // await queryInterface.bulkInsert('Pets', data)
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        console.log(error, '&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;')</span>
     }
-=======
-    // console.log(data, "{}{}{}{}")
-    await Pet.bulkCreate(data)
-//     } catch (error) {
-//         console.log(error, '&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;')
-//     }
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
 }
 &nbsp;
 module.exports = bulkInsertPet</pre></td></tr></table></pre>
@@ -174,15 +148,7 @@ module.exports = bulkInsertPet</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2023-04-04T04:51:03.540Z
-=======
-<<<<<<< HEAD
-                at 2023-04-04T02:54:57.415Z
-=======
-                at 2023-04-04T02:52:08.978Z
->>>>>>> 11910d8ad8684add4447d90a9a6372487219058c
->>>>>>> 7a61cd48e5ac0662ccac82649d9a3c2a08929d83
+                at 2023-04-04T07:17:50.715Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
