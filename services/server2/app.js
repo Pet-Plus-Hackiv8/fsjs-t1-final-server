@@ -42,6 +42,8 @@ app.post("/doctorSchedule/:DoctorId/:PetshopId", Controller.postDocSched)
 app.put("/doctorSchedule/:DoctorScheduleId", Controller.putDocSched)
 app.delete("/doctorSchedule/:DoctorScheduleId", Controller.deleteDocSched)
 
+
+app.use(authentication)
 //doctors
 
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
@@ -64,14 +66,13 @@ app.get("/service/:PetshopId", Controller.fetchAllService)
 app.put("/service/:PetshopId/:ServiceId", upload.single("serviceLogo"), Controller.putService)
 app.delete("/service/:PetshopId/:ServiceId",  Controller.deleteService)
 
-app.use(authentication)
+
 
 // PET SCHEDULE
 app.post("/petSchedule/public/:PetId", Controller.createPetSchedule)
 app.get("/petSchedule/public/:PetId", Controller.fetchAllSchedule)
 app.get("/petSchedule/:PetshopId", Controller.fetchScheduleForPetshop)
 
-app.use(authentication)
 
 
 

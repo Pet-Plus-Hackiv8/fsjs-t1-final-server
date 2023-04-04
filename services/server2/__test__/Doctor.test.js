@@ -37,7 +37,7 @@ describe("POST /doctors/:PetshopId", () => {
             education: "Universitas Terbuka",
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         console.log(response.body, ">>>>>doctor");
@@ -58,7 +58,7 @@ describe("POST /doctors/:PetshopId", () => {
             education: "Universitas Terbuka",
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -83,7 +83,7 @@ describe("POST /doctors/:PetshopId", () => {
             education: "Universitas Terbuka",
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -108,7 +108,7 @@ describe("POST /doctors/:PetshopId", () => {
             // education: "Universitas Terbuka",
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -123,8 +123,6 @@ describe("POST /doctors/:PetshopId", () => {
        
     })
 
-
-
    
 })
 
@@ -133,7 +131,7 @@ describe('GET /doctors/:PetshopId', () => {
     it('success fetch all doctors by specific petshop', async () => {
         const response = await request(app)
         .get('/doctors/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
         expect(response.status).toEqual(200)
@@ -144,10 +142,48 @@ describe('GET /doctors/:PetshopId', () => {
 
     })
 
-    it('success fetch all doctors by specific id', async () => {
+    it('failed fetch all doctors by specific id without login', async () => {
         const response = await request(app)
         .get('/doctors/1/1')
         // .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(401)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+
+    })
+
+    it('Petshop Not exist', async () => {
+        const response = await request(app)
+        .get('/doctors/100000')
+        .set('access_token', access_token)
+
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
+
+    })
+
+   
+})
+
+describe('GET /doctors/:PetshopId/:DoctorId', () => {
+    it('success fetch all doctors by specific petshop', async () => {
+        const response = await request(app)
+        .get('/doctors/1/1')
+        .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
         expect(response.status).toEqual(200)
@@ -156,6 +192,40 @@ describe('GET /doctors/:PetshopId', () => {
         expect(response.body).toHaveProperty('gender')
         expect(response.body).toHaveProperty('education')
 
+
+    })
+
+    it('failed fetch all doctors by specific id without login', async () => {
+        const response = await request(app)
+        .get('/doctors/1/1')
+        // .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(401)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+
+    })
+
+    it('Petshop Not exist', async () => {
+        const response = await request(app)
+        .get('/doctors/10000/1')
+        .set('access_token', access_token)
+
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 
@@ -173,7 +243,7 @@ describe("PUT /doctors/:PetshopId/:DoctorId", () => {
             education: "Universitas Tertutup",
             PetshopId: 1
         })
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
         // console.log(response.body, ">>>>>doctor");
@@ -190,6 +260,30 @@ describe("PUT /doctors/:PetshopId/:DoctorId", () => {
        
     })
 
+    it('Doctor Not exist', async () => {
+        const response = await request(app)
+        .put('/doctors/1/10000')
+        .send({
+            name : 'Dr. monday',
+            gender: 'Female',
+            education: "Universitas Tertutup",
+            PetshopId: 1
+        })
+        .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
+
+    })
+    
+
    
 })
 
@@ -197,7 +291,7 @@ describe("PUT /doctors/:PetshopId/:DoctorId", () => {
 describe("DELETE /doctors/:PetshopId/:DoctorId", () => {
     it('Sucess delete doctor', async () => {
         const response = await request(app).delete('/doctors/1/1')
-        // .set('access_token', access_token)
+        .set('access_token', access_token)
 
         const expectedRes = {
             message: response.body.message
@@ -206,6 +300,22 @@ describe("DELETE /doctors/:PetshopId/:DoctorId", () => {
         expect(response.status).toEqual(200)
         expect(response.body).toHaveProperty("message")
          expect(response.body).toEqual(expectedRes)
+
+    })
+
+    it('Doctor Not exist', async () => {
+        const response = await request(app).delete('/doctors/1/1000')
+        .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+  
+        expect(response.status).toBe(404)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+  
 
     })
 

@@ -167,7 +167,14 @@ class Controller {
 
   static async fetchAllPet(req, res, next) {
     try {
-      console.log(req.params);
+      // console.log(req.params);
+
+      let user = await User.findByPk(req.params.UserId)
+      if (!user) {
+        throw { name: "notFound" };
+      }
+      
+
       const pet = await Pet.findAll({
         where: {
           UserId: req.params.UserId,
@@ -205,6 +212,11 @@ class Controller {
         let link = await ImageCloud(req.file);
         // console.log(link, "<><>");
         let imgUrl = link.url;
+      }
+
+      const pet = await Pet.findByPk(req.params.id)
+      if (!pet) {
+        throw { name: "notFound" };
       }
 
       const updatedPet = await Pet.update(
