@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --runInBand"
+    "test": "npx jest --runInBand --coverage"
   },
   "keywords": [],
   "author": "",

@@ -59,7 +59,7 @@ class Controller {
         throw { name: "notFound" };
       }
       
-      let logo = null
+      let logo = shop.logo
       if(req.file) {
         let link = await ImageCloud(req.file);
          logo = link.url;
@@ -127,6 +127,7 @@ class Controller {
       // let shop = await Petshop.findByPk(PetshopId, {
       //   include: [Doctor, Post, Service],
       // });
+      console.log(UserId, "()()()()()")
       let shop = await Petshop.findOne({
         where: {UserId: UserId},
         include: [Doctor, Post, Service]
