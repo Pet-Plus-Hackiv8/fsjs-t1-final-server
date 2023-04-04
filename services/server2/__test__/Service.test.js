@@ -5,15 +5,16 @@ const db = require('../models/index')
 const queryInterface = db.sequelize.getQueryInterface()
 const app = require('../app')
 
-const seedDocSched = require('../library/seedDoctorSchedule')
+
 const seedPetshop = require('../library/seedPetshops')
-const seedPost = require('../library/seedPost')
+const seedService = require('../library/seedService')
+
 const { createToken } = require('../middlewares/jwt')
 let access_token = createToken({UserId: 1})
 
 beforeAll(async () => {
     await seedPetshop()
-    await seedPost()
+    await seedService()
  
 })
 
@@ -23,14 +24,15 @@ afterAll(async () => {
 
 
 
-describe("POST /posts/:PetshopId", () => {
-    it('Sucess add Doctor', async () => {
+describe("POST /service/:PetshopId", () => {
+    it('Sucess add Service', async () => {
         const response = await request(app)
-        .post('/posts/1')
+        .post('/service/1')
         .send({
-            title : 'Pet care with Dr. Friday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
+            name : 'swimmingg',
+            minPrice: 10000,
+            maxPrice: 1000000,
+            PetshopId : 1
         })
         // .set('access_token', access_token)
         // console.log(access_token, "token>>>");
@@ -38,18 +40,21 @@ describe("POST /posts/:PetshopId", () => {
         // console.log(response.body, ">>>>>doctor");
 
         expect(response.status).toEqual(201)
-        expect(response.body).toHaveProperty("title")
-        expect(response.body).toHaveProperty("news")
+        expect(response.body).toHaveProperty("name")
+        expect(response.body).toHaveProperty("minPrice")
+        expect(response.body).toHaveProperty("maxPrice")
+
        
     })
 
-    it("should send a response with 400 status code when there's no title", async () => {
+    it("should send a response with 400 status code when there's no name", async () => {
         const response = await request(app)
-        .post('/posts/1')
+        .post('/service/1')
         .send({
-            // title : 'Pet care with Dr. Friday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
+            // name : 'swimmingg',
+            minPrice: 10000,
+            maxPrice: 1000000,
+            PetshopId : 1
         })
         // .set('access_token', access_token)
         // console.log(access_token, "token>>>");
@@ -67,13 +72,39 @@ describe("POST /posts/:PetshopId", () => {
     })
 
     
-    it("should send a response with 400 status code when there's no news", async () => {
+    it("should send a response with 400 status code when there's no min price", async () => {
         const response = await request(app)
-        .post('/posts/1')
+        .post('/service/1')
         .send({
-            title : 'Pet care with Dr. Friday',
-            // news: 'If you love your pet, register now!',
-            PetshopId: 1
+            name : 'swimmingg',
+            // minPrice: 10000,
+            maxPrice: 1000000,
+            PetshopId : 1
+        })
+        // .set('access_token', access_token)
+        // console.log(access_token, "token>>>");
+
+        // console.log(response.body, ">>>>>doctor");
+        
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(400)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+       
+    })
+
+
+    it("should send a response with 400 status code when there's no max price", async () => {
+        const response = await request(app)
+        .post('/service/1')
+        .send({
+            name : 'swimmingg',
+            minPrice: 10000,
+            // maxPrice: 1000000,
+            PetshopId : 1
         })
         // .set('access_token', access_token)
         // console.log(access_token, "token>>>");
@@ -94,18 +125,18 @@ describe("POST /posts/:PetshopId", () => {
 })
 
 
-describe('GET /posts/:PetshopId', () => {
+describe('GET /service/:PetshopId', () => {
     it('success fetch all post created by specific petshop', async () => {
         const response = await request(app)
-        .get('/posts/1')
+        .get('/service/1')
         // .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
         expect(response.status).toEqual(200)
         expect(Array.isArray(response.body)).toEqual(true)
-        expect(response.body[0]).toHaveProperty("title")
-        expect(response.body[0]).toHaveProperty("news")
-        expect(response.body[0]).toHaveProperty("status")
+        expect(response.body[0]).toHaveProperty("name")
+        expect(response.body[0]).toHaveProperty("minPrice")
+        expect(response.body[0]).toHaveProperty("maxPrice")
 
     })
 
@@ -113,47 +144,29 @@ describe('GET /posts/:PetshopId', () => {
 })
 
 
-describe('GET /posts/:PetshopId/:PostId', () => {
-    it('success fetch specific post created by specific petshop', async () => {
+describe("PUT /service/:PetshopId/:ServiceId", () => {
+    it('Sucesss edit Service', async () => {
         const response = await request(app)
-        .get('/posts/1/1')
-        // .set('access_token', access_token)
-
-        // console.log(response.body, "response>>>>");
-        expect(response.status).toEqual(200)
-        expect(typeof response.body).toEqual('object')
-        expect(response.body).toHaveProperty('title')
-        expect(response.body).toHaveProperty('news')
-        expect(response.body).toHaveProperty('status')
-
-    })
-
-  
-})
-
-
-describe("PUT /posts/:PetshopId/:PostId", () => {
-    it('Sucess add Doctor', async () => {
-        const response = await request(app)
-        .put('/posts/1/1')
+        .put('/service/1/1')
         .send({
-            title : 'Pet care with Dr. wednesday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
+            name : 'swimmingg LESSON',
+            minPrice: 10000,
+            maxPrice: 1000000,
+            PetshopId : 1
         })
         // .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
-        expect(response.status).toEqual(200)
-        expect(typeof response.body).toEqual('object')
+        // console.log(response.body, ">>>>>doctor");
 
         const expectedRes = {
             message: response.body.message
         }
     
+        expect(response.status).toEqual(200)
+        expect(response.body).toHaveProperty("message")
+         expect(response.body).toEqual(expectedRes)
 
-        expect(response.body).toHaveProperty('message')
-        expect(response.body).toEqual(expectedRes)
        
     })
 
@@ -162,9 +175,10 @@ describe("PUT /posts/:PetshopId/:PostId", () => {
 
 })
 
-describe("DELETE /posts/:PetshopId/:PostId", () => {
-    it('Sucess delete post by id', async () => {
-        const response = await request(app).delete('/posts/1/1')
+
+describe("DELETE  /service/:PetshopId/:ServiceId", () => {
+    it('Sucess delete service', async () => {
+        const response = await request(app).delete('/service/1/1')
         // .set('access_token', access_token)
 
         const expectedRes = {

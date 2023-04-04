@@ -667,15 +667,20 @@ class Controller {
   static async addService(req, res, next) {
     try {
       // console.log(req.file);
-      if (!req.file) {
-        console.log("No file received or invalid file type");
-        // console.log("NO FILE");
+      // if (!req.file) {
+      //   console.log("No file received or invalid file type");
+      //   // console.log("NO FILE");
+      // }
+
+      let serviceLogo = null
+      if (req.file) {
+        let link = await ImageCloud(req.file);
+
+        // console.log(link, "<><>");
+        serviceLogo = link.url;
       }
 
-      let link = await ImageCloud(req.file);
-
-      // console.log(link, "<><>");
-      let serviceLogo = link.url;
+    
       let newService = await Service.create({
         name: req.body.name,
         serviceLogo,
