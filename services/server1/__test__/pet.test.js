@@ -1,5 +1,5 @@
 const request = require('supertest')
-const {afterAll, expect, it, beforeAll} = require('@jest/globals')
+// const {afterAll, expect, it, beforeAll} = require('@jest/globals')
 
 const db = require('../models/index')
 const {User} = require('../models')
@@ -17,7 +17,11 @@ beforeAll(async () => {
     //     restartIdentity:true,
     //     cascade: true
     // })
-    await bulkInsertPet()
+ 
+        await bulkInsertPet()
+ 
+    
+   
     // await queryInterface.bulkDelete('Users', null, {
     //     truncate: true, 
     //     restartIdentity:true,
@@ -51,7 +55,7 @@ describe('POST /pets/1', () => {
         const response = await request(app)
         .post('/pets/1')
         .send({
-            name: 'Bobo',
+            name: 'Bobo 222',
             imgUrl: "bobooo",
             gender: 'Female',
             species : 'Cat', 
@@ -62,7 +66,7 @@ describe('POST /pets/1', () => {
         })
         .set('access_token', access_token)
 
-        // console.log(response.body, "response>>>>");
+        console.log(response.body, "response>>>>");
         expect(response.status).toEqual(201)
         expect(typeof response.body).toEqual('object')
 
@@ -292,4 +296,130 @@ describe('GET /pets/2', () => {
         expect(response.body).toEqual(expectedRes)
 
     })
+})
+
+
+describe("PUT /pets/:UserId/:id", () => {
+    it('success edit pet accounnt', async () => {
+        const response = await request(app)
+        .put('/pets/2/1')
+        .send({
+            name: 'Bobo1',
+            imgUrl: "bobooo",
+            gender: 'Female',
+            species : 'Cat', 
+            breed : 'Himalayan',
+            description : 'white cat' ,
+            weight: "2 kg",
+            UserId: 2
+        })
+        .set('access_token', access_token)
+
+        expect(response.status).toEqual(200)
+        expect(typeof response.body).toEqual('object')
+
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+    })
+
+    it('should send a response with 401 when user not login when edit pet', async () => {
+        const response = await request(app)
+        .put('/pets/2/1')
+        .send({
+            name: 'Bobo1',
+            imgUrl: "bobooo",
+            gender: 'Female',
+            species : 'Cat', 
+            breed : 'Himalayan',
+            description : 'white cat' ,
+            weight: "2 kg",
+            UserId: 2
+        })
+        // .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+      
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(401)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+
+    })
+
+})
+
+
+
+describe("Get /pet/:id", () => {
+    it('success edit pet accounnt', async () => {
+        const response = await request(app)
+        .get('/pet/1')
+        .set('access_token', access_token)
+
+        expect(response.status).toEqual(200)
+        expect(typeof response.body).toEqual('object')
+
+        // const expectedRes = {
+        //     message: response.body.message
+        // }
+        console.log(response.body, ">>>>>>>>>>");
+        
+        // expect(response.status).toBe(200)
+        expect(response.body).toHaveProperty('name')
+        expect(response.body).toHaveProperty('gender')
+        expect(response.body).toHaveProperty('species')
+        expect(response.body).toHaveProperty('breed')
+        expect(response.body).toHaveProperty('description')
+
+
+        // expect(response.body).toHaveProperty('message')
+        // expect(response.body).toEqual(expectedRes)
+    })
+
+    it('should send a response with 401 when user not login when fetch pet by id', async () => {
+        const response = await request(app)
+        .get('/pet/1')
+        // .set('access_token', access_token)
+      
+
+        // console.log(response.body, "response>>>>");
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(401)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
+      
+    })
+
+
+    
+
+})
+
+describe("DELETE /pets/:UserId/:id", () => {
+    it('Sucess delete schedule', async () => {
+        const response = await request(app).delete('/pets/2/1')
+        .set('access_token', access_token)
+
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toEqual(200)
+        expect(response.body).toHaveProperty("message")
+         expect(response.body).toEqual(expectedRes)
+
+    })
+
+
 })

@@ -10,7 +10,9 @@ const { createToken } = require('../middlewares/jwt')
 let access_token = createToken({UserId: 1})
 
 beforeAll(async () => {
-    await bulkInsertUser()
+
+        await bulkInsertUser()
+    
 })
 
 afterAll(async () => {
