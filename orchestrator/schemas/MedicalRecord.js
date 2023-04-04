@@ -47,6 +47,7 @@ type Action {
   totalPrice: Int
   MedicalRecordId: Int
   ServiceId: Int
+  Service: Service
 }
 input InputAction {
   document: String

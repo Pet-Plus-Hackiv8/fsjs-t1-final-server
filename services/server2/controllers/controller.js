@@ -189,14 +189,20 @@ class Controller {
   static async getRecord(req, res, next) {
     try {
       let { PetId } = req.params;
-      
+      let schedule = await PetSchedule.findAll({
+        where: { PetId: req.params.PetId },
+        include: [
+          { model: DoctorSchedule, include: [Doctor] },
+          { model: Petshop },
+        ],
+      });
       let record = await MedicalRecord.findAll({
         where: { PetId: PetId },
         include: [
-          Doctor, 
-          PetSchedule, 
-          Petshop, 
-          Action
+          {model: Doctor}, 
+          {model: PetSchedule}, 
+          {model: Petshop}, 
+          {model: Action, include: [Service]}
         ],
       });
       console.log(record, "POPOPOP")
