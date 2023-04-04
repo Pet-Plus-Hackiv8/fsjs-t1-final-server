@@ -193,7 +193,12 @@ class Controller {
       let { PetId } = req.params;
       let record = await MedicalRecord.findAll({
         where: { PetId: PetId },
-        include: [Doctor, PetSchedule, Petshop, Action],
+        include: [
+          Doctor, 
+          PetSchedule, 
+          Petshop, 
+          Action
+        ],
       });
       // console.log(record, "POPOPOP")
       res.status(200).json(record);
@@ -218,31 +223,6 @@ class Controller {
       res.status(201).json(newRecord);
     } catch (err) {
       console.log(err);
-      next(err);
-    }
-  }
-
-  static async putRecord(req, res, next) {
-    //  NOT USED
-    try {
-      let { notes, DoctorId, PetScheduleId, PetshopId } = req.body;
-      let { MedicalRecordId } = req.params;
-
-      let record = await MedicalRecord.findByPk(MedicalRecordId);
-      if (!record) {
-        throw { name: "notFound" };
-      }
-
-      let editedRecord = await MedicalRecord.create({
-        notes,
-        DoctorId,
-        PetScheduleId,
-        PetshopId,
-      });
-
-      res.status(201).json({ message: "Medical record has been edited" });
-    } catch (err) {
-      // console.log(err);
       next(err);
     }
   }
@@ -274,6 +254,7 @@ class Controller {
     }
   }
 
+  //payment
   static async paymentXendit(req, res, next) {
     try {
       // console.log(req.body, "?????");

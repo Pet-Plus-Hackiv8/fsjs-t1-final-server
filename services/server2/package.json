@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest --runInBand --coverage"
+    "test": "npx jest --runInBand --coverage",
+    "dbtest": "npx sequelize-cli db:drop --env test && npx sequelize-cli db:create --env test && npx sequelize-cli db:migrate --env test"
   },
   "keywords": [],
   "author": "",
