@@ -18,11 +18,11 @@ beforeAll(async () => {
     //     cascade: true
     // })
     await bulkInsertPet()
-    await queryInterface.bulkDelete('Users', null, {
-        truncate: true, 
-        restartIdentity:true,
-        cascade: true
-    })
+    // await queryInterface.bulkDelete('Users', null, {
+    //     truncate: true, 
+    //     restartIdentity:true,
+    //     cascade: true
+    // })
 
     const user = await User.create({
         username : "jiso",
@@ -266,9 +266,30 @@ describe('GET /pets/2', () => {
         .get('/pets/2')
         .set('access_token', access_token)
 
-        console.log(response.body, "response>>>>");
+        // console.log(response.body, "response>>>>");
         expect(response.status).toEqual(200)
         expect(Array.isArray(response.body)).toEqual(true)
+        expect(response.body[0]).toHaveProperty("name")
+        expect(response.body[0]).toHaveProperty("gender")
+        expect(response.body[0]).toHaveProperty("species")
+        expect(response.body[0]).toHaveProperty("description")
+
+    })
+
+    it('should send a response with 401 when user not login when fetch pet', async () => {
+        const response = await request(app)
+        .get('/pets/2')
+        // .set('access_token', access_token)
+
+        // console.log(response.body, "response>>>>");
+      
+        const expectedRes = {
+            message: response.body.message
+        }
+    
+        expect(response.status).toBe(401)
+        expect(response.body).toHaveProperty('message')
+        expect(response.body).toEqual(expectedRes)
 
     })
 })

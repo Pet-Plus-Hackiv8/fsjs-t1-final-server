@@ -4,20 +4,20 @@ const queryInterface = db.sequelize.getQueryInterface()
 
 
 async function bulkInsertPet() {
-    try {
+    // try {
     await queryInterface.bulkDelete('Pets', {}, {truncate: true, restartIdentity: true, cascade:true})
     
-    console.log('MASUUUUUUUKKKKKKKKKK');
+    // console.log('MASUUUUUUUKKKKKKKKKK');
     let data = require("../data/pet.json")
     data.forEach(el => {
         el.createdAt = new Date(),
         el.updatedAt = new Date()
     })
-    console.log(data, "{}{}{}{}")
+    // console.log(data, "{}{}{}{}")
     await Pet.bulkCreate(data)
-    } catch (error) {
-        console.log(error, '<<<<<<<<<<<<<<<<<<<')
-    }
+//     } catch (error) {
+//         console.log(error, '<<<<<<<<<<<<<<<<<<<')
+//     }
 }
 
 module.exports = bulkInsertPet
