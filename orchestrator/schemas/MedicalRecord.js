@@ -2,6 +2,7 @@ const SERVER_TWO = process.env.SERVER_TWO || "http://localhost:4002";
 const SERVER_ONE = process.env.SERVER_ONE || "http://localhost:4001";
 import axios from "axios";
 import { GraphQLError } from "graphql";
+// import formatDate from "../helpers/formatDate"
 
 export const medicalRecordTypeDefs = `
 type MedicalRecord {
@@ -15,6 +16,8 @@ type MedicalRecord {
     Doctor: Doctor
     Petshop: Petshop
     PetSchedule: PetSchedule
+    createdAt: String
+   
 }
 
 input Create {
@@ -96,7 +99,39 @@ export const medicalRecordResolvers = {
           method: "GET",
           url: SERVER_TWO + "/medicalRecord/" + PetId,
         });
-        // console.log(data)
+        // console.log(data,"????")
+        data.map(el=>{
+          // console.log(el.createdAt, "?????????");
+          const date = new Date(el.createdAt);
+  
+          const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+          const months = [
+            "Januari",
+            "Februari",
+            "Maret",
+            "April",
+            "Mei",
+            "Juni",
+            "Juli",
+            "Agustus",
+            "September",
+            "Oktober",
+            "November",
+            "Desember",
+          ];
+        
+          const day = days[date.getDay()];
+          const month = months[date.getMonth()];
+          const dateNumber = date.getDate();
+          const year = date.getFullYear();
+        
+          const formattedDate = `${day}, ${dateNumber} ${month} ${year}`;
+        
+          el.createdAt = formattedDate
+          // console.log(typeof el.createdAt, "???????????");
+          return el
+        })
+        // console.log(data, ">>>>>>>>>>>>");
         return data;
       } catch (error) {
         console.log(error.response.data);

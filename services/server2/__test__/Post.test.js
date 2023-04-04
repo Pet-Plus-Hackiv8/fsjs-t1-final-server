@@ -27,18 +27,17 @@ afterAll(async () => {
 
 
 describe("POST /posts/:PetshopId", () => {
-    it('Sucess add Doctor', async () => {
+    it('Sucess add Post', async () => {
         const response = await request(app)
         .post('/posts/1')
-        .send({
-            title : 'Pet care with Dr. Friday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
-        })
+        .field("title", "Pet care with Dr. Friday")
+        .field("news", "If you love your pet, register now!")
+        .field("PetshopId", 1)
+        .attach("imageUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
-        // console.log(response.body, ">>>>>doctor");
+        console.log(response.body, ">>>>>post");
 
         expect(response.status).toEqual(201)
         expect(response.body).toHaveProperty("title")
@@ -49,11 +48,10 @@ describe("POST /posts/:PetshopId", () => {
     it("should send a response with 400 status code when there's no title", async () => {
         const response = await request(app)
         .post('/posts/1')
-        .send({
-            // title : 'Pet care with Dr. Friday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
-        })
+        // .field("title ", "Pet care with Dr. Friday")
+        .field("news", "If you love your pet, register now!")
+        .field("PetshopId", 1)
+        .attach("imageUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -73,11 +71,10 @@ describe("POST /posts/:PetshopId", () => {
     it("should send a response with 400 status code when there's no news", async () => {
         const response = await request(app)
         .post('/posts/1')
-        .send({
-            title : 'Pet care with Dr. Friday',
-            // news: 'If you love your pet, register now!',
-            PetshopId: 1
-        })
+        .field("title", "Pet care with Dr. Friday")
+        // .field("news", "If you love your pet, register now!")
+        .field("PetshopId", 1)
+        .attach("imageUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -175,11 +172,10 @@ describe("PUT /posts/:PetshopId/:PostId", () => {
     it('Sucess add Doctor', async () => {
         const response = await request(app)
         .put('/posts/1/1')
-        .send({
-            title : 'Pet care with Dr. wednesday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
-        })
+        .field("title", "Pet care with Dr. Friday")
+        .field("news", "If you love your pet, register now!")
+        .field("PetshopId", 1)
+        .attach("imageUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -199,11 +195,10 @@ describe("PUT /posts/:PetshopId/:PostId", () => {
     it('Post Not exist', async () => {
         const response = await request(app)
         .put('/posts/1/100000')
-        .send({
-            title : 'Pet care with Dr. wednesday',
-            news: 'If you love your pet, register now!',
-            PetshopId: 1
-        })
+        .field("title", "Pet care with Dr. Friday")
+        .field("news", "If you love your pet, register now!")
+        .field("PetshopId", 1)
+        .attach("imageUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 

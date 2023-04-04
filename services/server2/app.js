@@ -43,7 +43,7 @@ app.put("/doctorSchedule/:DoctorScheduleId", Controller.putDocSched)
 app.delete("/doctorSchedule/:DoctorScheduleId", Controller.deleteDocSched)
 
 
-app.use(authentication)
+// app.use(authentication)
 //doctors
 
 app.post("/doctors/:PetshopId", upload.single("imgUrl"), Controller.registerDoctor)
@@ -79,8 +79,8 @@ app.get("/petSchedule/:PetshopId", Controller.fetchScheduleForPetshop)
 
 app.use(errorHandler)
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
 
 module.exports = app

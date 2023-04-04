@@ -131,14 +131,14 @@ describe("GET /petShops/around", () => {
 
 describe("POST /petShop/register", () => {
   it("success register", async () => {
-    const response = await request(app).post("/petShop/register").send({
-      name: "Kars Vet Clinic",
-      address: "Makassar",
-      latitude: "0.7893",
-      longitude: "113.9213",
-      phoneNumber: "08135598987",
-      userId: 1,
-    });
+    const response = await request(app).post("/petShop/register")
+    .field("name", "Kars Vet Clinic")
+    .field("address", "Makassar")
+    .field("latitude", "0.7893")
+    .field("longitude", "113.9213")
+    .field("userId", 1)
+    .field("phoneNumber", "08135598987")
+    .attach("logo", "./files/photo.jpg")
     expect(response.status).toEqual(201);
     expect(typeof response.body).toEqual("object");
 
@@ -149,13 +149,14 @@ describe("POST /petShop/register", () => {
   });
 
   it("Missing name", async () => {
-    const response = await request(app).post("/petShop/register").send({
-      address: "Makassar",
-      latitude: "0.7893",
-      longitude: "113.9213",
-      phoneNumber: "08135598987",
-      userId: 1,
-    });
+    const response = await request(app).post("/petShop/register")
+    // .field("name", "Kars Vet Clinic")
+    .field("address", "Makassar")
+    .field("latitude", "0.7893")
+    .field("longitude", "113.9213")
+    .field("userId", 1)
+    .field("phoneNumber", "08135598987")
+    .attach("logo", "./files/photo.jpg")
     expect(response.status).toEqual(400);
     expect(typeof response.body).toEqual("object");
 
@@ -168,13 +169,14 @@ describe("POST /petShop/register", () => {
 
 describe("PUT /petShop/:PetshopId", () => {
   it("success edit", async () => {
-    const response = await request(app).put("/petShop/1").send({
-      name: "Rey Vet Clinic",
-      address: "Jakarta",
-      latitude: "0.7893",
-      longitude: "113.9213",
-      phoneNumber: "08135598987",
-    });
+    const response = await request(app).put("/petShop/1")
+    .field("name", "Kars Vet Clinic")
+    .field("address", "Makassar")
+    .field("latitude", "0.7893")
+    .field("longitude", "113.9213")
+    .field("userId", 1)
+    .field("phoneNumber", "08135598987")
+    .attach("logo", "./files/photo.jpg")
     expect(response.status).toEqual(201);
     expect(typeof response.body).toEqual("object");
 
@@ -185,12 +187,12 @@ describe("PUT /petShop/:PetshopId", () => {
   });
 
   it("Missing name", async () => {
-    const response = await request(app).put("/petShop/1").send({
-      name: null,
+    const response = await request(app).post("/petShop/register").send({
       address: "Makassar",
       latitude: "0.7893",
       longitude: "113.9213",
       phoneNumber: "08135598987",
+      userId: 1,
     });
     expect(response.status).toEqual(400);
     expect(typeof response.body).toEqual("object");
@@ -202,14 +204,14 @@ describe("PUT /petShop/:PetshopId", () => {
   });
 
   it("Vet not exist", async () => {
-    const response = await request(app).put("/petShop/5").send({
-      name: "Kars",
-      address: "Makassar",
-      latitude: "0.7893",
-      longitude: "113.9213",
-      phoneNumber: "08135598987",
-      userId: 1,
-    });
+    const response = await request(app).put("/petShop/5")
+    .field("name", "Kars Vet Clinic")
+    .field("address", "Makassar")
+    .field("latitude", "0.7893")
+    .field("longitude", "113.9213")
+    .field("userId", 1)
+    .field("phoneNumber", "08135598987")
+    .attach("logo", "./files/photo.jpg")
     expect(response.status).toEqual(404);
     expect(typeof response.body).toEqual("object");
 

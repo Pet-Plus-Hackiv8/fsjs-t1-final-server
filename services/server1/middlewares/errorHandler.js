@@ -20,9 +20,7 @@ async function errorHandler(err, req, res, next) {
     res.status(400).json({ message: "Please fill password" });
   } else if (err.name === "InvalidToken") {
     res.status(401).json({ message: "Invalid token" });
-  } else if (err.name === "scheduleExist") {
-    res.status(400).json({ message: "Schedule already exist" });
-  } else {
+  }  else {
     res.status(500).json({ message: "Internal server error" });
   }
 }

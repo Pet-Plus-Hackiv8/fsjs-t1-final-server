@@ -31,12 +31,11 @@ describe("POST /doctors/:PetshopId", () => {
     it('Sucess add Doctor', async () => {
         const response = await request(app)
         .post('/doctors/1')
-        .send({
-            name : 'Dr. Friday',
-            gender: 'Female',
-            education: "Universitas Terbuka",
-            PetshopId: 1
-        })
+        .field("name", "Dr. Friday")
+        .field("gender", "Female")
+        .field("education", "Universitas Terbuka")
+        .field("PetshopId", 1)
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -52,12 +51,11 @@ describe("POST /doctors/:PetshopId", () => {
     it("should send a response with 400 status code when there's no name", async () => {
         const response = await request(app)
         .post('/doctors/1')
-        .send({
-            // name : 'Dr. Friday',
-            gender: 'Female',
-            education: "Universitas Terbuka",
-            PetshopId: 1
-        })
+        // .field("name", "Dr. Friday")
+        .field("gender", "Female")
+        .field("education", "Universitas Terbuka")
+        .field("PetshopId", 1)
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -77,12 +75,11 @@ describe("POST /doctors/:PetshopId", () => {
     it("should send a response with 400 status code when there's no gender", async () => {
         const response = await request(app)
         .post('/doctors/1')
-        .send({
-            name : 'Dr. Friday',
-            // gender: 'Female',
-            education: "Universitas Terbuka",
-            PetshopId: 1
-        })
+        .field("name", "Dr. Friday")
+        // .field("gender", "Female")
+        .field("education", "Universitas Terbuka")
+        .field("PetshopId", 1)
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -102,12 +99,11 @@ describe("POST /doctors/:PetshopId", () => {
     it("should send a response with 400 status code when there's no education", async () => {
         const response = await request(app)
         .post('/doctors/1')
-        .send({
-            name : 'Dr. Friday',
-            gender: 'Female',
-            // education: "Universitas Terbuka",
-            PetshopId: 1
-        })
+        .field("name", "Dr. Friday")
+        .field("gender", "Female")
+        // .field("education", "Universitas Terbuka")
+        .field("PetshopId", 1)
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -237,12 +233,11 @@ describe("PUT /doctors/:PetshopId/:DoctorId", () => {
     it('Sucess edit Doctor', async () => {
         const response = await request(app)
         .put('/doctors/1/1')
-        .send({
-            name : 'Dr. monday',
-            gender: 'Female',
-            education: "Universitas Tertutup",
-            PetshopId: 1
-        })
+        .field("name", "Dr. Friday")
+        .field("gender", "Female")
+        .field("education", "Universitas Terbuka")
+        .field("PetshopId", 1)
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
         // console.log(access_token, "token>>>");
 
@@ -263,12 +258,11 @@ describe("PUT /doctors/:PetshopId/:DoctorId", () => {
     it('Doctor Not exist', async () => {
         const response = await request(app)
         .put('/doctors/1/10000')
-        .send({
-            name : 'Dr. monday',
-            gender: 'Female',
-            education: "Universitas Tertutup",
-            PetshopId: 1
-        })
+        .field("name", "Dr. Friday")
+        .field("gender", "Female")
+        .field("education", "Universitas Terbuka")
+        .field("PetshopId", 1)
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");

@@ -199,7 +199,7 @@ class Controller {
           Action
         ],
       });
-      // console.log(record, "POPOPOP")
+      console.log(record, "POPOPOP")
       res.status(200).json(record);
     } catch (err) {
       console.log(err);

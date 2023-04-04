@@ -21,7 +21,7 @@ app.post("/register", upload.single("imgUrl"), Controller.register)
 app.post("/login", Controller.login)
 
 // app.use(authentication)
-app.use(authentication)
+// app.use(authentication)
 app.get("/user/:UserId", Controller.getUserById)
 app.put("/user/:UserId", upload.single("imgUrl"), Controller.putUser)
 app.post("/pets/:UserId", upload.single("imgUrl"), Controller.addPet)
@@ -35,8 +35,8 @@ app.use(errorHandler)
 
 
 
-module.exports = app
+// module.exports = app
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})

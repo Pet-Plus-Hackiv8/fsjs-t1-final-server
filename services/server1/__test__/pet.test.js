@@ -41,16 +41,13 @@ describe('POST /pets/1', () => {
     it('success add pet', async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            name: 'Bobo 222',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 1
-        })
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         console.log(response.body, "response>>>>");
@@ -81,16 +78,13 @@ describe('POST /pets/1', () => {
     it("should send a response with 400 status code when there's no name", async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            // name: 'Bobo',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 1
-        })
+        // .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         console.log(response.body, "response>>>>");
@@ -109,16 +103,13 @@ describe('POST /pets/1', () => {
     it("should send a response with 400 status code when there's no gender", async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            name: 'Bobo',
-            imgUrl: "bobooo",
-            // gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 1
-        })
+        .field("name", "Bobo 222")
+        // .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
@@ -137,16 +128,14 @@ describe('POST /pets/1', () => {
     it("should send a response with 400 status code when there's no species", async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            name: 'Bobo',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            // species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 1
-        })
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        // .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
+        .set('access_token', access_token)
         .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
@@ -165,16 +154,13 @@ describe('POST /pets/1', () => {
     it("should send a response with 400 status code when there's no breed", async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            name: 'Bobo',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            // breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 1
-        })
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        // .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
@@ -194,16 +180,13 @@ describe('POST /pets/1', () => {
     it("should send a response with 400 status code when there's no description", async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            // name: 'Bobo',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            // description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 1
-        })
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        // .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
@@ -222,16 +205,13 @@ describe('POST /pets/1', () => {
     it("should send a response with 400 status code when there's no weight", async () => {
         const response = await request(app)
         .post('/pets/1')
-        .send({
-            name: 'Bobo',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            // weight: "2 kg",
-            UserId: 1
-        })
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        // .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         // console.log(response.body, "response>>>>");
@@ -284,9 +264,9 @@ describe('GET /pets/2', () => {
 
     })
 
-    it('User does not exist', async () => {
+    it('Pet does not exist', async () => {
         const response = await request(app)
-        .get('/pets/10')
+        .get('/pets/1000')
         .set('access_token', access_token)
 
         const expectedRes = {
@@ -304,16 +284,14 @@ describe("PUT /pets/:UserId/:id", () => {
     it('success edit pet accounnt', async () => {
         const response = await request(app)
         .put('/pets/2/1')
-        .send({
-            name: 'Bobo1',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 2
-        })
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
+        .set('access_token', access_token)
         .set('access_token', access_token)
 
         expect(response.status).toEqual(200)
@@ -355,19 +333,18 @@ describe("PUT /pets/:UserId/:id", () => {
 
     })
 
+ 
+
     it('Pet does not exist', async () => {
         const response = await request(app)
-        .put('/pets/2/100')
-        .send({
-            name: 'Bobo1',
-            imgUrl: "bobooo",
-            gender: 'Female',
-            species : 'Cat', 
-            breed : 'Himalayan',
-            description : 'white cat' ,
-            weight: "2 kg",
-            UserId: 2
-        })
+        .put('/pets/2/10000')
+        .field("name", "Bobo 222")
+        .field("gender", "bobooo")
+        .field("species", "Cat")
+        .field("breed", "White cat")
+        .field("description", "Himalayan")
+        .field("weight", "2 Kg")
+        .attach("imgUrl", "./files/photo.jpg")
         .set('access_token', access_token)
 
         const expectedRes = {
