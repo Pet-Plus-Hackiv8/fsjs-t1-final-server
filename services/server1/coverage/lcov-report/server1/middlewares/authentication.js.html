@@ -23,16 +23,28 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">68.42% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>13/19</span>
+=======
+                <span class="strong">78.94% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>15/19</span>
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>1/4</span>
+=======
+                <span class="strong">50% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/4</span>
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
             </div>
         
             
@@ -44,9 +56,15 @@
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">68.42% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>13/19</span>
+=======
+                <span class="strong">78.94% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>15/19</span>
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
             </div>
         
             
@@ -109,27 +127,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
+=======
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">14x</span>
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -148,25 +183,36 @@ app.use(express.json())
 async function authentication(req, res, next) {
     try {
         let access_token = req.headers.access_token
+<<<<<<< HEAD
         <span class="missing-if-branch" title="else path not taken" >E</span>if (!access_token) {
           throw { name: "InvalidToken" }
+=======
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!access_token) {
+<span class="cstat-no" title="statement not covered" >          throw { name: "InvalidToken" }</span>
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
         }
 &nbsp;
-        let decoded = <span class="cstat-no" title="statement not covered" >decodeToken(access_token)</span>
+        let decoded = decodeToken(access_token)
         // console.log(decoded, '&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;');
 &nbsp;
+<<<<<<< HEAD
         const user = <span class="cstat-no" title="statement not covered" >await User.findByPk(decoded.UserId)</span>
         // console.log(user, "&gt;&gt;&gt;user");
 <span class="cstat-no" title="statement not covered" >        if (!user) {</span>
+=======
+        const user = await User.findByPk(decoded.UserId)
+        // console.log(user, "&gt;&gt;&gt;user");
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
 <span class="cstat-no" title="statement not covered" >          throw { name: "InvalidToken" }</span>
         }
-<span class="cstat-no" title="statement not covered" >        req.user = {</span>
+        req.user = {
           UserId: user.id,
           email: user.email,
           role: user.role
         }
         // console.log("LOLOS AUTHEN")
-<span class="cstat-no" title="statement not covered" >        next()</span>
+        next()
       } catch (err) {
         console.log(err)
         next(err)
@@ -181,7 +227,11 @@ module.exports = authentication</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2023-04-03T18:57:25.549Z
+=======
+                at 2023-04-03T19:19:17.717Z
+>>>>>>> a1d5ae9937e7b3d9762714ab50b425dbe1a41806
             </div>
         <script src="../../prettify.js"></script>
         <script>

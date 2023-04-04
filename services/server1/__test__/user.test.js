@@ -6,6 +6,8 @@ const queryInterface = db.sequelize.getQueryInterface()
 const app = require('../app')
 
 const bulkInsertUser = require('../library/seedUser')
+const { createToken } = require('../middlewares/jwt')
+let access_token = createToken({UserId: 1})
 
 beforeAll(async () => {
     await bulkInsertUser()
@@ -229,6 +231,8 @@ describe("PUT /user/:UserId", () => {
             address : 'Jakarta' ,
             role: "Client"
         })
+        .set('access_token', access_token)
+
         expect(response.status).toEqual(201)
         expect(typeof response.body).toEqual('object')
 
@@ -238,7 +242,7 @@ describe("PUT /user/:UserId", () => {
         expect(response.body.message).toEqual('Your account has been updated')
     })
 
-    it('success input existing username', async () => {
+    it('Username already exist', async () => {
         const response = await request(app).put('/user/2').send({
             username : 'Pet Vet',
             fullName: "Bobby Fishing",
@@ -248,6 +252,8 @@ describe("PUT /user/:UserId", () => {
             address : 'Jakarta' ,
             role: "Client"
         })
+        .set('access_token', access_token)
+
         expect(response.status).toEqual(400)
         expect(typeof response.body).toEqual('object')
 
@@ -256,7 +262,8 @@ describe("PUT /user/:UserId", () => {
         
         expect(response.body.message).toEqual('Username already exist')
     })
-    it('success input existing email', async () => {
+
+    it('Email already exist', async () => {
         const response = await request(app).put('/user/2').send({
             username : 'Bobby Bola',
             fullName: "Bobby Fishing",
@@ -266,6 +273,8 @@ describe("PUT /user/:UserId", () => {
             address : 'Jakarta' ,
             role: "Client"
         })
+        .set('access_token', access_token)
+
         expect(response.status).toEqual(400)
         expect(typeof response.body).toEqual('object')
 
@@ -273,6 +282,27 @@ describe("PUT /user/:UserId", () => {
         expect(typeof response.body.message).toEqual("string")
         
         expect(response.body.message).toEqual('E-mail already exist')
+    })
+
+    it('User does not exist', async () => {
+        const response = await request(app).put('/user/99').send({
+            username : 'Bobby Bola',
+            fullName: "Bobby Fishing",
+            email: 'lalisa@mail.com',
+            password : '123456', 
+            phoneNumber : '081356987412',
+            address : 'Jakarta' ,
+            role: "Client"
+        })
+        .set('access_token', access_token)
+
+        expect(response.status).toEqual(404)
+        expect(typeof response.body).toEqual('object')
+
+        expect(response.body).toHaveProperty('message')
+        expect(typeof response.body.message).toEqual("string")
+        
+        expect(response.body.message).toEqual('Resource not found')
     })
 })
 
@@ -287,6 +317,8 @@ describe("GET /user/:UserId", () => {
             address : 'address' ,
             role: "owner"
         })
+        .set('access_token', access_token)
+
         expect(response.status).toEqual(200)
         expect(typeof response.body).toEqual('object')
 
@@ -303,6 +335,8 @@ describe("GET /user/:UserId", () => {
 
     it('user not found', async () => {
         const response = await request(app).get('/user/99')
+        .set('access_token', access_token)
+
         expect(response.status).toEqual(404)
         expect(typeof response.body).toEqual('object')
 
@@ -311,4 +345,5 @@ describe("GET /user/:UserId", () => {
         
         expect(response.body.message).toEqual('Resource not found')
     })
+
 })
