@@ -7,7 +7,7 @@
         "breed" : "Golden British Shorthair",
         "description" : "Lulu is a shorthaired, shy cat.",
         "weight" : "2 kg",
-        "UserId" : 2
+        "UserId" : 6
     },
     {
         "name": "Milo",
@@ -17,7 +17,7 @@
         "breed" : "Siberian Husky",
         "description" : "Super Clingy and Sporty",
         "weight" : "17 kg",
-        "UserId" : 2
+        "UserId" : 6
     }, 
     {
         "name": "Luna",
@@ -27,7 +27,7 @@
         "breed" : "Munchkin",
         "description" : "Like Adventure and friendly",
         "weight" : "1 kg",
-        "UserId" : 3
+        "UserId" : 6
     }
 
 ]

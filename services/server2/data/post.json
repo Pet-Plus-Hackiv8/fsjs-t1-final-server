@@ -12,7 +12,26 @@
         "status": "Active",
         "imageUrl" : "https://cdn.discordapp.com/attachments/1054692655327613008/1091200141865787422/Gray_Modern_Adopt_Pet_Banner_Landscape.png",
         "PetshopId" : 1
+    },
+    {
+        "title": "New Product Alert!",
+        "news" : "Introducing the newest addition to our pet shop - a product that your furry friend will absolutely love! We are excited to announce a limited-time discount on our brand new pet toy that is sure to keep your pets entertained for hours on end. This toy is designed with your pet's needs in mind, made from durable materials that can withstand even the most enthusiastic playtime. It's perfect for both indoor and outdoor use, whether you're at home or out for a walk in the park.",
+        "status": "Active",
+        "imageUrl" : "https://cdn.discordapp.com/attachments/1093111469865971773/1093132408104169534/Pet_Shop_Banner_.png",
+        "PetshopId" : 1
+    },
+    {
+        "title": "All Pet Food Product Discount!",
+        "news" : "Attention all pet owners! Are you looking for high-quality, nutritious food for your furry friends? Look no further! Our pet shop is excited to offer a special discount on all pet food products. Don't miss out on this amazing opportunity to save on all pet food products. Head to our pet shop now to take advantage of this limited-time offer. Your furry friends will thank you for it!",
+        "status": "Active",
+        "imageUrl" : "https://cdn.discordapp.com/attachments/1093111469865971773/1093133126408097822/Orange_Organic_Shape_Pet_Food_Banner.png",
+        "PetshopId" : 1
     }
+
   
    
 ]
+
+
+
+
