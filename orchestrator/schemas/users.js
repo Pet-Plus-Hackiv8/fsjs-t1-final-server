@@ -75,28 +75,15 @@ export const userResolvers = {
     },
   },
   Mutation: {
-    async register(
-      parent,
-      {
-        username,
-        fullName,
-        email,
-        password,
-        imgUrl,
-        role,
-        phoneNumber,
-        address,
-      }
-    ) {
+    async register(parent, { username, fullName, email, password, imgUrl, role, phoneNumber, address }) {
       console.log("MASUK REGISTER");
       try {
         // console.log(imgUrl.file, "INI IMAGE")
-        console.log(imgUrl, "<><><>")
+        console.log(imgUrl, "<><><>");
 
         const formData = new FormData();
         if (imgUrl) {
-          const { createReadStream, filename, mimetype, encoding } =
-            await imgUrl.file;
+          const { createReadStream, filename, mimetype, encoding } = await imgUrl.file;
           const stream = createReadStream();
           formData.append("imgUrl", stream, { filename });
         }
@@ -122,26 +109,12 @@ export const userResolvers = {
       }
     },
 
-    async putUser(
-      parent,
-      {
-        UserId,
-        username,
-        fullName,
-        email,
-        password,
-        imgUrl,
-        role,
-        phoneNumber,
-        address,
-      }
-    ) {
+    async putUser(parent, { UserId, username, fullName, email, password, imgUrl, role, phoneNumber, address }) {
       try {
         let formData = new FormData();
 
         if (imgUrl) {
-          let { createReadStream, filename, mimetype, encoding } =
-            await imgUrl.file;
+          let { createReadStream, filename, mimetype, encoding } = await imgUrl.file;
           let stream = createReadStream();
           formData.append("imgUrl", stream, { filename });
         }
@@ -154,15 +127,11 @@ export const userResolvers = {
         formData.append("phoneNumber", phoneNumber);
         formData.append("address", address);
 
-        const { data } = await axios.put(
-          SERVER_ONE + "/user/" + UserId,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const { data } = await axios.put(SERVER_ONE + "/user/" + UserId, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         // console.log(data, "INI DATA")
 
         return data;
@@ -174,7 +143,7 @@ export const userResolvers = {
 
     async login(parent, { email, password }) {
       try {
-        let { data:user } = await axios({
+        let { data: user } = await axios({
           method: "POST",
           url: SERVER_ONE + "/login",
           data: {
@@ -184,9 +153,9 @@ export const userResolvers = {
         });
         // console.log(data, "INI DATA");
         // redis.del("users:" + id);
-        return data;
+        return user;
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error);
         throw new GraphQLError(error.response.data.message);
       }
     },

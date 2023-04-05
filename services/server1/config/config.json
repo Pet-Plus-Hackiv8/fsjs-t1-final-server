@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "postgres",
-    "password": "postgres",
+    "password": "123qwe123qwe",
     "database": "PetPlus_Server1",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
-    "password": "postgres",
+    "password": "123qwe123qwe",
     "database": "Test_PetPlus1",
     "host": "localhost",
     "dialect": "postgres"
